@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "775972566850",
+    "project_id": "pawlly-flutter",
+    "storage_bucket": "pawlly-flutter.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:775972566850:android:b14b594feb22508dc5badb",
+        "android_client_info": {
+          "package_name": "com.pawlly.customer"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "775972566850-bqbak34oggeobvbcp5cls9cs5q3vugml.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC98CJ9qJtCnZoSh523huAjVAYSo4_6tGE"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "775972566850-bqbak34oggeobvbcp5cls9cs5q3vugml.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
