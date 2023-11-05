@@ -74,10 +74,10 @@ class LanguageAr extends BaseLanguage {
   String get invalidUrl => 'URL غير صالح';
 
   @override
-  String get cancel => 'يلغي';
+  String get cancel => 'إلغاء';
 
   @override
-  String get delete => 'يمسح';
+  String get delete => 'سماح';
 
   @override
   String get taxIncluded => 'شامل الضريبة';
@@ -960,7 +960,7 @@ class LanguageAr extends BaseLanguage {
   String get upcomingEvents => 'الأحداث القادمة';
 
   @override
-  String get guest => 'ضيف';
+  String get guest => 'أيها الضيف ';
 
   @override
   String get notifications => 'إشعارات';

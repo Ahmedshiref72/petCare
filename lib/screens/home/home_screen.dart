@@ -10,21 +10,18 @@ import 'package:pawlly/utils/common_base.dart';
 import '../../components/app_scaffold.dart';
 import '../../components/loader_widget.dart';
 import '../../generated/assets.dart';
+import '../../main.dart';
+import '../../utils/app_common.dart';
 import '../../utils/empty_error_state_widget.dart';
 import '../../utils/view_all_label_component.dart';
 import '../auth/other/notification_screen.dart';
 import '../shop/shop_dashboard/model/product_status_model.dart';
 import '../shop/shop_dashboard/product_list_screen.dart';
-import 'components/featured_product__home_component.dart';
-import 'event/event_list_screen.dart';
-import 'home_controller.dart';
-import '../../main.dart';
-import '../../utils/app_common.dart';
-import 'blog/blog_home_component.dart';
 import 'components/choose_service_components.dart';
+import 'components/featured_product__home_component.dart';
 import 'components/sliders_component.dart';
 import 'components/upcoming_appointment_components.dart';
-import 'event/your_events_components.dart';
+import 'home_controller.dart';
 
 class HomeScreen extends StatelessWidget {
   HomeScreen({super.key});
@@ -44,7 +41,10 @@ class HomeScreen extends StatelessWidget {
         child: Obx(
           () => SnapHelperWidget(
             future: homeScreenController.getDashboardDetailFuture.value,
-            initialData: homeScreenController.dashboardData.value.systemService.isEmpty ? null : DashboardRes(data: homeScreenController.dashboardData.value),
+            initialData: homeScreenController
+                    .dashboardData.value.systemService.isEmpty
+                ? null
+                : DashboardRes(data: homeScreenController.dashboardData.value),
             errorBuilder: (error) {
               return NoDataWidget(
                 title: error,
@@ -96,7 +96,8 @@ class HomeScreen extends StatelessWidget {
                             onPressed: () {
                               Get.to(() => NotificationScreen());
                             },
-                            icon: Assets.iconsIcUnselectedBell.iconImage(color: darkGray, size: 24),
+                            icon: Assets.iconsIcUnselectedBell
+                                .iconImage(color: darkGray, size: 24),
                           ).paddingTop(16).visible(isLoggedIn.value),
                         ],
                       ).paddingSymmetric(horizontal: 16),
@@ -106,26 +107,43 @@ class HomeScreen extends StatelessWidget {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             SlidersComponent(),
-                            Obx(() => ChooseServiceComponents().visible(homeScreenController.dashboardData.value.systemService.isNotEmpty)),
-                            Obx(() => UpcomingAppointmentComponents().visible(!homeScreenController.isRefresh.value && homeScreenController.dashboardData.value.upcommingBooking.id > 0)),
+                            Obx(() => ChooseServiceComponents().visible(
+                                homeScreenController.dashboardData.value
+                                    .systemService.isNotEmpty)),
+                            Obx(() => UpcomingAppointmentComponents().visible(
+                                !homeScreenController.isRefresh.value &&
+                                    homeScreenController.dashboardData.value
+                                            .upcommingBooking.id >
+                                        0)),
                             /*   PetStoreComponents(),*/
                             16.height,
                             ViewAllLabel(
                               label: locale.value.featuredProducts,
-                              list: homeScreenController.dashboardData.value.featuresProduct,
+                              list: homeScreenController
+                                  .dashboardData.value.featuresProduct,
                               onTap: () {
-                                Get.to(() => ProductListScreen(title: locale.value.featuredProducts), arguments: ProductStatusModel(isFeatured: "1"));
+                                Get.to(
+                                    () => ProductListScreen(
+                                        title: locale.value.featuredProducts),
+                                    arguments:
+                                        ProductStatusModel(isFeatured: "1"));
                               },
-                            ).paddingOnly(left: 16, right: 8).visible(homeScreenController.dashboardData.value.featuresProduct.isNotEmpty),
+                            ).paddingOnly(left: 16, right: 8).visible(
+                                homeScreenController.dashboardData.value
+                                    .featuresProduct.isNotEmpty),
                             Obx(
-                              () => FeaturedProductsHomeComponent(homeScreenController: homeScreenController, isFromWishList: false)
+                              () => FeaturedProductsHomeComponent(
+                                      homeScreenController:
+                                          homeScreenController,
+                                      isFromWishList: false)
                                   .paddingOnly(
                                     top: 10,
                                     left: 16,
                                     right: 16,
                                     bottom: 16,
                                   )
-                                  .visible(homeScreenController.dashboardData.value.featuresProduct.isNotEmpty),
+                                  .visible(homeScreenController.dashboardData
+                                      .value.featuresProduct.isNotEmpty),
                             ),
                             // 16.height,
                             // ViewAllLabel(
@@ -134,11 +152,13 @@ class HomeScreen extends StatelessWidget {
                             //     Get.to(() => EventListScreen());
                             //   },
                             // ).visible(homeScreenController.dashboardData.value.event.isNotEmpty).paddingOnly(left: 16, right: 8),
-                         
+                            //
                             // Obx(() => YourEventsComponents(
                             //       events: homeScreenController.dashboardData.value.event,
                             //     ).visible(homeScreenController.dashboardData.value.event.isNotEmpty)),
+/*
                             Obx(() => BlogHomeComponent().visible(homeScreenController.dashboardData.value.blog.isNotEmpty)),
+*/
                           ],
                         ).visible(!homeScreenController.isLoading.value),
                       ),
@@ -152,7 +172,9 @@ class HomeScreen extends StatelessWidget {
                           onRetry: () {
                             homeScreenController.init();
                           },
-                        ).paddingSymmetric(horizontal: 32).visible(!homeScreenController.isLoading.value && dashboardData.data.systemService.isEmpty),
+                        ).paddingSymmetric(horizontal: 32).visible(
+                            !homeScreenController.isLoading.value &&
+                                dashboardData.data.systemService.isEmpty),
                       )
                     ],
                   ),
@@ -168,7 +190,9 @@ class HomeScreen extends StatelessWidget {
   String get randomPetName {
     try {
       if (myPetsScreenController.myPets.isNotEmpty) {
-        return myPetsScreenController.myPets[Random().nextInt(myPetsScreenController.myPets.length)].name;
+        return myPetsScreenController
+            .myPets[Random().nextInt(myPetsScreenController.myPets.length)]
+            .name;
       } else {
         return "";
       }
