@@ -127,16 +127,17 @@ class HomeScreen extends StatelessWidget {
                                   )
                                   .visible(homeScreenController.dashboardData.value.featuresProduct.isNotEmpty),
                             ),
-                            16.height,
-                            ViewAllLabel(
-                              label: locale.value.upcomingEvents,
-                              onTap: () {
-                                Get.to(() => EventListScreen());
-                              },
-                            ).visible(homeScreenController.dashboardData.value.event.isNotEmpty).paddingOnly(left: 16, right: 8),
-                            Obx(() => YourEventsComponents(
-                                  events: homeScreenController.dashboardData.value.event,
-                                ).visible(homeScreenController.dashboardData.value.event.isNotEmpty)),
+                            // 16.height,
+                            // ViewAllLabel(
+                            //   label: locale.value.upcomingEvents,
+                            //   onTap: () {
+                            //     Get.to(() => EventListScreen());
+                            //   },
+                            // ).visible(homeScreenController.dashboardData.value.event.isNotEmpty).paddingOnly(left: 16, right: 8),
+                         
+                            // Obx(() => YourEventsComponents(
+                            //       events: homeScreenController.dashboardData.value.event,
+                            //     ).visible(homeScreenController.dashboardData.value.event.isNotEmpty)),
                             Obx(() => BlogHomeComponent().visible(homeScreenController.dashboardData.value.blog.isNotEmpty)),
                           ],
                         ).visible(!homeScreenController.isLoading.value),
