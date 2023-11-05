@@ -11,15 +11,16 @@ import 'package:onesignal_flutter/onesignal_flutter.dart';
 import 'package:pawlly/locale/language_en.dart';
 import 'package:pawlly/screens/shop/order/model/order_detail_model.dart';
 import 'package:pawlly/screens/splash/splash_screen.dart';
+
 import 'app_theme.dart';
 import 'configs.dart';
+import 'locale/app_localizations.dart';
+import 'locale/languages.dart';
 import 'screens/auth/model/notification_model.dart';
 import 'screens/booking_module/booking_detail/booking_detail_screen.dart';
 import 'screens/booking_module/model/booking_data_model.dart';
 import 'screens/dashboard/dashboard_res_model.dart';
 import 'screens/home/home_controller.dart';
-import 'locale/app_localizations.dart';
-import 'locale/languages.dart';
 import 'screens/shop/order/order_detail_screen.dart';
 import 'utils/app_common.dart';
 import 'utils/colors.dart';
@@ -37,11 +38,13 @@ void main() async {
 
   await GetStorage.init();
   //
-  fontFamilyPrimaryGlobal = GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily;
+  fontFamilyPrimaryGlobal =
+      GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily;
   // textPrimarySizeGlobal = 24;
   textPrimarySizeGlobal = 14;
   textPrimaryColorGlobal = primaryTextColor;
-  fontFamilySecondaryGlobal = GoogleFonts.beVietnamPro(fontWeight: FontWeight.w400).fontFamily;
+  fontFamilySecondaryGlobal =
+      GoogleFonts.beVietnamPro(fontWeight: FontWeight.w400).fontFamily;
   // textSecondarySizeGlobal = 14;
   textSecondarySizeGlobal = 12;
   textSecondaryColorGlobal = secondaryTextColor;
@@ -56,10 +59,13 @@ void main() async {
 
   await initialize(aLocaleLanguageList: languageList());
 
-  selectedLanguageCode(getValueFromLocal(SELECTED_LANGUAGE_CODE) ?? DEFAULT_LANGUAGE);
-  BaseLanguage temp = await const AppLocalizations().load(Locale(selectedLanguageCode.value));
+  selectedLanguageCode(
+      getValueFromLocal(SELECTED_LANGUAGE_CODE) ?? DEFAULT_LANGUAGE);
+  BaseLanguage temp =
+      await const AppLocalizations().load(Locale(selectedLanguageCode.value));
   locale = temp.obs;
-  locale.value = await const AppLocalizations().load(Locale(selectedLanguageCode.value));
+  locale.value =
+      await const AppLocalizations().load(Locale(selectedLanguageCode.value));
 
   try {
     final getThemeFromLocal = getValueFromLocal(SettingsLocalConst.THEME_MODE);
@@ -74,7 +80,8 @@ void main() async {
 
   if (kReleaseMode) {
     Firebase.initializeApp().then((value) {
-      FlutterError.onError = FirebaseCrashlytics.instance.recordFlutterFatalError;
+      FlutterError.onError =
+          FirebaseCrashlytics.instance.recordFlutterFatalError;
     });
   }
 
@@ -85,13 +92,22 @@ void main() async {
     try {
       if (event.notification.additionalData != null) {
         if (event.notification.additionalData != null) {
-          final additionalData = event.notification.additionalData!['additional_data'];
-          NotificationDetail nData = NotificationDetail.fromJson(additionalData);
+          final additionalData =
+              event.notification.additionalData!['additional_data'];
+          NotificationDetail nData =
+              NotificationDetail.fromJson(additionalData);
           if (nData.id > 0) {
             if (nData.notificationGroup == "shop") {
-              Get.to(() => OrderDetailScreen(), arguments: OrderListData(id: nData.id, orderCode: nData.orderCode));
+              Get.to(() => OrderDetailScreen(),
+                  arguments:
+                      OrderListData(id: nData.id, orderCode: nData.orderCode));
             } else {
-              Get.to(() => BookingDetailScreen(), arguments: BookingDataModel(id: nData.id, service: SystemService(name: nData.bookingServicesNames), payment: PaymentDetails(), training: Training()));
+              Get.to(() => BookingDetailScreen(),
+                  arguments: BookingDataModel(
+                      id: nData.id,
+                      service: SystemService(name: nData.bookingServicesNames),
+                      payment: PaymentDetails(),
+                      training: Training()));
             }
           }
         }
@@ -122,7 +138,8 @@ class MyApp extends StatelessWidget {
             GlobalWidgetsLocalizations.delegate,
             GlobalCupertinoLocalizations.delegate,
           ],
-          localeResolutionCallback: (locale, supportedLocales) => Locale(selectedLanguageCode.value),
+          localeResolutionCallback: (locale, supportedLocales) =>
+              Locale(selectedLanguageCode.value),
           fallbackLocale: const Locale(DEFAULT_LANGUAGE),
           locale: Locale(selectedLanguageCode.value),
           theme: AppTheme.lightTheme,
@@ -131,8 +148,12 @@ class MyApp extends StatelessWidget {
           themeMode: isDarkMode.value ? ThemeMode.dark : ThemeMode.light,
           initialBinding: BindingsBuilder(() {
             isDarkMode.value
-                ? setStatusBarColor(scaffoldDarkColor, statusBarIconBrightness: Brightness.light, statusBarBrightness: Brightness.light)
-                : setStatusBarColor(context.scaffoldBackgroundColor, statusBarIconBrightness: Brightness.dark, statusBarBrightness: Brightness.light);
+                ? setStatusBarColor(scaffoldDarkColor,
+                    statusBarIconBrightness: Brightness.light,
+                    statusBarBrightness: Brightness.light)
+                : setStatusBarColor(context.scaffoldBackgroundColor,
+                    statusBarIconBrightness: Brightness.dark,
+                    statusBarBrightness: Brightness.light);
             if (isLoggedIn.value) {
               debugPrint('INITIALBINDING: called');
               Get.put<HomeScreenController>(HomeScreenController());

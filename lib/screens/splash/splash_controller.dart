@@ -4,13 +4,14 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/screens/auth/services/auth_service_apis.dart';
-import '../auth/model/login_response.dart';
-import '../dashboard/dashboard_screen.dart';
-import '../walkthrough/walkthrough_screen.dart';
+
 import '../../utils/app_common.dart';
 import '../../utils/constants.dart';
 import '../../utils/local_storage.dart';
+import '../auth/model/login_response.dart';
+import '../dashboard/dashboard_screen.dart';
 import '../home/home_controller.dart';
+import '../walkthrough/walkthrough_screen.dart';
 
 class SplashScreenController extends GetxController {
   @override
@@ -40,7 +41,8 @@ class SplashScreenController extends GetxController {
   }
 
   void navigationLogic() {
-    if ((getValueFromLocal(SharedPreferenceConst.FIRST_TIME) ?? false) == false) {
+    if ((getValueFromLocal(SharedPreferenceConst.FIRST_TIME) ?? false) ==
+        false) {
       Get.offAll(() => WalkthroughScreen());
     } else if (getValueFromLocal(SharedPreferenceConst.IS_LOGGED_IN) == true) {
       try {

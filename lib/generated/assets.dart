@@ -10,14 +10,22 @@ class Assets {
   static const String brandBrand6 = 'assets/images/brand/brand_6.png';
   static const String brandBrand7 = 'assets/images/brand/brand_7.png';
   static const String brandBrand8 = 'assets/images/brand/brand_8.png';
-  static const String choosepetChooseCat = 'assets/images/choosepet/choose_cat.png';
-  static const String choosepetChooseDog = 'assets/images/choosepet/choose_dog.png';
-  static const String choosepetChooseFish = 'assets/images/choosepet/choose_fish.png';
-  static const String choosepetChooseHourse = 'assets/images/choosepet/choose_hourse.png';
-  static const String choosepetChooseMouse = 'assets/images/choosepet/choose_mouse.png';
-  static const String choosepetChooseOwl = 'assets/images/choosepet/choose_owl.png';
-  static const String choosepetChooseRabbit = 'assets/images/choosepet/choose_rabbit.png';
-  static const String choosepetChooseSquirrel = 'assets/images/choosepet/choose_squirrel.png';
+  static const String choosepetChooseCat =
+      'assets/images/choosepet/choose_cat.png';
+  static const String choosepetChooseDog =
+      'assets/images/choosepet/choose_dog.png';
+  static const String choosepetChooseFish =
+      'assets/images/choosepet/choose_fish.png';
+  static const String choosepetChooseHourse =
+      'assets/images/choosepet/choose_hourse.png';
+  static const String choosepetChooseMouse =
+      'assets/images/choosepet/choose_mouse.png';
+  static const String choosepetChooseOwl =
+      'assets/images/choosepet/choose_owl.png';
+  static const String choosepetChooseRabbit =
+      'assets/images/choosepet/choose_rabbit.png';
+  static const String choosepetChooseSquirrel =
+      'assets/images/choosepet/choose_squirrel.png';
   static const String dogPawDogPaw = 'assets/images/dog_paw/dog_paw.png';
   static const String dogPawDogPaw1 = 'assets/images/dog_paw/dog_paw_1.png';
   static const String dogPawDogPaw2 = 'assets/images/dog_paw/dog_paw_2.png';
@@ -50,25 +58,29 @@ class Assets {
   static const String iconsIcNavigate = 'assets/icons/ic_navigate.png';
   static const String iconsIcNoPhoto = 'assets/icons/ic_no_photo.png';
   static const String iconsIcOrder = 'assets/icons/ic_order.png';
-  static const String iconsIcPaymentOutlined = 'assets/icons/ic_payment_outlined.png';
+  static const String iconsIcPaymentOutlined =
+      'assets/icons/ic_payment_outlined.png';
   static const String iconsIcSearch = 'assets/icons/ic_search.png';
   static const String iconsIcSelectedBell = 'assets/icons/ic_selected_bell.png';
   static const String iconsIcTimeOutlined = 'assets/icons/ic_time_outlined.png';
-  static const String iconsIcUnselectedBell = 'assets/icons/ic_unselected_bell.png';
+  static const String iconsIcUnselectedBell =
+      'assets/icons/ic_unselected_bell.png';
   static const String iconsIcWeight = 'assets/icons/ic_weight.png';
   static const String imagesAppleLogo = 'assets/images/apple_logo.png';
   static const String imagesCashImages = 'assets/images/cash_images.png';
   static const String imagesConfirm = 'assets/images/confirm.png';
   static const String imagesFavActivity = 'assets/images/fav_activity.png';
   static const String imagesFavFood = 'assets/images/fav_food.png';
-  static const String imagesFlutterWaveLogo = 'assets/images/flutter_wave_logo.png';
+  static const String imagesFlutterWaveLogo =
+      'assets/images/flutter_wave_logo.png';
   static const String imagesForceUpdate = 'assets/images/force_update.png';
   static const String imagesGoogleLogo = 'assets/images/google_logo.png';
-  static const String imagesIcEditprofileOutlined = 'assets/images/ic_editprofile_outlined.png';
+  static const String imagesIcEditprofileOutlined =
+      'assets/images/ic_editprofile_outlined.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesOptionImage = 'assets/images/option_image.png';
-  static const String imagesPawllyLoaderDark = 'assets/images/pawlly_loader_dark.gif';
-  static const String imagesPawllyLoaderLight = 'assets/images/pawlly_loader_light.gif';
+  static const String imagesPawllyLoaderDark = 'assets/images/logo.png';
+  static const String imagesPawllyLoaderLight = 'assets/images/logo.png';
   static const String imagesPaymentImages = 'assets/images/payment_images.png';
   static const String imagesPaypalLogo = 'assets/images/paypal_logo.png';
   static const String imagesPaystackLogo = 'assets/images/paystack_logo.png';
@@ -89,30 +101,54 @@ class Assets {
   static const String imagesVerified = 'assets/images/verified.png';
   static const String lottieEmptyLottie = 'assets/lottie/empty_lottie.json';
   static const String lottieErrorLottie = 'assets/lottie/error_lottie.json';
-  static const String navigationIcCalendarOutlined = 'assets/icons/navigation/ic_calendar_outlined.png';
-  static const String navigationIcCalenderFilled = 'assets/icons/navigation/ic_calender_filled.png';
-  static const String navigationIcHomeFilled = 'assets/icons/navigation/ic_home_filled.png';
-  static const String navigationIcHomeOutlined = 'assets/icons/navigation/ic_home_outlined.png';
-  static const String navigationIcShopFilled = 'assets/icons/navigation/ic_shop_filled.png';
-  static const String navigationIcShopOutlined = 'assets/icons/navigation/ic_shop_outlined.png';
-  static const String navigationIcUserFilled = 'assets/icons/navigation/ic_user_filled.png';
-  static const String navigationIcUserOutlined = 'assets/icons/navigation/ic_user_outlined.png';
-  static const String notificationNote1 = 'assets/images/notification/note_1.png';
-  static const String petProfileProfileBgPettern = 'assets/images/pet_profile/profile_bg_pettern.png';
-  static const String profileIconsIcAddPet = 'assets/icons/profile_icons/ic_add_pet.png';
-  static const String profileIconsIcInfoOutlined = 'assets/icons/profile_icons/ic_info_outlined.png';
-  static const String profileIconsIcLogoutOutlined = 'assets/icons/profile_icons/ic_logout_outlined.png';
-  static const String profileIconsIcMyPets = 'assets/icons/profile_icons/ic_my_pets.png';
-  static const String profileIconsIcReason = 'assets/icons/profile_icons/ic_reason.png';
-  static const String profileIconsIcSettingOutlined = 'assets/icons/profile_icons/ic_setting_outlined.png';
-  static const String profileIconsIcStarOutlined = 'assets/icons/profile_icons/ic_star_outlined.png';
-  static const String profileIconsIcUserOutlined = 'assets/icons/profile_icons/ic_user_outlined.png';
-  static const String serviceIconsIcBoarding = 'assets/icons/service_icons/ic_boarding.png';
-  static const String serviceIconsIcDaycare = 'assets/icons/service_icons/ic_daycare.png';
-  static const String serviceIconsIcGrooming = 'assets/icons/service_icons/ic_grooming.png';
-  static const String serviceIconsIcTraining = 'assets/icons/service_icons/ic_training.png';
-  static const String serviceIconsIcVeterinary = 'assets/icons/service_icons/ic_veterinary.png';
-  static const String serviceIconsIcWalking = 'assets/icons/service_icons/ic_walking.png';
+  static const String navigationIcCalendarOutlined =
+      'assets/icons/navigation/ic_calendar_outlined.png';
+  static const String navigationIcCalenderFilled =
+      'assets/icons/navigation/ic_calender_filled.png';
+  static const String navigationIcHomeFilled =
+      'assets/icons/navigation/ic_home_filled.png';
+  static const String navigationIcHomeOutlined =
+      'assets/icons/navigation/ic_home_outlined.png';
+  static const String navigationIcShopFilled =
+      'assets/icons/navigation/ic_shop_filled.png';
+  static const String navigationIcShopOutlined =
+      'assets/icons/navigation/ic_shop_outlined.png';
+  static const String navigationIcUserFilled =
+      'assets/icons/navigation/ic_user_filled.png';
+  static const String navigationIcUserOutlined =
+      'assets/icons/navigation/ic_user_outlined.png';
+  static const String notificationNote1 =
+      'assets/images/notification/note_1.png';
+  static const String petProfileProfileBgPettern =
+      'assets/images/pet_profile/profile_bg_pettern.png';
+  static const String profileIconsIcAddPet =
+      'assets/icons/profile_icons/ic_add_pet.png';
+  static const String profileIconsIcInfoOutlined =
+      'assets/icons/profile_icons/ic_info_outlined.png';
+  static const String profileIconsIcLogoutOutlined =
+      'assets/icons/profile_icons/ic_logout_outlined.png';
+  static const String profileIconsIcMyPets =
+      'assets/icons/profile_icons/ic_my_pets.png';
+  static const String profileIconsIcReason =
+      'assets/icons/profile_icons/ic_reason.png';
+  static const String profileIconsIcSettingOutlined =
+      'assets/icons/profile_icons/ic_setting_outlined.png';
+  static const String profileIconsIcStarOutlined =
+      'assets/icons/profile_icons/ic_star_outlined.png';
+  static const String profileIconsIcUserOutlined =
+      'assets/icons/profile_icons/ic_user_outlined.png';
+  static const String serviceIconsIcBoarding =
+      'assets/icons/service_icons/ic_boarding.png';
+  static const String serviceIconsIcDaycare =
+      'assets/icons/service_icons/ic_daycare.png';
+  static const String serviceIconsIcGrooming =
+      'assets/icons/service_icons/ic_grooming.png';
+  static const String serviceIconsIcTraining =
+      'assets/icons/service_icons/ic_training.png';
+  static const String serviceIconsIcVeterinary =
+      'assets/icons/service_icons/ic_veterinary.png';
+  static const String serviceIconsIcWalking =
+      'assets/icons/service_icons/ic_walking.png';
   static const String shopShop1 = 'assets/images/shop/shop_1.png';
   static const String shopShop2 = 'assets/images/shop/shop_2.png';
   static const String shopShop3 = 'assets/images/shop/shop_3.png';
@@ -125,8 +161,10 @@ class Assets {
   static const String sitterSitter4 = 'assets/images/sitter/sitter_4.png';
   static const String sitterSitter5 = 'assets/images/sitter/sitter_5.png';
   static const String sitterSitter6 = 'assets/images/sitter/sitter_6.png';
-  static const String walkthroughImagesWalkImage1 = 'assets/images/walkthrough_images/walk_image1.png';
-  static const String walkthroughImagesWalkImage2 = 'assets/images/walkthrough_images/walk_image2.png';
-  static const String walkthroughImagesWalkImage3 = 'assets/images/walkthrough_images/walk_image3.png';
-
+  static const String walkthroughImagesWalkImage1 =
+      'assets/images/walkthrough_images/walk_image1.png';
+  static const String walkthroughImagesWalkImage2 =
+      'assets/images/walkthrough_images/walk_image2.png';
+  static const String walkthroughImagesWalkImage3 =
+      'assets/images/walkthrough_images/walk_image3.png';
 }

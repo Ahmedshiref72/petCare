@@ -11,7 +11,7 @@ class AppTheme {
 
   static ThemeData get lightTheme {
     return ThemeData(
-      fontFamily: GoogleFonts.beVietnamPro().fontFamily,
+      fontFamily: GoogleFonts.hahmlet().fontFamily,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
@@ -20,7 +20,8 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: scafoldColor,
       cardColor: cardColor,
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: Colors.white),
+      bottomNavigationBarTheme:
+          const BottomNavigationBarThemeData(backgroundColor: Colors.white),
       iconTheme: IconThemeData(color: textPrimaryColorGlobal),
       textTheme: GoogleFonts.beVietnamProTextTheme(),
       dialogBackgroundColor: Colors.white,
@@ -28,11 +29,14 @@ class AppTheme {
       dividerColor: borderColor.withOpacity(0.5),
       switchTheme: SwitchThemeData(
         trackOutlineColor: MaterialStateProperty.all(Colors.transparent),
-        trackColor: MaterialStateProperty.all(switchActiveTrackColor.withOpacity(0.3)),
+        trackColor:
+            MaterialStateProperty.all(switchActiveTrackColor.withOpacity(0.3)),
         thumbColor: MaterialStateProperty.all(switchActiveTrackColor),
       ),
       bottomSheetTheme: BottomSheetThemeData(
-        shape: RoundedRectangleBorder(borderRadius: radiusOnly(topLeft: defaultRadius, topRight: defaultRadius)),
+        shape: RoundedRectangleBorder(
+            borderRadius:
+                radiusOnly(topLeft: defaultRadius, topRight: defaultRadius)),
         backgroundColor: Colors.white,
       ),
       appBarTheme: const AppBarTheme(
@@ -44,11 +48,12 @@ class AppTheme {
         ),
       ),
       dialogTheme: DialogTheme(shape: dialogShape()),
-      pageTransitionsTheme: const PageTransitionsTheme(builders: <TargetPlatform, PageTransitionsBuilder>{
-        TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.linux: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      }),
+      pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.linux: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          }),
     );
   }
 
@@ -80,24 +85,28 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: scaffoldDarkColor,
       fontFamily: GoogleFonts.beVietnamPro().fontFamily,
-      bottomNavigationBarTheme: const BottomNavigationBarThemeData(backgroundColor: scaffoldSecondaryDark),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+          backgroundColor: scaffoldSecondaryDark),
       iconTheme: const IconThemeData(color: Colors.white),
       textTheme: GoogleFonts.beVietnamProTextTheme(),
       dialogBackgroundColor: scaffoldSecondaryDark,
       unselectedWidgetColor: Colors.white60,
       useMaterial3: true,
       bottomSheetTheme: BottomSheetThemeData(
-        shape: RoundedRectangleBorder(borderRadius: radiusOnly(topLeft: defaultRadius, topRight: defaultRadius)),
+        shape: RoundedRectangleBorder(
+            borderRadius:
+                radiusOnly(topLeft: defaultRadius, topRight: defaultRadius)),
         backgroundColor: scaffoldDarkColor,
       ),
       dividerColor: borderColor.withOpacity(0.2),
       cardColor: cardDarkColor,
       dialogTheme: DialogTheme(shape: dialogShape()),
-      pageTransitionsTheme: const PageTransitionsTheme(builders: <TargetPlatform, PageTransitionsBuilder>{
-        TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.linux: OpenUpwardsPageTransitionsBuilder(),
-        TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
-      }),
+      pageTransitionsTheme: const PageTransitionsTheme(
+          builders: <TargetPlatform, PageTransitionsBuilder>{
+            TargetPlatform.android: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.linux: OpenUpwardsPageTransitionsBuilder(),
+            TargetPlatform.iOS: CupertinoPageTransitionsBuilder(),
+          }),
     );
   }
 }
