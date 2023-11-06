@@ -7,20 +7,19 @@ import 'package:pawlly/components/cached_image_widget.dart';
 import 'package:pawlly/screens/home/blog/blog_list_screen.dart';
 import 'package:pawlly/screens/home/event/event_list_screen.dart';
 import 'package:pawlly/utils/app_common.dart';
-import 'package:pawlly/utils/view_all_label_component.dart';
 
 import '../../../components/app_scaffold.dart';
 import '../../../generated/assets.dart';
-import '../model/theme_mode_data_model.dart';
-import 'settings_controller.dart';
 import '../../../locale/app_localizations.dart';
 import '../../../locale/languages.dart';
 import '../../../main.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../../../utils/local_storage.dart';
-import 'about_us_screen.dart';
+import '../model/theme_mode_data_model.dart';
 import '../password/change_password_screen.dart';
+import 'about_us_screen.dart';
+import 'settings_controller.dart';
 
 class SettingScreen extends StatelessWidget {
   SettingScreen({Key? key}) : super(key: key);
@@ -59,7 +58,7 @@ class SettingScreen extends StatelessWidget {
                   leading: commonLeadingWid(
                       imgPath: Assets.iconsIcLanguage,
                       icon: Icons.language_outlined,
-                      color: primaryColor),
+                      color: secondaryColor),
                   trailing: DropdownButtonHideUnderline(
                     child: Container(
                       decoration: BoxDecoration(
@@ -171,12 +170,12 @@ class SettingScreen extends StatelessWidget {
                 titleTextStyle: primaryTextStyle(),
                 leading: const Icon(
                   Icons.event,
-                  color: Color.fromARGB(255, 159, 168, 230),
+                  color: secondaryColor,
                 ), //  commonLeadingWid(
                 //     imgPath: Assets.iconsIcLock,
                 //     icon: Icons.event_available_outlined,
                 //     color: primaryColor),
-              ).visible(!isLoggedIn.value),
+              ),
               SettingItemWidget(
                 title: locale.value.blogs,
                 onTap: () {
@@ -185,13 +184,13 @@ class SettingScreen extends StatelessWidget {
                 titleTextStyle: primaryTextStyle(),
                 leading: const Icon(
                   Icons.book_outlined,
-                  color: Color.fromARGB(255, 159, 168, 230),
+                  color: secondaryColor,
                 ),
                 //  commonLeadingWid(
                 //     imgPath: Assets.iconsIcLock,
                 //     icon: Icons.lock_outline_sharp,
                 //     color: primaryColor),
-              ).visible(!isLoggedIn.value),
+              ),
               SettingItemWidget(
                 title: locale.value.changePassword,
                 onTap: () {
@@ -201,7 +200,7 @@ class SettingScreen extends StatelessWidget {
                 leading: commonLeadingWid(
                     imgPath: Assets.iconsIcLock,
                     icon: Icons.lock_outline_sharp,
-                    color: primaryColor),
+                    color: secondaryColor),
               ).visible(isLoggedIn.value),
               SettingItemWidget(
                 title: locale.value.deleteAccount,
@@ -239,7 +238,7 @@ class SettingScreen extends StatelessWidget {
                 leading: commonLeadingWid(
                     imgPath: Assets.profileIconsIcStarOutlined,
                     icon: Icons.star_outline_rounded,
-                    color: primaryColor),
+                    color: secondaryColor),
                 padding:
                     const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
               ).visible(!isLoggedIn.value),
@@ -266,7 +265,7 @@ class SettingScreen extends StatelessWidget {
                 leading: commonLeadingWid(
                     imgPath: Assets.iconsIcLogin,
                     icon: Icons.login,
-                    color: primaryColor),
+                    color: secondaryColor),
               ).visible(!isLoggedIn.value),
               /* Obx(
                   () => isLoggedIn.value

@@ -11,7 +11,7 @@ class AppTheme {
 
   static ThemeData get lightTheme {
     return ThemeData(
-      fontFamily: GoogleFonts.hahmlet().fontFamily,
+      fontFamily: GoogleFonts.tajawal().fontFamily,
       useMaterial3: true,
       colorScheme: ColorScheme.fromSeed(
         seedColor: primaryColor,
@@ -59,6 +59,7 @@ class AppTheme {
 
   static ThemeData get darkTheme {
     return ThemeData(
+      fontFamily: GoogleFonts.tajawal().fontFamily,
       primarySwatch: createMaterialColor(primaryColor),
       primaryColor: primaryColor,
       colorScheme: const ColorScheme.dark(
@@ -84,7 +85,7 @@ class AppTheme {
         helpTextStyle: TextStyle(color: white),
       ),
       scaffoldBackgroundColor: scaffoldDarkColor,
-      fontFamily: GoogleFonts.beVietnamPro().fontFamily,
+      // fontFamily: GoogleFonts.beVietnamPro().fontFamily,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
           backgroundColor: scaffoldSecondaryDark),
       iconTheme: const IconThemeData(color: Colors.white),

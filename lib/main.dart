@@ -39,12 +39,12 @@ void main() async {
   await GetStorage.init();
   //
   fontFamilyPrimaryGlobal =
-      GoogleFonts.beVietnamPro(fontWeight: FontWeight.w500).fontFamily;
+      GoogleFonts.tajawal(fontWeight: FontWeight.w500).fontFamily;
   // textPrimarySizeGlobal = 24;
   textPrimarySizeGlobal = 14;
   textPrimaryColorGlobal = primaryTextColor;
   fontFamilySecondaryGlobal =
-      GoogleFonts.beVietnamPro(fontWeight: FontWeight.w400).fontFamily;
+      GoogleFonts.tajawal(fontWeight: FontWeight.w400).fontFamily;
   // textSecondarySizeGlobal = 14;
   textSecondarySizeGlobal = 12;
   textSecondaryColorGlobal = secondaryTextColor;
