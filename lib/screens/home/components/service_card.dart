@@ -39,9 +39,20 @@ class ServiceCard extends StatelessWidget {
                 usePlaceholderIfUrlEmpty: false,
               )),
           12.height,
-          Hero(tag: service.name + service.id.toString(), child: Text(service.name, style: primaryTextStyle(decoration: TextDecoration.none))),
+          Hero(
+              tag: service.name + service.id.toString(),
+              child: Text(service.name,
+                  style: primaryTextStyle(
+                    decoration: TextDecoration.none,
+                  ))),
           if (showSubTexts) 12.height,
-          if (showSubTexts) Text(service.description, maxLines: 2, overflow: TextOverflow.ellipsis, textAlign: TextAlign.center, style: secondaryTextStyle()).paddingSymmetric(horizontal: 14),
+          if (showSubTexts)
+            Text(service.description,
+                    maxLines: 2,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.center,
+                    style: secondaryTextStyle())
+                .paddingSymmetric(horizontal: 14),
           if (showSubTexts) 12.height,
         ],
       ),

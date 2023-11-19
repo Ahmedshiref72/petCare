@@ -22,7 +22,7 @@ class AppTheme {
       cardColor: cardColor,
       bottomNavigationBarTheme:
           const BottomNavigationBarThemeData(backgroundColor: Colors.white),
-      iconTheme: IconThemeData(color: textPrimaryColorGlobal),
+      iconTheme: IconThemeData(color: primaryColor),
       textTheme: GoogleFonts.beVietnamProTextTheme(),
       dialogBackgroundColor: Colors.white,
       unselectedWidgetColor: Colors.black,

@@ -7,18 +7,17 @@ import 'package:pawlly/screens/shop/order/new_order_screen.dart';
 import '../../../components/app_scaffold.dart';
 import '../../../components/common_profile_widget.dart';
 import '../../../generated/assets.dart';
-
-import 'edit_user_profile_controller.dart';
-import '../../pet/my_pets_controller.dart';
-import 'profile_controller.dart';
 import '../../../utils/app_common.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../../pet/add_pet_pageview.dart';
-import '../other/settings_screen.dart';
-import '../other/about_us_screen.dart';
-import 'edit_user_profile.dart';
+import '../../pet/my_pets_controller.dart';
 import '../../pet/my_pets_screen.dart';
+import '../other/about_us_screen.dart';
+import '../other/settings_screen.dart';
+import 'edit_user_profile.dart';
+import 'edit_user_profile_controller.dart';
+import 'profile_controller.dart';
 import 'select_address_screen.dart';
 
 class ProfileScreen extends StatelessWidget {
@@ -50,7 +49,8 @@ class ProfileScreen extends StatelessWidget {
                       userName: loginUserData.value.userName,
                       subInfo: loginUserData.value.email,
                       onCameraTap: () {
-                        EditUserProfileController editUserProfileController = EditUserProfileController(isProfilePhoto: true);
+                        EditUserProfileController editUserProfileController =
+                            EditUserProfileController(isProfilePhoto: true);
                         editUserProfileController.showBottomSheet(context);
                       },
                     )),
@@ -60,12 +60,17 @@ class ProfileScreen extends StatelessWidget {
                   subTitle: locale.value.personalizeYourProfile,
                   splashColor: transparentColor,
                   onTap: () {
-                    Get.to(() => EditUserProfileScreen(), duration: const Duration(milliseconds: 800));
+                    Get.to(() => EditUserProfileScreen(),
+                        duration: const Duration(milliseconds: 800));
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.imagesIcEditprofileOutlined, icon: Icons.person_3_outlined, color: primaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.imagesIcEditprofileOutlined,
+                      icon: Icons.person_3_outlined,
+                      color: primaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
@@ -77,9 +82,13 @@ class ProfileScreen extends StatelessWidget {
                     Get.to(() => const MyPetsScreen());
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.profileIconsIcMyPets, icon: Icons.pets_outlined, color: secondaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.profileIconsIcMyPets,
+                      icon: Icons.pets_outlined,
+                      color: secondaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
@@ -90,9 +99,13 @@ class ProfileScreen extends StatelessWidget {
                     Get.to(() => AddPetInfoScreen());
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.profileIconsIcAddPet, icon: Icons.add_box_outlined, color: primaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.profileIconsIcAddPet,
+                      icon: Icons.add_box_outlined,
+                      color: primaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
@@ -104,9 +117,13 @@ class ProfileScreen extends StatelessWidget {
                     Get.to(() => NewOrderScreen());
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.iconsIcOrder, icon: Icons.summarize_outlined, color: secondaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.iconsIcOrder,
+                      icon: Icons.summarize_outlined,
+                      color: secondaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
@@ -117,22 +134,31 @@ class ProfileScreen extends StatelessWidget {
                     Get.to(() => SelectAddressScreen(isFromProfile: true));
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.iconsIcMyAddress, icon: Icons.location_on_outlined, color: primaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.iconsIcMyAddress,
+                      icon: Icons.location_on_outlined,
+                      color: primaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
                   title: locale.value.settings,
-                  subTitle: "${locale.value.changePassword},${locale.value.themeAndMore}",
+                  subTitle:
+                      "${locale.value.changePassword},${locale.value.themeAndMore}",
                   splashColor: transparentColor,
                   onTap: () {
                     Get.to(() => SettingScreen());
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.profileIconsIcSettingOutlined, icon: Icons.settings_outlined, color: secondaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.profileIconsIcSettingOutlined,
+                      icon: Icons.settings_outlined,
+                      color: secondaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
@@ -146,12 +172,16 @@ class ProfileScreen extends StatelessWidget {
                     if (await inAppReview.isAvailable()) {
                       inAppReview.requestReview();
                     } */
-                    handleRate();
+                    //   handleRate();
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.profileIconsIcStarOutlined, icon: Icons.star_outline_rounded, color: primaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.profileIconsIcStarOutlined,
+                      icon: Icons.star_outline_rounded,
+                      color: primaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
@@ -162,9 +192,13 @@ class ProfileScreen extends StatelessWidget {
                     Get.to(() => const AboutScreen());
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.profileIconsIcInfoOutlined, icon: Icons.info_outline_rounded, color: secondaryColor),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.profileIconsIcInfoOutlined,
+                      icon: Icons.info_outline_rounded,
+                      color: secondaryColor),
                   trailing: trailing,
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
                 SettingItemWidget(
@@ -186,14 +220,20 @@ class ProfileScreen extends StatelessWidget {
                     );
                   },
                   titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(imgPath: Assets.profileIconsIcLogoutOutlined, icon: Icons.logout_outlined, color: primaryColor),
-                  padding: const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.profileIconsIcLogoutOutlined,
+                      icon: Icons.logout_outlined,
+                      color: primaryColor),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 30.height,
                 SnapHelperWidget<PackageInfoData>(
                   future: getPackageInfo(),
                   onSuccess: (data) {
-                    return VersionInfoWidget(prefixText: 'v', textStyle: primaryTextStyle()).center();
+                    return VersionInfoWidget(
+                            prefixText: 'v', textStyle: primaryTextStyle())
+                        .center();
                   },
                 ),
                 32.height,
@@ -205,5 +245,6 @@ class ProfileScreen extends StatelessWidget {
     );
   }
 
-  Widget get trailing => Icon(Icons.arrow_forward_ios, size: 12, color: darkGray.withOpacity(0.5));
+  Widget get trailing =>
+      Icon(Icons.arrow_forward_ios, size: 12, color: darkGray.withOpacity(0.5));
 }

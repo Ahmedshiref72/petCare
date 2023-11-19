@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
 
-const primaryColor = Color(0xFFdc4261);
-const secondaryColor = Color(0xffe8798e);
+const primaryColor = Color(0xFFf39231);
+const secondaryColor = Color(0xffe84a26);
 const lightPrimaryColor = Color(0xFFF6F0FF);
 const lightSecondaryColor = Color.fromARGB(255, 255, 234, 231);
-var lightPrimaryColor2 = primaryColor.withOpacity(0.1);
+var lightPrimaryColor2 = primaryColor;
 const darkGrayGeneral = Color(0xff6C757D);
 const darkGrayGeneral2 = Color.fromARGB(255, 60, 70, 79);
 const lightGrayGeneral = Color(0xFFC0C2D4);
@@ -55,7 +55,7 @@ const textButtonColor = Color(0xFFA0B3FF);
 const discountButtonColor = Color(0xFF26C485);
 const cartContainerColor = Color(0xFFD8D9D9);
 const ratingColor = Color(0xFFFFCE70);
-const ratingOrangeColor = Color(0xFFE56F0F);
+const ratingOrangeColor = Color(0xFFf39231);
 
 //review selection color
 const ratingFirstColor = discountButtonColor;

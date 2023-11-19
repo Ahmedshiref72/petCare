@@ -56,9 +56,10 @@ class SettingScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
                   titleTextStyle: primaryTextStyle(),
                   leading: commonLeadingWid(
-                      imgPath: Assets.iconsIcLanguage,
-                      icon: Icons.language_outlined,
-                      color: secondaryColor),
+                    imgPath: Assets.iconsIcLanguage,
+                    icon: Icons.language_outlined,
+                    color: secondaryColor,
+                  ),
                   trailing: DropdownButtonHideUnderline(
                     child: Container(
                       decoration: BoxDecoration(
@@ -76,9 +77,10 @@ class SettingScreen extends StatelessWidget {
                               children: [
                                 if (element.flag != null)
                                   CachedImageWidget(
-                                      url: element.flag.validate(),
-                                      height: 24,
-                                      width: 24),
+                                    url: element.flag.validate(),
+                                    height: 24,
+                                    width: 24,
+                                  ),
                                 6.width,
                                 if (element.name != null)
                                   Text(element.name.validate(),
@@ -232,7 +234,7 @@ class SettingScreen extends StatelessWidget {
                 title: locale.value.rateApp,
                 splashColor: transparentColor,
                 onTap: () {
-                  handleRate();
+                  //    handleRate();
                 },
                 titleTextStyle: primaryTextStyle(),
                 leading: commonLeadingWid(
