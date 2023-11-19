@@ -164,6 +164,8 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
               ),
+          
+          
               // SettingItemWidget(
               //   title: locale.value.upcomingEvents,
               //   onTap: () {
