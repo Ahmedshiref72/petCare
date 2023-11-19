@@ -10,18 +10,18 @@ import '../../../components/app_scaffold.dart';
 import '../../../components/cached_image_widget.dart';
 import '../../../components/common_file_placeholders.dart';
 import '../../../generated/assets.dart';
-import 'booking_detail_controller.dart';
-import '../payment_controller.dart';
 import '../../../main.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../../../utils/constants.dart';
+import '../payment_controller.dart';
 import '../services/service_navigation.dart';
+import 'booking_detail_controller.dart';
 
 class BookingDetailScreen extends StatelessWidget {
   BookingDetailScreen({Key? key}) : super(key: key);
-  final BookingDetailsController bookingController = Get.put(BookingDetailsController());
+  final BookingDetailsController bookingController =
+      Get.put(BookingDetailsController());
 
   @override
   Widget build(BuildContext context) {
@@ -36,7 +36,9 @@ class BookingDetailScreen extends StatelessWidget {
       isLoading: bookingController.isLoading,
       body: RefreshIndicator(
         onRefresh: () async {
-          bookingController.getBookingDetail(bookingId: bookingController.bookingDetail.value.id, showLoader: false);
+          bookingController.getBookingDetail(
+              bookingId: bookingController.bookingDetail.value.id,
+              showLoader: false);
           return await Future.delayed(const Duration(seconds: 2));
         },
         child: AnimatedScrollView(
@@ -50,20 +52,28 @@ class BookingDetailScreen extends StatelessWidget {
                       ? NoDataWidget(
                           title: locale.value.noBookingDetailsFound,
                           imageWidget: const EmptyStateWidget(),
-                          subTitle: "${locale.value.thereAreCurrentlyNoDetails} \n${locale.value.bookingId} ${bookingController.bookingDetail.value.id}. ${locale.value.tryReloadOrCheckingLater}.",
+                          subTitle:
+                              "${locale.value.thereAreCurrentlyNoDetails} \n${locale.value.bookingId} ${bookingController.bookingDetail.value.id}. ${locale.value.tryReloadOrCheckingLater}.",
                           retryText: locale.value.reload,
                           onRetry: () {
-                            bookingController.getBookingDetail(bookingId: bookingController.bookingDetail.value.id);
+                            bookingController.getBookingDetail(
+                                bookingId:
+                                    bookingController.bookingDetail.value.id);
                           },
-                        ).paddingSymmetric(horizontal: 32).paddingTop(Get.height * 0.20)
+                        )
+                          .paddingSymmetric(horizontal: 32)
+                          .paddingTop(Get.height * 0.20)
                       : Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
                             16.height,
-                            Text(locale.value.customerInformation, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+                            Text(locale.value.customerInformation,
+                                    style: primaryTextStyle())
+                                .paddingSymmetric(horizontal: 16),
                             8.height,
                             Container(
-                              padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, top: 16),
                               decoration: boxDecorationDefault(
                                 shape: BoxShape.rectangle,
                                 color: context.cardColor,
@@ -71,36 +81,128 @@ class BookingDetailScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  if (bookingController.bookingDetail.value.service.slug.contains(ServicesKeyConst.boarding)) ...[
-                                    detailWidget(title: locale.value.dropOffDate, value: bookingController.bookingDetail.value.dropoffDateTime.isValidDateTime ? bookingController.bookingDetail.value.dropoffDateTime.dateInDMMMMyyyyFormat : ""),
-                                    detailWidget(title: locale.value.dropOffTime, value: bookingController.bookingDetail.value.dropoffDateTime.isValidDateTime ? "At ${bookingController.bookingDetail.value.dropoffDateTime.timeInHHmmAmPmFormat}" : ""),
-                                    detailWidget(title: locale.value.pickupDate, value: bookingController.bookingDetail.value.pickupDateTime.isValidDateTime ? bookingController.bookingDetail.value.pickupDateTime.dateInDMMMMyyyyFormat : ""),
-                                    detailWidget(title: locale.value.pickupTime, value: bookingController.bookingDetail.value.pickupDateTime.isValidDateTime ? "At ${bookingController.bookingDetail.value.pickupDateTime.timeInHHmmAmPmFormat}" : ""),
+                                  if (bookingController
+                                      .bookingDetail.value.service.slug
+                                      .contains(ServicesKeyConst.boarding)) ...[
+                                    detailWidget(
+                                        title: locale.value.dropOffDate,
+                                        value: bookingController
+                                                .bookingDetail
+                                                .value
+                                                .dropoffDateTime
+                                                .isValidDateTime
+                                            ? bookingController
+                                                .bookingDetail
+                                                .value
+                                                .dropoffDateTime
+                                                .dateInDMMMMyyyyFormat
+                                            : ""),
+                                    detailWidget(
+                                        title: locale.value.dropOffTime,
+                                        value: bookingController
+                                                .bookingDetail
+                                                .value
+                                                .dropoffDateTime
+                                                .isValidDateTime
+                                            ? "At ${bookingController.bookingDetail.value.dropoffDateTime.timeInHHmmAmPmFormat}"
+                                            : ""),
+                                    detailWidget(
+                                        title: locale.value.pickupDate,
+                                        value: bookingController
+                                                .bookingDetail
+                                                .value
+                                                .pickupDateTime
+                                                .isValidDateTime
+                                            ? bookingController
+                                                .bookingDetail
+                                                .value
+                                                .pickupDateTime
+                                                .dateInDMMMMyyyyFormat
+                                            : ""),
+                                    detailWidget(
+                                        title: locale.value.pickupTime,
+                                        value: bookingController
+                                                .bookingDetail
+                                                .value
+                                                .pickupDateTime
+                                                .isValidDateTime
+                                            ? "At ${bookingController.bookingDetail.value.pickupDateTime.timeInHHmmAmPmFormat}"
+                                            : ""),
                                   ],
-                                  if (bookingController.bookingDetail.value.service.slug.contains(ServicesKeyConst.dayCare)) ...[
-                                    detailWidget(title: locale.value.date, value: bookingController.bookingDetail.value.dayCareDate.isValidDateTime ? bookingController.bookingDetail.value.dayCareDate.dateInDMMMMyyyyFormat : ""),
+                                  if (bookingController
+                                      .bookingDetail.value.service.slug
+                                      .contains(ServicesKeyConst.dayCare)) ...[
+                                    detailWidget(
+                                        title: locale.value.date,
+                                        value: bookingController
+                                                .bookingDetail
+                                                .value
+                                                .dayCareDate
+                                                .isValidDateTime
+                                            ? bookingController
+                                                .bookingDetail
+                                                .value
+                                                .dayCareDate
+                                                .dateInDMMMMyyyyFormat
+                                            : ""),
                                     detailWidget(
                                       title: locale.value.dropOffTime,
-                                      value: bookingController.bookingDetail.value.dropoffTime.isValidTime ? "At ${"1970-01-01 ${bookingController.bookingDetail.value.dropoffTime}".timeInHHmmAmPmFormat}" : "",
+                                      value: bookingController.bookingDetail
+                                              .value.dropoffTime.isValidTime
+                                          ? "At ${"1970-01-01 ${bookingController.bookingDetail.value.dropoffTime}".timeInHHmmAmPmFormat}"
+                                          : "",
                                     ),
                                     detailWidget(
                                       title: locale.value.pickupTime,
-                                      value: bookingController.bookingDetail.value.pickupTime.isValidTime ? "At ${"1970-01-01 ${bookingController.bookingDetail.value.pickupTime}".timeInHHmmAmPmFormat}" : "",
+                                      value: bookingController.bookingDetail
+                                              .value.pickupTime.isValidTime
+                                          ? "At ${"1970-01-01 ${bookingController.bookingDetail.value.pickupTime}".timeInHHmmAmPmFormat}"
+                                          : "",
                                     ),
                                   ],
-                                  if (!(bookingController.bookingDetail.value.service.slug.contains(ServicesKeyConst.boarding) || bookingController.bookingDetail.value.service.slug.contains(ServicesKeyConst.dayCare))) ...[
-                                    detailWidget(title: locale.value.date, value: bookingController.bookingDetail.value.serviceDateTime.isValidDateTime ? bookingController.bookingDetail.value.serviceDateTime.dateInDMMMMyyyyFormat : ""),
-                                    detailWidget(title: locale.value.time, value: bookingController.bookingDetail.value.serviceDateTime.isValidDateTime ? "At ${bookingController.bookingDetail.value.serviceDateTime.timeInHHmmAmPmFormat}" : ""),
+                                  if (!(bookingController
+                                          .bookingDetail.value.service.slug
+                                          .contains(
+                                              ServicesKeyConst.boarding) ||
+                                      bookingController
+                                          .bookingDetail.value.service.slug
+                                          .contains(
+                                              ServicesKeyConst.dayCare))) ...[
+                                    detailWidget(
+                                        title: locale.value.date,
+                                        value: bookingController
+                                                .bookingDetail
+                                                .value
+                                                .serviceDateTime
+                                                .isValidDateTime
+                                            ? bookingController
+                                                .bookingDetail
+                                                .value
+                                                .serviceDateTime
+                                                .dateInDMMMMyyyyFormat
+                                            : ""),
+                                    detailWidget(
+                                        title: locale.value.time,
+                                        value: bookingController
+                                                .bookingDetail
+                                                .value
+                                                .serviceDateTime
+                                                .isValidDateTime
+                                            ? "At ${bookingController.bookingDetail.value.serviceDateTime.timeInHHmmAmPmFormat}"
+                                            : ""),
                                   ],
                                   Row(
-                                    crossAxisAlignment: CrossAxisAlignment.start,
+                                    crossAxisAlignment:
+                                        CrossAxisAlignment.start,
                                     children: [
-                                      Text(locale.value.petName, style: secondaryTextStyle()),
+                                      Text(locale.value.petName,
+                                          style: secondaryTextStyle()),
                                       const Spacer(),
                                       Row(
                                         children: [
                                           CachedImageWidget(
-                                            url: bookingController.bookingDetail.value.petImage,
+                                            url: bookingController
+                                                .bookingDetail.value.petImage,
                                             height: 20,
                                             width: 20,
                                             circle: true,
@@ -110,22 +212,43 @@ class BookingDetailScreen extends StatelessWidget {
                                           8.width,
                                         ],
                                       ),
-                                      Text("${bookingController.bookingDetail.value.petName} (${bookingController.bookingDetail.value.breed})", textAlign: TextAlign.right, style: primaryTextStyle(size: 12)),
+                                      Text(
+                                          "${bookingController.bookingDetail.value.petName} (${bookingController.bookingDetail.value.breed})",
+                                          textAlign: TextAlign.right,
+                                          style: primaryTextStyle(size: 12)),
                                     ],
                                   ),
                                   8.height,
-                                  detailWidget(title: locale.value.favoriteFood, value: bookingController.bookingDetail.value.food.isNotEmpty ? bookingController.bookingDetail.value.food.first : ""),
-                                  detailWidget(title: locale.value.favoriteActivity, value: bookingController.bookingDetail.value.activity.isNotEmpty ? bookingController.bookingDetail.value.activity.first : ""),
-                                  detailWidget(title: locale.value.reason, value: bookingController.bookingDetail.value.veterinaryReason),
+                                  detailWidget(
+                                      title: locale.value.favoriteFood,
+                                      value: bookingController.bookingDetail
+                                              .value.food.isNotEmpty
+                                          ? bookingController
+                                              .bookingDetail.value.food.first
+                                          : ""),
+                                  detailWidget(
+                                      title: locale.value.favoriteActivity,
+                                      value: bookingController.bookingDetail
+                                              .value.activity.isNotEmpty
+                                          ? bookingController.bookingDetail
+                                              .value.activity.first
+                                          : ""),
+                                  detailWidget(
+                                      title: locale.value.reason,
+                                      value: bookingController.bookingDetail
+                                          .value.veterinaryReason),
                                   6.height,
                                 ],
                               ),
                             ).paddingSymmetric(horizontal: 16),
                             32.height,
-                            Text(locale.value.bookingInformation, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+                            Text(locale.value.bookingInformation,
+                                    style: primaryTextStyle())
+                                .paddingSymmetric(horizontal: 16),
                             8.height,
                             Container(
-                              padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, top: 16),
                               decoration: boxDecorationDefault(
                                 shape: BoxShape.rectangle,
                                 color: context.cardColor,
@@ -133,19 +256,50 @@ class BookingDetailScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  detailWidget(title: locale.value.service, value: bookingController.bookingDetail.value.veterinaryServiceName),
-                                  detailWidget(title: locale.value.bookingStatus, value: getBookingStatus(status: bookingController.bookingDetail.value.status), textColor: getBookingStatusColor(status: bookingController.bookingDetail.value.status)),
+                                  detailWidget(
+                                      title: locale.value.service,
+                                      value: bookingController.bookingDetail
+                                          .value.veterinaryServiceName),
+                                  detailWidget(
+                                      title: locale.value.bookingStatus,
+                                      value: getBookingStatus(
+                                          status: bookingController
+                                              .bookingDetail.value.status),
+                                      textColor: getBookingStatusColor(
+                                          status: bookingController
+                                              .bookingDetail.value.status)),
                                   detailWidget(
                                       title: locale.value.paymentStatus,
-                                      value: getBookingPaymentStatus(status: bookingController.bookingDetail.value.payment.paymentStatus.capitalizeFirstLetter()),
-                                      textColor: getPriceStatusColor(paymentStatus: bookingController.bookingDetail.value.payment.paymentStatus)),
-                                  detailWidget(title: locale.value.duration, value: bookingController.bookingDetail.value.duration.toFormattedDuration(showFullTitleHoursMinutes: true)),
+                                      value: getBookingPaymentStatus(
+                                          status: bookingController
+                                              .bookingDetail
+                                              .value
+                                              .payment
+                                              .paymentStatus
+                                              .capitalizeFirstLetter()),
+                                      textColor: getPriceStatusColor(
+                                          paymentStatus: bookingController
+                                              .bookingDetail
+                                              .value
+                                              .payment
+                                              .paymentStatus)),
+                                  detailWidget(
+                                      title: locale.value.duration,
+                                      value: bookingController
+                                          .bookingDetail.value.duration
+                                          .toFormattedDuration(
+                                              showFullTitleHoursMinutes: true)),
                                   Row(
                                     children: [
-                                      Text(getEmployeeRoleByServiceElement(appointment: bookingController.bookingDetail.value), style: secondaryTextStyle()),
+                                      Text(
+                                          getEmployeeRoleByServiceElement(
+                                              appointment: bookingController
+                                                  .bookingDetail.value),
+                                          style: secondaryTextStyle()),
                                       const Spacer(),
                                       CachedImageWidget(
-                                        url: bookingController.bookingDetail.value.employeeImage,
+                                        url: bookingController
+                                            .bookingDetail.value.employeeImage,
                                         height: 20,
                                         width: 20,
                                         circle: true,
@@ -153,23 +307,50 @@ class BookingDetailScreen extends StatelessWidget {
                                         fit: BoxFit.cover,
                                       ),
                                       8.width,
-                                      Text(bookingController.bookingDetail.value.employeeName, style: primaryTextStyle(size: 12)),
+                                      Text(
+                                          bookingController
+                                              .bookingDetail.value.employeeName,
+                                          style: primaryTextStyle(size: 12)),
                                     ],
-                                  ).visible(bookingController.bookingDetail.value.employeeName.trim().isNotEmpty),
-                                  8.height.visible(getAddressByServiceElement(appointment: bookingController.bookingDetail.value).isNotEmpty && bookingController.bookingDetail.value.employeeName.trim().isNotEmpty),
-                                  detailWidget(title: locale.value.address, value: getAddressByServiceElement(appointment: bookingController.bookingDetail.value)),
+                                  ).visible(bookingController
+                                      .bookingDetail.value.employeeName
+                                      .trim()
+                                      .isNotEmpty),
+                                  8.height.visible(getAddressByServiceElement(
+                                              appointment: bookingController
+                                                  .bookingDetail.value)
+                                          .isNotEmpty &&
+                                      bookingController
+                                          .bookingDetail.value.employeeName
+                                          .trim()
+                                          .isNotEmpty),
+                                  detailWidget(
+                                      title: locale.value.address,
+                                      value: getAddressByServiceElement(
+                                          appointment: bookingController
+                                              .bookingDetail.value)),
                                   6.height,
                                 ],
                               ),
                             ).paddingSymmetric(horizontal: 16),
-                            additionalInfoWidget(context).visible(bookingController.bookingDetail.value.note.isNotEmpty),
-                            serviceInfoWidget(context).visible(bookingController.bookingDetail.value.service.slug.contains(ServicesKeyConst.training)),
-                            Obx(() => medicalReportWidget().paddingSymmetric(horizontal: 16).visible(bookingController.bookingDetail.value.medicalReport.isNotEmpty)),
+                            additionalInfoWidget(context).visible(
+                                bookingController
+                                    .bookingDetail.value.note.isNotEmpty),
+                            serviceInfoWidget(context).visible(bookingController
+                                .bookingDetail.value.service.slug
+                                .contains(ServicesKeyConst.training)),
+                            Obx(() => medicalReportWidget()
+                                .paddingSymmetric(horizontal: 16)
+                                .visible(bookingController.bookingDetail.value
+                                    .medicalReport.isNotEmpty)),
                             32.height,
-                            Text(locale.value.paymentDetails, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+                            Text(locale.value.paymentDetails,
+                                    style: primaryTextStyle())
+                                .paddingSymmetric(horizontal: 16),
                             8.height,
                             Container(
-                              padding: const EdgeInsets.only(left: 16, right: 16, top: 16),
+                              padding: const EdgeInsets.only(
+                                  left: 16, right: 16, top: 16),
                               decoration: boxDecorationDefault(
                                 shape: BoxShape.rectangle,
                                 color: context.cardColor,
@@ -177,12 +358,13 @@ class BookingDetailScreen extends StatelessWidget {
                               child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  detailWidgetPrice(
+                                  /* detailWidgetPrice(
                                     title: locale.value.price,
                                     value: bookingController.bookingDetail.value.price,
                                     textColor: textPrimaryColorGlobal,
-                                  ),
-                                  ...List.generate(
+                                  ),*/
+                                  /// delete taxes
+                                  /* ...List.generate(
                                     bookingController.bookingDetail.value.payment.taxs.length,
                                     (index) => detailWidgetPrice(
                                       title: bookingController.bookingDetail.value.payment.taxs[index].title,
@@ -190,25 +372,50 @@ class BookingDetailScreen extends StatelessWidget {
                                       textColor: isDarkMode.value ? textPrimaryColorGlobal : primaryColor,
                                       isSemiBoldText: true,
                                     ),
-                                  ),
+                                  ),*/
                                   detailWidgetPrice(
                                     title: locale.value.totalAmount,
-                                    value: bookingController.bookingDetail.value.payment.totalAmount,
-                                    textColor: getPriceStatusColor(paymentStatus: bookingController.bookingDetail.value.payment.paymentStatus),
+                                    value: bookingController.bookingDetail.value
+                                        .payment.totalAmount,
+                                    textColor: getPriceStatusColor(
+                                        paymentStatus: bookingController
+                                            .bookingDetail
+                                            .value
+                                            .payment
+                                            .paymentStatus),
                                   ),
                                   6.height,
                                 ],
                               ),
                             ).paddingSymmetric(horizontal: 16),
-                            Obx(() => additionalFacilityWidget(context).visible(bookingController.facilities.isNotEmpty)),
+                            Obx(() => additionalFacilityWidget(context).visible(
+                                bookingController.facilities.isNotEmpty)),
                             Obx(() => payNowBtn(context)).visible(
-                                bookingController.bookingDetail.value.payment.paymentStatus.toLowerCase().contains(PaymentStatus.pending) && bookingController.bookingDetail.value.status.toLowerCase().contains(StatusConst.completed.toLowerCase())),
+                                bookingController.bookingDetail.value.payment
+                                        .paymentStatus
+                                        .toLowerCase()
+                                        .contains(PaymentStatus.pending) &&
+                                    bookingController.bookingDetail.value.status
+                                        .toLowerCase()
+                                        .contains(StatusConst.completed
+                                            .toLowerCase())),
                             Obx(() => zoomVideoCallBtn(context).visible(
-                                  bookingController.bookingDetail.value.joinVideoLink.isNotEmpty &&
-                                      bookingController.bookingDetail.value.startVideoLink.isNotEmpty &&
-                                      bookingController.bookingDetail.value.status.toLowerCase().contains(StatusConst.confirmed.toLowerCase()),
+                                  bookingController.bookingDetail.value
+                                          .joinVideoLink.isNotEmpty &&
+                                      bookingController.bookingDetail.value
+                                          .startVideoLink.isNotEmpty &&
+                                      bookingController
+                                          .bookingDetail.value.status
+                                          .toLowerCase()
+                                          .contains(StatusConst.confirmed
+                                              .toLowerCase()),
                                 )),
-                            Obx(() => reviewPart(context).visible(!bookingController.isLoading.value && bookingController.bookingDetail.value.status.toLowerCase().contains(StatusConst.completed.toLowerCase()))),
+                            Obx(() => reviewPart(context).visible(
+                                !bookingController.isLoading.value &&
+                                    bookingController.bookingDetail.value.status
+                                        .toLowerCase()
+                                        .contains(StatusConst.completed
+                                            .toLowerCase()))),
                           ],
                         ),
             ),
@@ -224,7 +431,8 @@ class BookingDetailScreen extends StatelessWidget {
       children: [
         32.height,
         Container(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
           decoration: boxDecorationDefault(
             shape: BoxShape.rectangle,
             color: context.cardColor,
@@ -234,13 +442,20 @@ class BookingDetailScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text(bookingController.bookingDetail.value.training.name, style: primaryTextStyle(size: 12)).expand(),
+                  Text(bookingController.bookingDetail.value.training.name,
+                          style: primaryTextStyle(size: 12))
+                      .expand(),
                 ],
               ),
               8.height,
               Row(
                 children: [
-                  Text(bookingController.bookingDetail.value.training.description, textAlign: TextAlign.left, style: secondaryTextStyle()).expand(),
+                  Text(
+                          bookingController
+                              .bookingDetail.value.training.description,
+                          textAlign: TextAlign.left,
+                          style: secondaryTextStyle())
+                      .expand(),
                 ],
               ),
               6.height,
@@ -257,7 +472,8 @@ class BookingDetailScreen extends StatelessWidget {
       children: [
         32.height,
         Container(
-          padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
+          padding:
+              const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 16),
           decoration: boxDecorationDefault(
             shape: BoxShape.rectangle,
             color: context.cardColor,
@@ -267,13 +483,18 @@ class BookingDetailScreen extends StatelessWidget {
             children: [
               Row(
                 children: [
-                  Text(locale.value.additionalInformation, style: primaryTextStyle(size: 12)).expand(),
+                  Text(locale.value.additionalInformation,
+                          style: primaryTextStyle(size: 12))
+                      .expand(),
                 ],
               ),
               8.height,
               Row(
                 children: [
-                  Text(bookingController.bookingDetail.value.note, textAlign: TextAlign.left, style: secondaryTextStyle()).expand(),
+                  Text(bookingController.bookingDetail.value.note,
+                          textAlign: TextAlign.left,
+                          style: secondaryTextStyle())
+                      .expand(),
                 ],
               ),
               6.height,
@@ -308,16 +529,21 @@ class BookingDetailScreen extends StatelessWidget {
               child: bookingController.bookingDetail.value.medicalReport.isImage
                   ? Container(
                       padding: const EdgeInsets.all(4),
-                      decoration: boxDecorationWithRoundedCorners(backgroundColor: transparentColor),
+                      decoration: boxDecorationWithRoundedCorners(
+                          backgroundColor: transparentColor),
                       child: CachedImageWidget(
-                        url: bookingController.bookingDetail.value.medicalReport,
+                        url:
+                            bookingController.bookingDetail.value.medicalReport,
                         height: 80,
                         width: 80,
                         fit: BoxFit.cover,
                         radius: 8,
                       ),
                     )
-                  : CommonPdfPlaceHolder(text: bookingController.bookingDetail.value.medicalReport.split("/").last),
+                  : CommonPdfPlaceHolder(
+                      text: bookingController.bookingDetail.value.medicalReport
+                          .split("/")
+                          .last),
             ),
           ],
         )
@@ -343,19 +569,23 @@ class BookingDetailScreen extends StatelessWidget {
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
           32.height,
-          Text(locale.value.review, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+          Text(locale.value.review, style: primaryTextStyle())
+              .paddingSymmetric(horizontal: 16),
           8.height,
           AppButton(
             width: Get.width,
-            text: "${locale.value.rate} ${bookingController.bookingDetail.value.employeeName}",
+            text:
+                "${locale.value.rate} ${bookingController.bookingDetail.value.employeeName}",
             textStyle: appButtonTextStyleGray,
             color: isDarkMode.value ? context.cardColor : lightSecondaryColor,
             onTap: () {
-              bookingController.showWriteReview(!bookingController.showWriteReview.value);
+              bookingController
+                  .showWriteReview(!bookingController.showWriteReview.value);
             },
           ).paddingSymmetric(horizontal: 16),
         ],
-      ).visible(bookingController.yourReview.value.id.isNegative && !bookingController.hasReview.value),
+      ).visible(bookingController.yourReview.value.id.isNegative &&
+          !bookingController.hasReview.value),
     );
   }
 
@@ -371,7 +601,9 @@ class BookingDetailScreen extends StatelessWidget {
             textStyle: appButtonTextStyleGray,
             color: isDarkMode.value ? context.cardColor : lightSecondaryColor,
             onTap: () {
-              commonLaunchUrl(bookingController.bookingDetail.value.joinVideoLink, launchMode: LaunchMode.externalApplication);
+              commonLaunchUrl(
+                  bookingController.bookingDetail.value.joinVideoLink,
+                  launchMode: LaunchMode.externalApplication);
             },
           ).paddingSymmetric(horizontal: 16),
         ],
@@ -396,12 +628,16 @@ class BookingDetailScreen extends StatelessWidget {
               bid: bookingController.bookingDetail.value.id,
               amount: bookingController.bookingDetail.value.payment.totalAmount,
               paymentID: bookingController.bookingDetail.value.payment.id,
-              tax: bookingController.bookingDetail.value.payment.taxs.map((e) => e.value).sumByDouble((p0) => p0),
+              tax: bookingController.bookingDetail.value.payment.taxs
+                  .map((e) => e.value)
+                  .sumByDouble((p0) => p0),
             );
-            paymentController.paymentOption(PaymentMethods.PAYMENT_METHOD_STRIPE);
+            paymentController
+                .paymentOption(PaymentMethods.PAYMENT_METHOD_STRIPE);
             Get.to(() => const PaymentScreen())?.then((value) {
               if (value == true) {
-                bookingController.getBookingDetail(bookingId: bookingController.bookingDetail.value.id);
+                bookingController.getBookingDetail(
+                    bookingId: bookingController.bookingDetail.value.id);
               }
             });
           },
@@ -422,14 +658,20 @@ class BookingDetailScreen extends StatelessWidget {
               const Spacer(),
               GestureDetector(
                 onTap: bookingController.handleEditReview,
-                child: commonLeadingWid(imgPath: Assets.iconsIcEditReview, icon: Icons.edit_outlined, size: 20),
+                child: commonLeadingWid(
+                    imgPath: Assets.iconsIcEditReview,
+                    icon: Icons.edit_outlined,
+                    size: 20),
               ),
               16.width,
               GestureDetector(
                 onTap: () {
                   bookingController.deleteReviewHandleClick();
                 },
-                child: commonLeadingWid(imgPath: Assets.iconsIcDeleteReview, icon: Icons.delete_outline, size: 20),
+                child: commonLeadingWid(
+                    imgPath: Assets.iconsIcDeleteReview,
+                    icon: Icons.delete_outline,
+                    size: 20),
               ),
             ],
           ).paddingSymmetric(horizontal: 16),
@@ -438,7 +680,8 @@ class BookingDetailScreen extends StatelessWidget {
             padding: const EdgeInsets.all(16),
             margin: const EdgeInsets.symmetric(vertical: 8),
             width: Get.width,
-            decoration: boxDecorationWithRoundedCorners(backgroundColor: context.cardColor),
+            decoration: boxDecorationWithRoundedCorners(
+                backgroundColor: context.cardColor),
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -462,7 +705,8 @@ class BookingDetailScreen extends StatelessWidget {
                           children: [
                             Row(
                               children: [
-                                Text(loginUserData.value.userName, style: primaryTextStyle()),
+                                Text(loginUserData.value.userName,
+                                    style: primaryTextStyle()),
                               ],
                             ),
                             4.height,
@@ -471,8 +715,12 @@ class BookingDetailScreen extends StatelessWidget {
                                 RatingBarWidget(
                                   size: 15,
                                   disable: true,
-                                  activeColor: getRatingBarColor(bookingController.yourReview.value.rating),
-                                  rating: bookingController.yourReview.value.rating.toDouble(),
+                                  activeColor: getRatingBarColor(
+                                      bookingController
+                                          .yourReview.value.rating),
+                                  rating: bookingController
+                                      .yourReview.value.rating
+                                      .toDouble(),
                                   onRatingChanged: (aRating) {
                                     bookingController.rating = 5;
                                   },
@@ -482,13 +730,21 @@ class BookingDetailScreen extends StatelessWidget {
                           ],
                         ),
                         const Spacer(),
-                        Text(bookingController.yourReview.value.createdAt.dateInyyyyMMddHHmmFormat.timeAgoWithLocalization, style: secondaryTextStyle()),
+                        Text(
+                            bookingController
+                                .yourReview
+                                .value
+                                .createdAt
+                                .dateInyyyyMMddHHmmFormat
+                                .timeAgoWithLocalization,
+                            style: secondaryTextStyle()),
                       ],
                     ).expand(),
                   ],
                 ),
                 16.height,
-                Text(bookingController.yourReview.value.reviewMsg, style: secondaryTextStyle()),
+                Text(bookingController.yourReview.value.reviewMsg,
+                    style: secondaryTextStyle()),
               ],
             ),
           ).paddingSymmetric(horizontal: 16),
@@ -505,23 +761,29 @@ class BookingDetailScreen extends StatelessWidget {
           32.height,
           Row(
             children: [
-              Text('${locale.value.yourReview}  ${locale.value.to}  ${bookingController.bookingDetail.value.employeeName}', style: primaryTextStyle()),
+              Text(
+                  '${locale.value.yourReview}  ${locale.value.to}  ${bookingController.bookingDetail.value.employeeName}',
+                  style: primaryTextStyle()),
               const Spacer(),
               GestureDetector(
                 onTap: bookingController.showReview,
-                child: commonLeadingWid(imgPath: '', icon: Icons.close_outlined, size: 20),
+                child: commonLeadingWid(
+                    imgPath: '', icon: Icons.close_outlined, size: 20),
               ),
             ],
           ).paddingSymmetric(horizontal: 16),
           8.height,
-          Text(locale.value.yourFeedbackWillImprove, style: secondaryTextStyle()).paddingSymmetric(horizontal: 16),
+          Text(locale.value.yourFeedbackWillImprove,
+                  style: secondaryTextStyle())
+              .paddingSymmetric(horizontal: 16),
           8.height,
           Row(
             children: [
               RatingBarWidget(
                 size: 24,
                 allowHalfRating: true,
-                activeColor: getRatingBarColor(bookingController.selectedRating.value),
+                activeColor:
+                    getRatingBarColor(bookingController.selectedRating.value),
                 inActiveColor: ratingColor,
                 rating: bookingController.selectedRating.value,
                 onRatingChanged: (rating) {
@@ -562,14 +824,21 @@ class BookingDetailScreen extends StatelessWidget {
     );
   }
 
-  bool get showBookingDetail => bookingController.bookingDetail.value.duration.toFormattedDuration(showFullTitleHoursMinutes: true).isNotEmpty || getAddressByServiceElement(appointment: bookingController.bookingDetail.value).isNotEmpty;
+  bool get showBookingDetail =>
+      bookingController.bookingDetail.value.duration
+          .toFormattedDuration(showFullTitleHoursMinutes: true)
+          .isNotEmpty ||
+      getAddressByServiceElement(
+              appointment: bookingController.bookingDetail.value)
+          .isNotEmpty;
 
   Widget additionalFacilityWidget(BuildContext context) {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
         32.height,
-        Text(locale.value.additionalFacility, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+        Text(locale.value.additionalFacility, style: primaryTextStyle())
+            .paddingSymmetric(horizontal: 16),
         AnimatedScrollView(
           children: [
             8.height,
