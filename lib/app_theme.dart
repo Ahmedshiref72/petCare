@@ -20,8 +20,10 @@ class AppTheme {
       ),
       scaffoldBackgroundColor: scafoldColor,
       cardColor: cardColor,
-      bottomNavigationBarTheme:
-          const BottomNavigationBarThemeData(backgroundColor: Colors.white),
+      bottomNavigationBarTheme: const BottomNavigationBarThemeData(
+        backgroundColor: Colors.white,
+        selectedItemColor: primaryColor,
+      ),
       iconTheme: IconThemeData(color: primaryColor),
       textTheme: GoogleFonts.beVietnamProTextTheme(),
       dialogBackgroundColor: Colors.white,
@@ -87,7 +89,8 @@ class AppTheme {
       scaffoldBackgroundColor: scaffoldDarkColor,
       // fontFamily: GoogleFonts.beVietnamPro().fontFamily,
       bottomNavigationBarTheme: const BottomNavigationBarThemeData(
-          backgroundColor: scaffoldSecondaryDark),
+          backgroundColor: scaffoldSecondaryDark,
+          selectedItemColor: primaryColor),
       iconTheme: const IconThemeData(color: Colors.white),
       textTheme: GoogleFonts.beVietnamProTextTheme(),
       dialogBackgroundColor: scaffoldSecondaryDark,

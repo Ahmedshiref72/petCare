@@ -63,7 +63,9 @@ class AppButtonWithPricing extends StatelessWidget {
                     Row(
                       children: [
                         PriceWidget(
-                          price: price.toStringAsFixed(Constants.DECIMAL_POINT).toDouble(),
+                          price: price
+                              .toStringAsFixed(Constants.DECIMAL_POINT)
+                              .toDouble(),
                           color: primaryColor,
                           size: 14,
                           isBoldText: true,
@@ -75,10 +77,11 @@ class AppButtonWithPricing extends StatelessWidget {
                                 text: '  ',
                                 style: primaryTextStyle(),
                               ),
-                              TextSpan(
-                                text: '(+$tax${appCurrency.value.currencySymbol} ${locale.value.taxIncluded})',
+                              /* TextSpan(
+                                text:
+                                    '(+$tax${appCurrency.value.currencySymbol} ${locale.value.taxIncluded})',
                                 style: secondaryTextStyle(),
-                              ),
+                              ),*/
                             ],
                           ),
                         ),
@@ -93,7 +96,8 @@ class AppButtonWithPricing extends StatelessWidget {
                   ],
                 ),
                 Container(
-                  decoration: boxDecorationDefault(color: Colors.white, shape: BoxShape.circle),
+                  decoration: boxDecorationDefault(
+                      color: Colors.white, shape: BoxShape.circle),
                   padding: const EdgeInsets.all(10),
                   child: CachedImageWidget(
                     url: serviceImg,

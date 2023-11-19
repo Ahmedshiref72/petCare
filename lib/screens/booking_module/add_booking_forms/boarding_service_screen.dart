@@ -8,17 +8,17 @@ import '../../../components/bottom_selection_widget.dart';
 import '../../../components/cached_image_widget.dart';
 import '../../../components/service_app_button.dart';
 import '../../../generated/assets.dart';
-import 'boarding_service_controller.dart';
 import '../../../utils/app_common.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../model/choose_pet_widget.dart';
 import '../model/employe_model.dart';
+import 'boarding_service_controller.dart';
 
 class BoardingServicesScreen extends StatelessWidget {
   BoardingServicesScreen({Key? key}) : super(key: key);
-  final BoardingServiceController boardingServiceController = Get.put(BoardingServiceController());
+  final BoardingServiceController boardingServiceController =
+      Get.put(BoardingServiceController());
   final GlobalKey<FormState> _boardingformKey = GlobalKey();
 
   @override
@@ -47,7 +47,8 @@ class BoardingServicesScreen extends StatelessWidget {
                   16.height,
                   ChooseYourPet(
                     onChanged: (selectedPet) {
-                      boardingServiceController.bookBoardingReq.petId = selectedPet.id;
+                      boardingServiceController.bookBoardingReq.petId =
+                          selectedPet.id;
                     },
                   ),
                   32.height,
@@ -71,10 +72,17 @@ class BoardingServicesScreen extends StatelessWidget {
                               title: locale.value.chooseBoarder,
                               hintText: locale.value.searchForBoarder,
                               controller: boardingServiceController.searchCont,
-                              onChanged: boardingServiceController.onSearchChange,
-                              hasError: boardingServiceController.hasErrorFetchingBoarders.value,
-                              isEmpty: boardingServiceController.isShowFullList ? boardingServiceController.boardersList.isEmpty : boardingServiceController.boarderFilterList.isEmpty,
-                              errorText: boardingServiceController.errorMessageBoarder.value,
+                              onChanged:
+                                  boardingServiceController.onSearchChange,
+                              hasError: boardingServiceController
+                                  .hasErrorFetchingBoarders.value,
+                              isEmpty: boardingServiceController.isShowFullList
+                                  ? boardingServiceController
+                                      .boardersList.isEmpty
+                                  : boardingServiceController
+                                      .boarderFilterList.isEmpty,
+                              errorText: boardingServiceController
+                                  .errorMessageBoarder.value,
                               noDataTitle: locale.value.boarderListIsEmpty,
                               noDataSubTitle: locale.value.thereAreNoBoarders,
                               isLoading: boardingServiceController.isLoading,
@@ -83,7 +91,10 @@ class BoardingServicesScreen extends StatelessWidget {
                               },
                               listWidget: Obx(
                                 () => boarderListWid(
-                                  boardingServiceController.isShowFullList ? boardingServiceController.boardersList : boardingServiceController.boarderFilterList,
+                                  boardingServiceController.isShowFullList
+                                      ? boardingServiceController.boardersList
+                                      : boardingServiceController
+                                          .boarderFilterList,
                                 ).expand(),
                               ),
                             ),
@@ -95,19 +106,29 @@ class BoardingServicesScreen extends StatelessWidget {
                         hintText: locale.value.chooseBoarder,
                         fillColor: context.cardColor,
                         filled: true,
-                        prefixIconConstraints: BoxConstraints.loose(const Size.square(60)),
-                        prefixIcon: boardingServiceController.selectedBoarder.value.profileImage.value.isEmpty && boardingServiceController.selectedBoarder.value.id.isNegative
+                        prefixIconConstraints:
+                            BoxConstraints.loose(const Size.square(60)),
+                        prefixIcon: boardingServiceController.selectedBoarder
+                                    .value.profileImage.value.isEmpty &&
+                                boardingServiceController
+                                    .selectedBoarder.value.id.isNegative
                             ? null
                             : CachedImageWidget(
-                                url: boardingServiceController.selectedBoarder.value.profileImage.value,
+                                url: boardingServiceController
+                                    .selectedBoarder.value.profileImage.value,
                                 height: 35,
                                 width: 35,
-                                firstName: boardingServiceController.selectedBoarder.value.fullName,
+                                firstName: boardingServiceController
+                                    .selectedBoarder.value.fullName,
                                 fit: BoxFit.cover,
                                 circle: true,
                                 usePlaceholderIfUrlEmpty: true,
-                              ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                        suffixIcon: boardingServiceController.selectedBoarder.value.profileImage.value.isEmpty && boardingServiceController.selectedBoarder.value.id.isNegative
+                              ).paddingOnly(
+                                left: 12, top: 8, bottom: 8, right: 12),
+                        suffixIcon: boardingServiceController.selectedBoarder
+                                    .value.profileImage.value.isEmpty &&
+                                boardingServiceController
+                                    .selectedBoarder.value.id.isNegative
                             ? Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 size: 24,
@@ -116,7 +137,8 @@ class BoardingServicesScreen extends StatelessWidget {
                             : appCloseIconButton(
                                 context,
                                 onPressed: () {
-                                  boardingServiceController.clearBoarderSelection();
+                                  boardingServiceController
+                                      .clearBoarderSelection();
                                 },
                                 size: 11,
                               ),
@@ -134,7 +156,10 @@ class BoardingServicesScreen extends StatelessWidget {
                     minLines: 5,
                     controller: boardingServiceController.additionalInfoCont,
                     // focus: editUserProfileController.addressFocus,
-                    decoration: inputDecoration(context, hintText: locale.value.writeHere, fillColor: context.cardColor, filled: true),
+                    decoration: inputDecoration(context,
+                        hintText: locale.value.writeHeree,
+                        fillColor: context.cardColor,
+                        filled: true),
                   ).paddingSymmetric(horizontal: 16),
                   /* Obx(() => 84.height.visible(boardingServiceController.showBookBtn.value)) */
                 ],
@@ -158,7 +183,9 @@ class BoardingServicesScreen extends StatelessWidget {
                   }
                 }
               },
-            ).paddingSymmetric(horizontal: 16).visible(boardingServiceController.showBookBtn.value),
+            )
+                .paddingSymmetric(horizontal: 16)
+                .visible(boardingServiceController.showBookBtn.value),
           ),
         ],
       ),
@@ -173,16 +200,24 @@ class BoardingServicesScreen extends StatelessWidget {
         return SettingItemWidget(
           title: list[index].fullName,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].profileImage.value, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].profileImage.value,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             boardingServiceController.selectedBoarder(list[index]);
-            boardingServiceController.boarderCont.text = boardingServiceController.selectedBoarder.value.fullName;
-            boardingServiceController.bookBoardingReq.employeeId = boardingServiceController.selectedBoarder.value.id;
+            boardingServiceController.boarderCont.text =
+                boardingServiceController.selectedBoarder.value.fullName;
+            boardingServiceController.bookBoardingReq.employeeId =
+                boardingServiceController.selectedBoarder.value.id;
             Get.back();
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 
@@ -212,10 +247,13 @@ class BoardingServicesScreen extends StatelessWidget {
                     );
 
                     if (selectedDate != null) {
-                      boardingServiceController.bookBoardingReq.dropoffDate = selectedDate.formatDateYYYYmmdd();
-                      boardingServiceController.dropOffDateCont.text = selectedDate.formatDateDDMMYY();
+                      boardingServiceController.bookBoardingReq.dropoffDate =
+                          selectedDate.formatDateYYYYmmdd();
+                      boardingServiceController.dropOffDateCont.text =
+                          selectedDate.formatDateDDMMYY();
                       boardingServiceController.onDateTimeChanges();
-                      debugPrint('BOARDINGSERVICECONTROLLER.BOOKBOARDINGREQ: ${boardingServiceController.bookBoardingReq.toJson()}');
+                      debugPrint(
+                          'BOARDINGSERVICECONTROLLER.BOOKBOARDINGREQ: ${boardingServiceController.bookBoardingReq.toJson()}');
                     } else {
                       log("Date is not selected");
                     }
@@ -225,7 +263,10 @@ class BoardingServicesScreen extends StatelessWidget {
                     hintText: locale.value.selectDate,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.navigationIcCalendarOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.navigationIcCalendarOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -247,9 +288,12 @@ class BoardingServicesScreen extends StatelessWidget {
                     );
 
                     if (pickedTime != null) {
-                      if ("${boardingServiceController.bookBoardingReq.dropoffDate} ${pickedTime.formatTimeHHmm24Hour()}".isAfterCurrentDateTime) {
-                        boardingServiceController.bookBoardingReq.dropoffTime = pickedTime.formatTimeHHmm24Hour();
-                        boardingServiceController.dropOfftimeCont.text = pickedTime.formatTimeHHmmAMPM();
+                      if ("${boardingServiceController.bookBoardingReq.dropoffDate} ${pickedTime.formatTimeHHmm24Hour()}"
+                          .isAfterCurrentDateTime) {
+                        boardingServiceController.bookBoardingReq.dropoffTime =
+                            pickedTime.formatTimeHHmm24Hour();
+                        boardingServiceController.dropOfftimeCont.text =
+                            pickedTime.formatTimeHHmmAMPM();
                         boardingServiceController.onDateTimeChanges();
                       } else {
                         toast(locale.value.oopsItSeemsYouVe);
@@ -263,7 +307,10 @@ class BoardingServicesScreen extends StatelessWidget {
                     hintText: locale.value.selectTime,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.iconsIcTimeOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.iconsIcTimeOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -292,28 +339,50 @@ class BoardingServicesScreen extends StatelessWidget {
                   textFieldType: TextFieldType.NAME,
                   readOnly: true,
                   onTap: () async {
-                    if (boardingServiceController.dropOffDateCont.text.trim().isEmpty) {
+                    if (boardingServiceController.dropOffDateCont.text
+                        .trim()
+                        .isEmpty) {
                       toast(locale.value.pleaseSelectDropOff);
-                    } else if (boardingServiceController.dropOfftimeCont.text.trim().isEmpty) {
+                    } else if (boardingServiceController.dropOfftimeCont.text
+                        .trim()
+                        .isEmpty) {
                       toast(locale.value.pleaseSelectDropOffTime);
                     } else {
-                      debugPrint('GETDROPOFFDATETIME: ${boardingServiceController.getDropOFFDateTime}');
-                      debugPrint('getpickUpDateTime: ${boardingServiceController.getpickUpDateTime}');
-                      if (boardingServiceController.getDropOFFDateTime.isValidDateTime) {
+                      debugPrint(
+                          'GETDROPOFFDATETIME: ${boardingServiceController.getDropOFFDateTime}');
+                      debugPrint(
+                          'getpickUpDateTime: ${boardingServiceController.getpickUpDateTime}');
+                      if (boardingServiceController
+                          .getDropOFFDateTime.isValidDateTime) {
                         DateTime? selectedDate = await showDatePicker(
                           context: context,
                           // currentDate: boardingServiceController.pickUpDateCont.text.t,
-                          initialDate: boardingServiceController.getpickUpDateTime.trim().isValidDateTime
-                              ? boardingServiceController.getpickUpDateTime.trim().dateInyyyyMMddFormat
-                              : boardingServiceController.getDropOFFDateTime.trim().dateInyyyyMMddFormat.add(const Duration(days: 1)),
-                          firstDate: boardingServiceController.getDropOFFDateTime.trim().dateInyyyyMMddFormat.add(const Duration(days: 1)),
+                          initialDate: boardingServiceController
+                                  .getpickUpDateTime
+                                  .trim()
+                                  .isValidDateTime
+                              ? boardingServiceController.getpickUpDateTime
+                                  .trim()
+                                  .dateInyyyyMMddFormat
+                              : boardingServiceController.getDropOFFDateTime
+                                  .trim()
+                                  .dateInyyyyMMddFormat
+                                  .add(const Duration(days: 1)),
+                          firstDate: boardingServiceController
+                              .getDropOFFDateTime
+                              .trim()
+                              .dateInyyyyMMddFormat
+                              .add(const Duration(days: 1)),
                           lastDate: DateTime(2101),
                         );
                         if (selectedDate != null) {
-                          boardingServiceController.bookBoardingReq.pickupDate = selectedDate.formatDateYYYYmmdd();
-                          boardingServiceController.pickUpDateCont.text = selectedDate.formatDateDDMMYY();
+                          boardingServiceController.bookBoardingReq.pickupDate =
+                              selectedDate.formatDateYYYYmmdd();
+                          boardingServiceController.pickUpDateCont.text =
+                              selectedDate.formatDateDDMMYY();
                           boardingServiceController.onDateTimeChanges();
-                          debugPrint('BOARDINGSERVICECONTROLLER.BOOKBOARDINGREQ: ${boardingServiceController.bookBoardingReq.toJson()}');
+                          debugPrint(
+                              'BOARDINGSERVICECONTROLLER.BOOKBOARDINGREQ: ${boardingServiceController.bookBoardingReq.toJson()}');
                         } else {
                           log("Date is not selected");
                         }
@@ -327,7 +396,10 @@ class BoardingServicesScreen extends StatelessWidget {
                     hintText: locale.value.selectDate,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.navigationIcCalendarOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.navigationIcCalendarOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -343,9 +415,13 @@ class BoardingServicesScreen extends StatelessWidget {
                   textFieldType: TextFieldType.NAME,
                   readOnly: true,
                   onTap: () async {
-                    if (boardingServiceController.dropOffDateCont.text.trim().isEmpty) {
+                    if (boardingServiceController.dropOffDateCont.text
+                        .trim()
+                        .isEmpty) {
                       toast(locale.value.pleaseSelectDropOff);
-                    } else if (boardingServiceController.dropOfftimeCont.text.trim().isEmpty) {
+                    } else if (boardingServiceController.dropOfftimeCont.text
+                        .trim()
+                        .isEmpty) {
                       toast(locale.value.pleaseSelectDropOffTime);
                     } else {
                       TimeOfDay? pickedTime = await showTimePicker(
@@ -354,9 +430,12 @@ class BoardingServicesScreen extends StatelessWidget {
                       );
 
                       if (pickedTime != null) {
-                        if ("${boardingServiceController.bookBoardingReq.pickupDate} ${pickedTime.formatTimeHHmm24Hour()}".isAfterCurrentDateTime) {
-                          boardingServiceController.bookBoardingReq.pickupTime = pickedTime.formatTimeHHmm24Hour();
-                          boardingServiceController.pickUptimeCont.text = pickedTime.formatTimeHHmmAMPM();
+                        if ("${boardingServiceController.bookBoardingReq.pickupDate} ${pickedTime.formatTimeHHmm24Hour()}"
+                            .isAfterCurrentDateTime) {
+                          boardingServiceController.bookBoardingReq.pickupTime =
+                              pickedTime.formatTimeHHmm24Hour();
+                          boardingServiceController.pickUptimeCont.text =
+                              pickedTime.formatTimeHHmmAMPM();
                           boardingServiceController.onDateTimeChanges();
                         } else {
                           toast(locale.value.oopsItSeemsYouVe);
@@ -371,7 +450,10 @@ class BoardingServicesScreen extends StatelessWidget {
                     hintText: locale.value.selectTime,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.iconsIcTimeOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.iconsIcTimeOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -386,7 +468,8 @@ class BoardingServicesScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(locale.value.additionalFacility, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+        Text(locale.value.additionalFacility, style: primaryTextStyle())
+            .paddingSymmetric(horizontal: 16),
         8.height,
         Obx(
           () => SnapHelperWidget(
@@ -399,7 +482,9 @@ class BoardingServicesScreen extends StatelessWidget {
             loadingWidget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${locale.value.loading}... ", style: secondaryTextStyle(size: 14, fontFamily: fontFamilyFontBold)),
+                Text("${locale.value.loading}... ",
+                    style: secondaryTextStyle(
+                        size: 14, fontFamily: fontFamilyFontBold)),
               ],
             ),
             onSuccess: (facilities) {
@@ -419,16 +504,20 @@ class BoardingServicesScreen extends StatelessWidget {
                           children: facilities.map((element) {
                             return Obx(
                               () => CheckboxListTile(
-                                contentPadding: const EdgeInsets.only(top: 16, bottom: 16, left: 16, right: 16),
+                                contentPadding: const EdgeInsets.only(
+                                    top: 16, bottom: 16, left: 16, right: 16),
                                 activeColor: primaryColor,
                                 checkColor: white,
                                 shape: defaultAppButtonShapeBorder,
                                 checkboxShape: RoundedRectangleBorder(
                                   borderRadius: BorderRadius.circular(6),
                                 ),
-                                side: const BorderSide(color: borderColor, width: 1.5),
-                                controlAffinity: ListTileControlAffinity.leading,
-                                title: Text(element.name, style: primaryTextStyle()),
+                                side: const BorderSide(
+                                    color: borderColor, width: 1.5),
+                                controlAffinity:
+                                    ListTileControlAffinity.leading,
+                                title: Text(element.name,
+                                    style: primaryTextStyle()),
                                 subtitle: Text(
                                   element.description.validate(),
                                   style: secondaryTextStyle(),
@@ -438,7 +527,10 @@ class BoardingServicesScreen extends StatelessWidget {
                                 value: element.isChecked.value,
                                 onChanged: (val) {
                                   element.isChecked(val);
-                                  boardingServiceController.selectedFacilities(facilities.where((p0) => p0.isChecked.value).toList());
+                                  boardingServiceController.selectedFacilities(
+                                      facilities
+                                          .where((p0) => p0.isChecked.value)
+                                          .toList());
                                 },
                               ),
                             );

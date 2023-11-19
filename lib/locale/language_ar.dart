@@ -260,6 +260,8 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get writeHere => 'اكتب هنا..';
+  @override
+  String get writeHeree => 'مثال : كلبي يعاني من مغص شديد';
 
   @override
   String get addAddress => 'اضف عنوان';

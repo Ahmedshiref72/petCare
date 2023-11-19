@@ -1,16 +1,18 @@
 // ignore_for_file: body_might_complete_normally_catch_error
 
-import 'package:flutter/material.dart';
 import 'dart:io';
-import 'package:path_provider/path_provider.dart';
+
 import 'package:file_picker/file_picker.dart';
+import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:get/get.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:html/parser.dart';
+import 'package:image_picker/image_picker.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:url_launcher/url_launcher.dart';
-import 'package:flutter/services.dart';
+
 import '../components/new_update_dialog.dart';
 import '../components/price_widget.dart';
 import '../configs.dart';
@@ -631,41 +633,44 @@ InputDecoration inputDecorationWithOutBorder(BuildContext context,
   );
 }
 
-Future<List<PlatformFile>> pickFiles({FileType type = FileType.any}) async {
+Future<List<PlatformFile>> pickFiles(
+    {FileType type = FileType.any, required BuildContext context}) async {
   List<PlatformFile> filePath0 = [];
+
   try {
-    FilePickerResult? filePickerResult = await FilePicker.platform.pickFiles(
-      type: type,
-      allowMultiple: true,
-      withData: true,
-      onFileLoading: (FilePickerStatus status) => log(status),
-    );
-    if (filePickerResult != null) {
-      if (Platform.isAndroid) {
-        filePath0 = filePickerResult.files;
-      } else {
-        Directory cacheDir = await getTemporaryDirectory();
-        for (PlatformFile file in filePickerResult.files) {
-          if (file.bytes != null) {
-            String filePath = '${cacheDir.path}/${file.name}';
-            File cacheFile = File(filePath);
-            await cacheFile.writeAsBytes(file.bytes!.toList());
-            PlatformFile cachedFile = PlatformFile(
-              path: cacheFile.path,
-              name: file.name,
-              size: cacheFile.lengthSync(),
-              bytes: Uint8List.fromList(cacheFile.readAsBytesSync()),
-            );
-            filePath0.add(cachedFile);
-          }
-        }
+    final ImageSource? source = await showImageSourceOptions(context);
+
+    if (source != null) {
+      final ImagePicker _picker = ImagePicker();
+      final XFile? photo = await _picker.pickImage(source: source);
+
+      if (photo != null) {
+        File file = File(photo.path);
+        filePath0.add(PlatformFile(
+          path: file.path,
+          name: file.uri.pathSegments.last,
+          size: await file.length(),
+          bytes: await file.readAsBytes(),
+        ));
+      }
+    } else {
+      FilePickerResult? filePickerResult = await FilePicker.platform.pickFiles(
+        type: type,
+        allowMultiple: true,
+        withData: true,
+        onFileLoading: (FilePickerStatus status) => print(status.toString()),
+      );
+
+      if (filePickerResult != null) {
+        filePath0.addAll(filePickerResult.files);
       }
     }
   } on PlatformException catch (e) {
-    log('Unsupported operation$e');
+    print('Unsupported operation: $e');
   } catch (e) {
-    log(e.toString());
+    print(e.toString());
   }
+
   return filePath0;
 }
 
@@ -862,4 +867,29 @@ Widget detailWidgetPrice(
       )
     ],
   ).paddingBottom(10);
+}
+
+Future<ImageSource?> showImageSourceOptions(BuildContext context) async {
+  return showModalBottomSheet<ImageSource>(
+    context: context,
+    builder: (BuildContext context) {
+      return SafeArea(
+        child: Column(
+          mainAxisSize: MainAxisSize.min,
+          children: <Widget>[
+            ListTile(
+              leading: Icon(Icons.camera),
+              title: Text('Camera'),
+              onTap: () => Navigator.of(context).pop(ImageSource.camera),
+            ),
+            ListTile(
+              leading: Icon(Icons.image),
+              title: Text('Gallery'),
+              onTap: () => Navigator.of(context).pop(ImageSource.gallery),
+            ),
+          ],
+        ),
+      );
+    },
+  );
 }

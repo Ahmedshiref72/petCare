@@ -80,13 +80,15 @@ class LanguageEn extends BaseLanguage {
   String get delete => 'Delete';
 
   @override
-  String get deleteAccountConfirmation => 'Your account will be deleted permanently. Your Data will not be Restored Again.';
+  String get deleteAccountConfirmation =>
+      'Your account will be deleted permanently. Your Data will not be Restored Again.';
 
   @override
   String get taxIncluded => 'tax included';
 
   @override
-  String get demoUserCannotBeGrantedForThis => 'Demo user cannot be granted for this action';
+  String get demoUserCannotBeGrantedForThis =>
+      'Demo user cannot be granted for this action';
 
   @override
   String get somethingWentWrong => 'Something Went Wrong';
@@ -122,10 +124,12 @@ class LanguageEn extends BaseLanguage {
   String get rating => 'rating';
 
   @override
-  String get wouldYouLikeToSetProfilePhotoAsEmployee => 'Would you like to set this picture as your profile photo?';
+  String get wouldYouLikeToSetProfilePhotoAsEmployee =>
+      'Would you like to set this picture as your profile photo?';
 
   @override
-  String get wouldYouLikeToSetPictureAs => 'Would you like to set this picture as';
+  String get wouldYouLikeToSetPictureAs =>
+      'Would you like to set this picture as';
 
   @override
   String get sProfilePicture => 's profile picture?';
@@ -134,7 +138,8 @@ class LanguageEn extends BaseLanguage {
   String get yourOldPasswordDoesnT => "Your old password doesn't correct!";
 
   @override
-  String get yourNewPasswordDoesnT => "Your new password doesn't match confirm password!";
+  String get yourNewPasswordDoesnT =>
+      "Your new password doesn't match confirm password!";
 
   @override
   String get findBestPawllyAround => 'Find Best pawlly around your location';
@@ -143,10 +148,12 @@ class LanguageEn extends BaseLanguage {
   String get letUsGiveThem => 'Let us give them best treatment';
 
   @override
-  String get youCanFindNearEasily => 'You can Find Easily Near by you Best Barber and salon and enjoy best service experience';
+  String get youCanFindNearEasily =>
+      'You can Find Easily Near by you Best Barber and salon and enjoy best service experience';
 
   @override
-  String get petSittersWhoAre => 'pet sitters who are Caring for little companions for 24*7 hours';
+  String get petSittersWhoAre =>
+      'pet sitters who are Caring for little companions for 24*7 hours';
 
   @override
   String get bookingStatus => 'Booking status';
@@ -173,7 +180,8 @@ class LanguageEn extends BaseLanguage {
   String get noBookingsFound => 'No bookings found';
 
   @override
-  String get thereAreCurrentlyNo => 'There are currently no appointments available. Start booking your next appointment now.';
+  String get thereAreCurrentlyNo =>
+      'There are currently no appointments available. Start booking your next appointment now.';
 
   @override
   String get customerInformation => 'Customer Information';
@@ -218,7 +226,8 @@ class LanguageEn extends BaseLanguage {
   String get yourReview => 'Your Review';
 
   @override
-  String get yourFeedbackWillImprove => 'Your Feedback Will Improve Our Service.';
+  String get yourFeedbackWillImprove =>
+      'Your Feedback Will Improve Our Service.';
 
   @override
   String get writeYourFeedbackHere => 'Write Your Feedback Here..';
@@ -236,7 +245,8 @@ class LanguageEn extends BaseLanguage {
   String get noFacility => 'No Facility';
 
   @override
-  String get thereAreCurrentlyNoFacilities => 'There are currently no facility for you.';
+  String get thereAreCurrentlyNoFacilities =>
+      'There are currently no facility for you.';
 
   @override
   String get breed => 'Breed:';
@@ -252,6 +262,8 @@ class LanguageEn extends BaseLanguage {
 
   @override
   String get writeHere => 'Write here..';
+  @override
+  String get writeHeree => 'Example : my dog have pain stomach ';
 
   @override
   String get addAddress => 'Add Address';
@@ -275,7 +287,8 @@ class LanguageEn extends BaseLanguage {
   String get changePassword => 'Change Password';
 
   @override
-  String get yourNewPasswordMust => 'Your New Password Must Be Different From Your Previous Password';
+  String get yourNewPasswordMust =>
+      'Your New Password Must Be Different From Your Previous Password';
 
   @override
   String get password => 'Password';
@@ -296,7 +309,8 @@ class LanguageEn extends BaseLanguage {
   String get forgetPassword => 'Forget Password';
 
   @override
-  String get toResetYourNew => 'To Reset Your New Password Please Enter Your Email Address';
+  String get toResetYourNew =>
+      'To Reset Your New Password Please Enter Your Email Address';
 
   @override
   String get myPets => 'My Pets';
@@ -308,7 +322,8 @@ class LanguageEn extends BaseLanguage {
   String get looksLikeYouHavenT => "Looks like you haven't added any pets yet.";
 
   @override
-  String get addYourFirstPet => 'Add your first pet to keep track of their care and well-being.';
+  String get addYourFirstPet =>
+      'Add your first pet to keep track of their care and well-being.';
 
   @override
   String get addYourPet => 'Add Your Pet';
@@ -317,13 +332,15 @@ class LanguageEn extends BaseLanguage {
   String get stayTunedNoNew => 'Stay tuned! No new notifications.';
 
   @override
-  String get noNewNotificationsAt => "No new notifications at the moment. We'll keep you posted when there's an update.";
+  String get noNewNotificationsAt =>
+      "No new notifications at the moment. We'll keep you posted when there's an update.";
 
   @override
   String get findANewPetForYou => 'Find a New Pet For You';
 
   @override
-  String get joinAndDiscoverYour => 'Join And Discover Your Favorite\n Pot In Your Locality';
+  String get joinAndDiscoverYour =>
+      'Join And Discover Your Favorite\n Pot In Your Locality';
 
   @override
   String get signIn => 'Sign In';
@@ -332,7 +349,8 @@ class LanguageEn extends BaseLanguage {
   String get explore => 'Explore';
 
   @override
-  String get pleaseTypeTheVerification => 'Please Type The Verification Code Send To Your Email Address';
+  String get pleaseTypeTheVerification =>
+      'Please Type The Verification Code Send To Your Email Address';
 
   @override
   String get verify => 'Verify';
@@ -407,7 +425,8 @@ class LanguageEn extends BaseLanguage {
   String get createYourAccount => 'Create Your Account';
 
   @override
-  String get createYourAccountFor => 'Create Your Account for Better Experience';
+  String get createYourAccountFor =>
+      'Create Your Account for Better Experience';
 
   @override
   String get signUp => 'Sign up';
@@ -419,7 +438,8 @@ class LanguageEn extends BaseLanguage {
   String get yourPasswordHasBeen => 'Your Password Has Been Successfully Reset';
 
   @override
-  String get youCanNowLog => 'You Can Now Log In To Your New Account With Your New Password';
+  String get youCanNowLog =>
+      'You Can Now Log In To Your New Account With Your New Password';
 
   @override
   String get done => 'Done';
@@ -458,10 +478,12 @@ class LanguageEn extends BaseLanguage {
   String get editPetInfo => 'Edit Pet Info';
 
   @override
-  String get itAppearsTheAdmin => 'It appears the admin has not added any pet types yet.';
+  String get itAppearsTheAdmin =>
+      'It appears the admin has not added any pet types yet.';
 
   @override
-  String get youCanUtilizeThe => 'You can utilize the button below to send a request to the admin, potentially expediting the process of adding your pet.';
+  String get youCanUtilizeThe =>
+      'You can utilize the button below to send a request to the admin, potentially expediting the process of adding your pet.';
 
   @override
   String get sendRequestToAdmin => 'Send Request to Admin';
@@ -476,16 +498,19 @@ class LanguageEn extends BaseLanguage {
   String get next => 'Next';
 
   @override
-  String get oopsYouHavenTUploaded => "Oops! You Haven't Uploaded Pet Profile Pic";
+  String get oopsYouHavenTUploaded =>
+      "Oops! You Haven't Uploaded Pet Profile Pic";
 
   @override
-  String get youCanEnjoyOur => 'You Can Enjoy Our Services And Our Pet Products For Your Amazing Pet.';
+  String get youCanEnjoyOur =>
+      'You Can Enjoy Our Services And Our Pet Products For Your Amazing Pet.';
 
   @override
   String get confirmBooking => 'Confirm Booking';
 
   @override
-  String get iHaveReadAll => "I have read all detail and fill the form and I'll confirm this booking with";
+  String get iHaveReadAll =>
+      "I have read all detail and fill the form and I'll confirm this booking with";
 
   @override
   String get pleaseAcceptTermsAnd => 'Please accept terms and conditions';
@@ -521,7 +546,8 @@ class LanguageEn extends BaseLanguage {
   String get dropOffTime => 'Drop Off Time';
 
   @override
-  String get oopsItSeemsYouVe => "Oops! It seems you've selected a time that has already passed.";
+  String get oopsItSeemsYouVe =>
+      "Oops! It seems you've selected a time that has already passed.";
 
   @override
   String get pickupDate => 'Pickup Date';
@@ -533,13 +559,15 @@ class LanguageEn extends BaseLanguage {
   String get pleaseSelectDropOffTime => 'Please Select Drop Off Time';
 
   @override
-  String get pleaseSelectValidDrop => 'Please Select Valid Drop Off Date & Time';
+  String get pleaseSelectValidDrop =>
+      'Please Select Valid Drop Off Date & Time';
 
   @override
   String get pickupTime => 'Pickup Time';
 
   @override
-  String get yourAppointmentHasBeen => 'Your appointment has been booked successfully';
+  String get yourAppointmentHasBeen =>
+      'Your appointment has been booked successfully';
 
   @override
   String get addToGoogleCalendar => 'Add to Google Calendar';
@@ -560,10 +588,12 @@ class LanguageEn extends BaseLanguage {
   String get pleaseSelectDateFirst => 'Please Select Date first';
 
   @override
-  String get pleaseMakeSureTo => 'Please make sure to choose a Pick Up time that comes after the Drop Off time.';
+  String get pleaseMakeSureTo =>
+      'Please make sure to choose a Pick Up time that comes after the Drop Off time.';
 
   @override
-  String get oopsItSeemsYouVePickupTime => "Oops! It seems you've selected a Pick Up Time that has already passed.";
+  String get oopsItSeemsYouVePickupTime =>
+      "Oops! It seems you've selected a Pick Up Time that has already passed.";
 
   @override
   String get favoriteFood => 'Favorite Food';
@@ -602,7 +632,8 @@ class LanguageEn extends BaseLanguage {
   String get confirmPayment => 'Confirm Payment';
 
   @override
-  String get razorPayIsNot => "Razor Pay is Not Implemented Yet, It's Coming Soon";
+  String get razorPayIsNot =>
+      "Razor Pay is Not Implemented Yet, It's Coming Soon";
 
   @override
   String get creditCardOrDebitCard => 'Credit Card Or Debit Card';
@@ -704,7 +735,8 @@ class LanguageEn extends BaseLanguage {
   String get addCard => 'Add Card';
 
   @override
-  String get noOnlinePaymentIs => 'No Online Payment Is Available. Pay In Clinic After Appointment';
+  String get noOnlinePaymentIs =>
+      'No Online Payment Is Available. Pay In Clinic After Appointment';
 
   @override
   String get placeOrder => 'Place Order';
@@ -794,7 +826,7 @@ class LanguageEn extends BaseLanguage {
   String get sNotes => 's Notes';
 
   @override
-  String get eG => 'e.g.';
+  String get eG => 'pet.care.';
 
   @override
   String get groomingFor => 'Grooming For';
@@ -851,7 +883,8 @@ class LanguageEn extends BaseLanguage {
   String get selectTime => 'Select Time';
 
   @override
-  String get yourPetAppointmentIs => 'Your pet appointment is done we will be waiting for your pet';
+  String get yourPetAppointmentIs =>
+      'Your pet appointment is done we will be waiting for your pet';
 
   @override
   String get yourBookingIdIs => 'Your Booking ID is';
@@ -908,13 +941,15 @@ class LanguageEn extends BaseLanguage {
   String get noBlogsFound => 'No blogs found.';
 
   @override
-  String get thereAreNoBlogs => 'There are no blogs listed at the moment. Check back later for new and exciting articles.';
+  String get thereAreNoBlogs =>
+      'There are no blogs listed at the moment. Check back later for new and exciting articles.';
 
   @override
   String get noEventsFound => 'No events found.';
 
   @override
-  String get thereAreNoEvents => 'There are no events listed at the moment. Stay tuned for exciting events.';
+  String get thereAreNoEvents =>
+      'There are no events listed at the moment. Stay tuned for exciting events.';
 
   @override
   String get noDataFound => 'No Data Found';
@@ -938,7 +973,8 @@ class LanguageEn extends BaseLanguage {
   String get notifications => 'Notifications';
 
   @override
-  String get chooseYourConvenientPayment => 'Choose your Convenient Payment Option And Unlock Unlimited Access To Premium Subscriptions.';
+  String get chooseYourConvenientPayment =>
+      'Choose your Convenient Payment Option And Unlock Unlimited Access To Premium Subscriptions.';
 
   @override
   String get areYouSureYou => 'Are you sure you want to delete your pet?';
@@ -956,7 +992,8 @@ class LanguageEn extends BaseLanguage {
   String get anUpdateTo => 'An Update to';
 
   @override
-  String get isAvailableGoTo => 'is available. Go to Play Store and Download the New Version of the App.';
+  String get isAvailableGoTo =>
+      'is available. Go to Play Store and Download the New Version of the App.';
 
   @override
   String get later => 'Later';
@@ -986,13 +1023,16 @@ class LanguageEn extends BaseLanguage {
   String get unleashPetHappinessWith => 'Unleash Pet Happiness with Ease';
 
   @override
-  String get exploreAWorldOf => 'Explore a world of seamless pet care services, from veterinary care to grooming, all at your fingertips.';
+  String get exploreAWorldOf =>
+      'Explore a world of seamless pet care services, from veterinary care to grooming, all at your fingertips.';
 
   @override
-  String get elevateYourPetSWellBeing => "Elevate your pet's well-being with our app, offering training, walking, and daycare services for a vibrant life.";
+  String get elevateYourPetSWellBeing =>
+      "Elevate your pet's well-being with our app, offering training, walking, and daycare services for a vibrant life.";
 
   @override
-  String get elevateYourPetSJoy => "Elevate your pet's joy effortlessly through a range of services, from grooming to training, available at your command.";
+  String get elevateYourPetSJoy =>
+      "Elevate your pet's joy effortlessly through a range of services, from grooming to training, available at your command.";
 
   @override
   String get medicalReport => 'Medical Report';
@@ -1010,16 +1050,19 @@ class LanguageEn extends BaseLanguage {
   String get facilityListIsEmpty => 'Facility List Is Empty.';
 
   @override
-  String get theFacilityListIs => 'The facility list is currently empty. More options will be added shortly. Keep an eye out!';
+  String get theFacilityListIs =>
+      'The facility list is currently empty. More options will be added shortly. Keep an eye out!';
 
   @override
   String get durationListIsEmpty => 'Duration List Is Empty.';
 
   @override
-  String get theDurationListIs => 'The duration list is currently empty. More options will be added shortly. Keep an eye out!';
+  String get theDurationListIs =>
+      'The duration list is currently empty. More options will be added shortly. Keep an eye out!';
 
   @override
-  String get areYouSureWantDeleteNote => 'Are you sure want to delete this note?';
+  String get areYouSureWantDeleteNote =>
+      'Are you sure want to delete this note?';
 
   @override
   String get ohNoAreYouLeaving => 'Oh No,Are you leaving!';
@@ -1085,7 +1128,8 @@ class LanguageEn extends BaseLanguage {
   String get userCancelled => 'User cancelled';
 
   @override
-  String get appleSigninIsNot => 'Apple SignIn is not available for your device';
+  String get appleSigninIsNot =>
+      'Apple SignIn is not available for your device';
 
   @override
   String get eventStatus => 'Event Status';
@@ -1115,7 +1159,8 @@ class LanguageEn extends BaseLanguage {
   String get bookingCancelSuccessfully => 'Booking Cancel Successfully';
 
   @override
-  String get youHaveSuccessfullyAdded => 'You Have Successfully Added Your Pet On Our';
+  String get youHaveSuccessfullyAdded =>
+      'You Have Successfully Added Your Pet On Our';
 
   @override
   String get app => 'app';
@@ -1142,55 +1187,64 @@ class LanguageEn extends BaseLanguage {
   String get daycareTakerListIsEmpty => 'Daycare taker list is empty.';
 
   @override
-  String get thereAreNoDaycare => 'There are no daycare takers listed at the moment. Stay tuned for more options.';
+  String get thereAreNoDaycare =>
+      'There are no daycare takers listed at the moment. Stay tuned for more options.';
 
   @override
   String get walkerListIsEmpty => 'Walker list is empty.';
 
   @override
-  String get thereAreNoWalkers => 'There are no walkers listed at the moment. Stay tuned for more options.';
+  String get thereAreNoWalkers =>
+      'There are no walkers listed at the moment. Stay tuned for more options.';
 
   @override
   String get veterinaryTypeListIs => 'Veterinary type list is empty.';
 
   @override
-  String get thereAreNoVeterinary => 'There are no veterinary types listed at the moment. Stay tuned for more options.';
+  String get thereAreNoVeterinary =>
+      'There are no veterinary types listed at the moment. Stay tuned for more options.';
 
   @override
   String get serviceListIsEmpty => 'Service list is empty.';
 
   @override
-  String get thereAreNoServices => 'There are no services listed at the moment. Stay tuned for more service offerings.';
+  String get thereAreNoServices =>
+      'There are no services listed at the moment. Stay tuned for more service offerings.';
 
   @override
   String get vetListIsEmpty => 'Vet list is empty.';
 
   @override
-  String get thereAreNoVeterinarians => 'There are no veterinarians listed at the moment. Stay tuned for more options.';
+  String get thereAreNoVeterinarians =>
+      'There are no veterinarians listed at the moment. Stay tuned for more options.';
 
   @override
   String get trainingListIsEmpty => 'Training list is empty.';
 
   @override
-  String get thereAreNoTraining => 'There are no training sessions listed at the moment. Stay tuned for more options.';
+  String get thereAreNoTraining =>
+      'There are no training sessions listed at the moment. Stay tuned for more options.';
 
   @override
   String get trainerListIsEmpty => 'Trainer list is empty.';
 
   @override
-  String get thereAreNoTrainers => 'There are no trainers listed at the moment. Stay tuned for more options.';
+  String get thereAreNoTrainers =>
+      'There are no trainers listed at the moment. Stay tuned for more options.';
 
   @override
   String get groomerListIsEmpty => 'Groomer list is empty.';
 
   @override
-  String get thereAreNoGroomers => 'There are no groomers listed at the moment. Stay tuned for more options.';
+  String get thereAreNoGroomers =>
+      'There are no groomers listed at the moment. Stay tuned for more options.';
 
   @override
   String get boarderListIsEmpty => 'Boarder list is empty.';
 
   @override
-  String get thereAreNoBoarders => 'There are no boarders listed at the moment. Stay tuned for more options.';
+  String get thereAreNoBoarders =>
+      'There are no boarders listed at the moment. Stay tuned for more options.';
 
   @override
   String get order => 'Order';
@@ -1199,7 +1253,8 @@ class LanguageEn extends BaseLanguage {
   String get ohNoYouAreLeaving => 'Oh no, You are Leaving!';
 
   @override
-  String get chooseYourConvenientPaymentOptions => 'Choose Your Convenient Payment Option.';
+  String get chooseYourConvenientPaymentOptions =>
+      'Choose Your Convenient Payment Option.';
 
   @override
   String get oldPassword => 'Old Password';
@@ -1208,7 +1263,8 @@ class LanguageEn extends BaseLanguage {
   String get breedListIsEmpty => 'Breed list is empty.';
 
   @override
-  String get thereAreNoBreeds => 'There are no breeds listed at the moment. Stay tuned for exciting breeds.';
+  String get thereAreNoBreeds =>
+      'There are no breeds listed at the moment. Stay tuned for exciting breeds.';
 
   @override
   String get oldAndNewPassword => 'Old and new password are same.';
@@ -1241,7 +1297,8 @@ class LanguageEn extends BaseLanguage {
   String get off => 'off';
 
   @override
-  String get areYouSureYouWantRemove => 'Are you sure you want to remove this item?';
+  String get areYouSureYouWantRemove =>
+      'Are you sure you want to remove this item?';
 
   @override
   String get remove => 'Remove';
@@ -1259,7 +1316,8 @@ class LanguageEn extends BaseLanguage {
   String get noProductsFound => 'No Products Found';
 
   @override
-  String get yourFavouriteProductsWill => 'Your favourite products will appear here';
+  String get yourFavouriteProductsWill =>
+      'Your favourite products will appear here';
 
   @override
   String get deliveryStatus => 'Delivery Status';
@@ -1280,7 +1338,8 @@ class LanguageEn extends BaseLanguage {
   String get noOrdersFound => 'No Orders Found';
 
   @override
-  String get thereAreNoOrders => 'There are no orders listed at the moment. Keep track of your orders here.';
+  String get thereAreNoOrders =>
+      'There are no orders listed at the moment. Keep track of your orders here.';
 
   @override
   String get priceDetails => 'Price Details';
@@ -1385,7 +1444,8 @@ class LanguageEn extends BaseLanguage {
   String get outOfStock => 'Out of Stock';
 
   @override
-  String get atThisTimeThere => 'At this time, there are no products or categories available';
+  String get atThisTimeThere =>
+      'At this time, there are no products or categories available';
 
   @override
   String get pending => 'Pending';
@@ -1460,7 +1520,8 @@ class LanguageEn extends BaseLanguage {
   String get manageYourAddresses => 'Manage your Addresses';
 
   @override
-  String get oppsLooksLikeYou => 'Opps! looks like you have not added any address yet.';
+  String get oppsLooksLikeYou =>
+      'Opps! looks like you have not added any address yet.';
 
   @override
   String get addNewAddress => 'Add New Address';
@@ -1472,7 +1533,8 @@ class LanguageEn extends BaseLanguage {
   String get deliverHere => 'Deliver Here';
 
   @override
-  String get areYouSureYouWantToDeleteThisAddress => 'Are you sure you want to delete this address?';
+  String get areYouSureYouWantToDeleteThisAddress =>
+      'Are you sure you want to delete this address?';
 
   @override
   String get weAreNotShipping => 'We are not shipping to your city now.';
@@ -1526,22 +1588,26 @@ class LanguageEn extends BaseLanguage {
   String get addressDeleteSuccessfully => 'Address delete successfully';
 
   @override
-  String get thereAreCurrentlyNoItemsInYourCart => 'There are currently no items in your cart. Start shopping and add items to your cart.';
+  String get thereAreCurrentlyNoItemsInYourCart =>
+      'There are currently no items in your cart. Start shopping and add items to your cart.';
 
   @override
-  String get thereAreCurrentlyNoItemsInYourWishlist => 'There are currently no items in your wishlist. Start adding items you love to save them for later.';
+  String get thereAreCurrentlyNoItemsInYourWishlist =>
+      'There are currently no items in your wishlist. Start adding items you love to save them for later.';
 
   @override
   String get petEvents => 'Pet Events';
 
   @override
-  String get doYouWantToAddEvent => 'Do you want to add this event in your google calender';
+  String get doYouWantToAddEvent =>
+      'Do you want to add this event in your google calender';
 
   @override
   String get noDashboardData => 'No Dashboard Data';
 
   @override
-  String get thereIsSomethingMight => 'There is Something might went wrong, Please try after sometime';
+  String get thereIsSomethingMight =>
+      'There is Something might went wrong, Please try after sometime';
 
   @override
   String get searchProducts => 'Search Products';
@@ -1550,7 +1616,8 @@ class LanguageEn extends BaseLanguage {
   String get bookAgain => 'Book Again';
 
   @override
-  String get doYouWantToBookThisBooking => 'Do you want to book this booking again';
+  String get doYouWantToBookThisBooking =>
+      'Do you want to book this booking again';
 
   @override
   String get paid => 'Paid';
@@ -1559,13 +1626,15 @@ class LanguageEn extends BaseLanguage {
   String get clearAll => 'Clear All';
 
   @override
-  String get areYouSureWantTORemoveNotification => 'Are you sure want to remove notification';
+  String get areYouSureWantTORemoveNotification =>
+      'Are you sure want to remove notification';
 
   @override
   String get notificationDeleted => 'notification deleted';
 
   @override
-  String get areYouSureWantToClearAll => 'Are you sure want to clear all notification';
+  String get areYouSureWantToClearAll =>
+      'Are you sure want to clear all notification';
 
   @override
   String get newBooking => 'New Booking';
@@ -1601,7 +1670,8 @@ class LanguageEn extends BaseLanguage {
   String get noBookingDetailsFound => 'No Booking Details Found';
 
   @override
-  String get thereAreCurrentlyNoDetails => 'There are currently no details found for';
+  String get thereAreCurrentlyNoDetails =>
+      'There are currently no details found for';
 
   @override
   String get bookingId => 'booking id';
@@ -1610,10 +1680,12 @@ class LanguageEn extends BaseLanguage {
   String get tryReloadOrCheckingLater => ' Try Reload or Checking later';
 
   @override
-  String get doYouWantToRemoveNotification => 'Do you want to remove notification';
+  String get doYouWantToRemoveNotification =>
+      'Do you want to remove notification';
 
   @override
-  String get doYouWantToClearAllNotification => 'Do you want to clearall notification';
+  String get doYouWantToClearAllNotification =>
+      'Do you want to clearall notification';
 
   @override
   String get doYouWantToCancelBooking => 'Do you want to cancel booking';
@@ -1625,7 +1697,8 @@ class LanguageEn extends BaseLanguage {
   String get statusListIsEmpty => 'status list is empty';
 
   @override
-  String get thereAreNoStatus => 'There are no status listed at the moment. Stay tuned for more options.';
+  String get thereAreNoStatus =>
+      'There are no status listed at the moment. Stay tuned for more options.';
 
   @override
   String get filters => 'Filters';
@@ -1643,7 +1716,8 @@ class LanguageEn extends BaseLanguage {
   String get optional => 'optional';
 
   @override
-  String get iHaveReadAllDetailFillFormOrder => "I have read all detail and fill the form and I'll confirm this order with";
+  String get iHaveReadAllDetailFillFormOrder =>
+      "I have read all detail and fill the form and I'll confirm this order with";
 
   @override
   String get orderStatus => 'Order Status';
@@ -1694,5 +1768,6 @@ class LanguageEn extends BaseLanguage {
   String get milesAway => 'miles away';
 
   @override
-  String get pleaseSelectAnItem => 'Please select an item or action before clicking Apply.';
+  String get pleaseSelectAnItem =>
+      'Please select an item or action before clicking Apply.';
 }

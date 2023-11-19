@@ -2,23 +2,22 @@ import 'package:file_picker/file_picker.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:pawlly/network/zoom_services.dart';
-import '../../dashboard/dashboard_res_model.dart';
-import '../../shop/model/category_model.dart';
-import '../model/booking_data_model.dart';
-import '../payment_screen.dart';
-import '../../../utils/constants.dart';
 
-import 'model/book_veterinary_req.dart';
-import '../model/employe_model.dart';
-import '../model/service_model.dart';
-
-import '../services/services_form_api.dart';
 import '../../../utils/app_common.dart';
 import '../../../utils/common_base.dart';
-import '../payment_controller.dart';
+import '../../../utils/constants.dart';
+import '../../dashboard/dashboard_res_model.dart';
 import '../../pet/model/pet_list_res_model.dart';
 import '../../pet/my_pets_controller.dart';
+import '../../shop/model/category_model.dart';
+import '../model/booking_data_model.dart';
 import '../model/choose_pet_widget.dart';
+import '../model/employe_model.dart';
+import '../model/service_model.dart';
+import '../payment_controller.dart';
+import '../payment_screen.dart';
+import '../services/services_form_api.dart';
+import 'model/book_veterinary_req.dart';
 
 class VeterineryController extends GetxController {
   RxBool isLoading = false.obs;
@@ -55,7 +54,11 @@ class VeterineryController extends GetxController {
   TextEditingController serviceCont = TextEditingController();
   TextEditingController vetCont = TextEditingController();
   TextEditingController reasonCont = TextEditingController();
-  Rx<BookingDataModel> bookingFormData = BookingDataModel(service: SystemService(), payment: PaymentDetails(), training: Training()).obs;
+  Rx<BookingDataModel> bookingFormData = BookingDataModel(
+          service: SystemService(),
+          payment: PaymentDetails(),
+          training: Training())
+      .obs;
 
   //
   TextEditingController searchCont = TextEditingController();
@@ -66,11 +69,16 @@ class VeterineryController extends GetxController {
     if (Get.arguments is BookingDataModel) {
       try {
         isUpdateForm(true);
-        debugPrint('bookingFormData.value.veterinaryReason ==> ${bookingFormData.value.veterinaryReason.toString()}');
+        debugPrint(
+            'bookingFormData.value.veterinaryReason ==> ${bookingFormData.value.veterinaryReason.toString()}');
         bookingFormData(Get.arguments as BookingDataModel);
         reasonCont.text = bookingFormData.value.veterinaryReason.toString();
         getCategory();
-        selectedPet(myPetsScreenController.myPets.firstWhere((element) => element.name.toLowerCase() == bookingFormData.value.petName.toLowerCase(), orElse: () => PetData()));
+        selectedPet(myPetsScreenController.myPets.firstWhere(
+            (element) =>
+                element.name.toLowerCase() ==
+                bookingFormData.value.petName.toLowerCase(),
+            orElse: () => PetData()));
       } catch (e) {
         debugPrint('veterinery book again E: $e');
       }
@@ -87,9 +95,11 @@ class VeterineryController extends GetxController {
   }
 
   //
-  Future<void> handleFilesPickerClick() async {
-    final pickedFiles = await pickFiles();
-    Set<String> filePathsSet = medicalReportfiles.map((file) => file.name.trim().toLowerCase()).toSet();
+  Future<void> handleFilesPickerClick(context) async {
+    final pickedFiles = await pickFiles(context: context);
+    Set<String> filePathsSet = medicalReportfiles
+        .map((file) => file.name.trim().toLowerCase())
+        .toSet();
     for (var i = 0; i < pickedFiles.length; i++) {
       if (!filePathsSet.contains(pickedFiles[i].name.trim().toLowerCase())) {
         medicalReportfiles.add(pickedFiles[i]);
@@ -100,12 +110,15 @@ class VeterineryController extends GetxController {
   //Get Category List
   getCategory() {
     isLoading(true);
-    PetServiceFormApis.getCategory(categoryType: ServicesKeyConst.veterinary).then((value) {
+    PetServiceFormApis.getCategory(categoryType: ServicesKeyConst.veterinary)
+        .then((value) {
       isLoading(false);
       categoryList(value.data);
       hasErrorFetchingVeterinaryType(false);
       if (isUpdateForm.value) {
-        selectedVeterinaryType(categoryList.firstWhere((p0) => p0.id == bookingFormData.value.categoryID, orElse: () => ShopCategoryModel()));
+        selectedVeterinaryType(categoryList.firstWhere(
+            (p0) => p0.id == bookingFormData.value.categoryID,
+            orElse: () => ShopCategoryModel()));
         veterinaryTypeCont.text = selectedVeterinaryType.value.name;
         getService();
       }
@@ -120,12 +133,17 @@ class VeterineryController extends GetxController {
   ///Get Service List
   getService() {
     isLoading(true);
-    PetServiceFormApis.getService(type: ServicesKeyConst.veterinary, categoryId: selectedVeterinaryType.value.id.toString()).then((value) {
+    PetServiceFormApis.getService(
+            type: ServicesKeyConst.veterinary,
+            categoryId: selectedVeterinaryType.value.id.toString())
+        .then((value) {
       isLoading(false);
       serviceList(value.data);
       hasErrorFetchingService(false);
       if (isUpdateForm.value) {
-        selectedService(serviceList.firstWhere((p0) => p0.id == bookingFormData.value.service.id, orElse: () => ServiceModel()));
+        selectedService(serviceList.firstWhere(
+            (p0) => p0.id == bookingFormData.value.service.id,
+            orElse: () => ServiceModel()));
         serviceCont.text = selectedService.value.name;
         getVet();
       }
@@ -145,12 +163,17 @@ class VeterineryController extends GetxController {
   //Get Vet List
   getVet() {
     isLoading(true);
-    PetServiceFormApis.getEmployee(role: EmployeeKeyConst.veterinary, serviceId: selectedService.value.id.toString()).then((value) {
+    PetServiceFormApis.getEmployee(
+            role: EmployeeKeyConst.veterinary,
+            serviceId: selectedService.value.id.toString())
+        .then((value) {
       isLoading(false);
       vetList(value.data);
       hasErrorFetchingVet(false);
       if (isUpdateForm.value) {
-        selectedVet(vetList.firstWhere((p0) => p0.id == bookingFormData.value.employeeId, orElse: () => EmployeeModel(profileImage: "".obs)));
+        selectedVet(vetList.firstWhere(
+            (p0) => p0.id == bookingFormData.value.employeeId,
+            orElse: () => EmployeeModel(profileImage: "".obs)));
         vetCont.text = selectedVet.value.fullName;
       }
     }).onError((error, stackTrace) {
@@ -166,7 +189,11 @@ class VeterineryController extends GetxController {
     required RxList<ServiceModel> serviceFilterList,
     required RxList<ServiceModel> serviceSList,
   }) {
-    serviceFilterList.value = List.from(serviceSList.where((element) => element.name.toString().toLowerCase().contains(searchtext.toString().toLowerCase())));
+    serviceFilterList.value = List.from(serviceSList.where((element) => element
+        .name
+        .toString()
+        .toLowerCase()
+        .contains(searchtext.toString().toLowerCase())));
     for (var i = 0; i < serviceFilterList.length; i++) {
       debugPrint('SEARCHEDNAMES : ${serviceFilterList[i].toJson()}');
     }
@@ -186,7 +213,11 @@ class VeterineryController extends GetxController {
     required RxList<ShopCategoryModel> categoryFilterList,
     required RxList<ShopCategoryModel> categorySList,
   }) {
-    categoryFilterList.value = List.from(categorySList.where((element) => element.name.toString().toLowerCase().contains(searchtext.toString().toLowerCase())));
+    categoryFilterList.value = List.from(categorySList.where((element) =>
+        element.name
+            .toString()
+            .toLowerCase()
+            .contains(searchtext.toString().toLowerCase())));
     for (var i = 0; i < categoryFilterList.length; i++) {
       debugPrint('SEARCHEDNAMES : ${categoryFilterList[i].toJson()}');
     }
@@ -206,7 +237,10 @@ class VeterineryController extends GetxController {
     required RxList<EmployeeModel> vetFilterList,
     required RxList<EmployeeModel> vetSList,
   }) {
-    vetFilterList.value = List.from(vetSList.where((element) => element.fullName.toString().toLowerCase().contains(searchtext.toString().toLowerCase())));
+    vetFilterList.value = List.from(vetSList.where((element) => element.fullName
+        .toString()
+        .toLowerCase()
+        .contains(searchtext.toString().toLowerCase())));
     for (var i = 0; i < vetFilterList.length; i++) {
       debugPrint('SEARCHEDNAMES : ${vetFilterList[i].toJson()}');
     }
@@ -221,9 +255,12 @@ class VeterineryController extends GetxController {
     );
   }
 
-  bool get isShowCategoryFullList => categoryFilterList.isEmpty && searchCont.text.trim().isEmpty;
-  bool get isShowServiceFullList => serviceFilterList.isEmpty && searchCont.text.trim().isEmpty;
-  bool get isShowVetFullList => vetFilterList.isEmpty && searchCont.text.trim().isEmpty;
+  bool get isShowCategoryFullList =>
+      categoryFilterList.isEmpty && searchCont.text.trim().isEmpty;
+  bool get isShowServiceFullList =>
+      serviceFilterList.isEmpty && searchCont.text.trim().isEmpty;
+  bool get isShowVetFullList =>
+      vetFilterList.isEmpty && searchCont.text.trim().isEmpty;
 
   handleBookNowClick() {
     bookVeterinaryReq.reason = reasonCont.text.trim();
@@ -232,16 +269,30 @@ class VeterineryController extends GetxController {
     bookVeterinaryReq.serviceId = selectedService.value.id;
     bookVeterinaryReq.serviceName = selectedService.value.name;
     bookVeterinaryReq.duration = selectedService.value.durationMin.toString();
-    bookingSuccessDate("${bookVeterinaryReq.date} ${bookVeterinaryReq.time}".trim());
+    bookingSuccessDate(
+        "${bookVeterinaryReq.date} ${bookVeterinaryReq.time}".trim());
     debugPrint('BOOKBOARDINGREQ.TOJSON(): ${bookVeterinaryReq.toJson()}');
-    if (selectedVeterinaryType.value.name.toLowerCase().contains(ServicesKeyConst.videoConsultancyName.toLowerCase()) || selectedService.value.name.toLowerCase().contains(ServicesKeyConst.videoConsultancyName.toLowerCase())) {
-      ZoomServices.generateZoomMeetingLink(topic: selectedService.value.name, startTime: bookVeterinaryReq.toJson()["date_time"].toString().dateInyyyyMMddHHmmFormat, durationInMinuts: selectedService.value.durationMin).then((value) {
+    if (selectedVeterinaryType.value.name
+            .toLowerCase()
+            .contains(ServicesKeyConst.videoConsultancyName.toLowerCase()) ||
+        selectedService.value.name
+            .toLowerCase()
+            .contains(ServicesKeyConst.videoConsultancyName.toLowerCase())) {
+      ZoomServices.generateZoomMeetingLink(
+              topic: selectedService.value.name,
+              startTime: bookVeterinaryReq
+                  .toJson()["date_time"]
+                  .toString()
+                  .dateInyyyyMMddHHmmFormat,
+              durationInMinuts: selectedService.value.durationMin)
+          .then((value) {
         bookVeterinaryReq.startVideoLink = value.startUrl;
         bookVeterinaryReq.joinVideoLink = value.joinUrl;
       });
     }
     hideKeyBoardWithoutContext();
-    paymentController = PaymentController(bookingService: currentSelectedService.value);
+    paymentController =
+        PaymentController(bookingService: currentSelectedService.value);
     Get.to(() => const PaymentScreen());
   }
 

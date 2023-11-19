@@ -6,21 +6,22 @@ import 'package:pawlly/main.dart';
 import '../../../components/app_scaffold.dart';
 import '../../../components/bottom_selection_widget.dart';
 import '../../../components/cached_image_widget.dart';
+import '../../../components/event_file_widget.dart';
 import '../../../components/service_app_button.dart';
 import '../../../generated/assets.dart';
-import 'veterinery_service_controller.dart';
 import '../../../utils/app_common.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
-import '../model/choose_pet_widget.dart';
-import '../../../components/event_file_widget.dart';
 import '../../shop/model/category_model.dart';
+import '../model/choose_pet_widget.dart';
 import '../model/employe_model.dart';
 import '../model/service_model.dart';
+import 'veterinery_service_controller.dart';
 
 class VeterineryServiceScreen extends StatelessWidget {
   VeterineryServiceScreen({Key? key}) : super(key: key);
-  final VeterineryController veterineryController = Get.put(VeterineryController());
+  final VeterineryController veterineryController =
+      Get.put(VeterineryController());
   final GlobalKey<FormState> _veterineryformKey = GlobalKey();
 
   @override
@@ -48,7 +49,8 @@ class VeterineryServiceScreen extends StatelessWidget {
                   16.height,
                   ChooseYourPet(
                     onChanged: (selectedPet) {
-                      veterineryController.bookVeterinaryReq.petId = selectedPet.id;
+                      veterineryController.bookVeterinaryReq.petId =
+                          selectedPet.id;
                     },
                   ),
                   32.height,
@@ -69,10 +71,17 @@ class VeterineryServiceScreen extends StatelessWidget {
                               title: locale.value.chooseVeterinaryType,
                               hintText: locale.value.searchForVeterinary,
                               controller: veterineryController.searchCont,
-                              onChanged: veterineryController.onCategorySearchChange,
-                              hasError: veterineryController.hasErrorFetchingVeterinaryType.value,
-                              isEmpty: veterineryController.isShowCategoryFullList ? veterineryController.categoryList.isEmpty : veterineryController.categoryFilterList.isEmpty,
-                              errorText: veterineryController.errorMessageVeterinaryType.value,
+                              onChanged:
+                                  veterineryController.onCategorySearchChange,
+                              hasError: veterineryController
+                                  .hasErrorFetchingVeterinaryType.value,
+                              isEmpty: veterineryController
+                                      .isShowCategoryFullList
+                                  ? veterineryController.categoryList.isEmpty
+                                  : veterineryController
+                                      .categoryFilterList.isEmpty,
+                              errorText: veterineryController
+                                  .errorMessageVeterinaryType.value,
                               noDataTitle: locale.value.veterinaryTypeListIs,
                               noDataSubTitle: locale.value.thereAreNoVeterinary,
                               isLoading: veterineryController.isLoading,
@@ -81,7 +90,9 @@ class VeterineryServiceScreen extends StatelessWidget {
                               },
                               listWidget: Obx(
                                 () => veterinaryTypeListWid(
-                                  veterineryController.isShowCategoryFullList ? veterineryController.categoryList : veterineryController.categoryFilterList,
+                                  veterineryController.isShowCategoryFullList
+                                      ? veterineryController.categoryList
+                                      : veterineryController.categoryFilterList,
                                 ).expand(),
                               ),
                             ),
@@ -92,22 +103,40 @@ class VeterineryServiceScreen extends StatelessWidget {
                           hintText: locale.value.chooseVeterinaryType,
                           fillColor: context.cardColor,
                           filled: true,
-                          prefixIconConstraints: BoxConstraints.loose(const Size.square(60)),
-                          prefixIcon: veterineryController.selectedVeterinaryType.value.categoryImage.isEmpty && veterineryController.selectedVeterinaryType.value.id.isNegative
+                          prefixIconConstraints:
+                              BoxConstraints.loose(const Size.square(60)),
+                          prefixIcon: veterineryController.selectedVeterinaryType.value.categoryImage.isEmpty &&
+                                  veterineryController.selectedVeterinaryType
+                                      .value.id.isNegative
                               ? null
                               : CachedImageWidget(
-                                  url: veterineryController.selectedVeterinaryType.value.categoryImage,
+                                  url: veterineryController
+                                      .selectedVeterinaryType
+                                      .value
+                                      .categoryImage,
                                   height: 35,
                                   width: 35,
-                                  firstName: veterineryController.selectedVeterinaryType.value.name,
+                                  firstName: veterineryController
+                                      .selectedVeterinaryType.value.name,
                                   fit: BoxFit.cover,
                                   circle: true,
                                   usePlaceholderIfUrlEmpty: true,
-                                ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                          suffixIcon: veterineryController.selectedVeterinaryType.value.categoryImage.isNotEmpty && veterineryController.selectedVeterinaryType.value.id.isNegative
-                              ? Icon(Icons.keyboard_arrow_down_rounded, size: 24, color: darkGray.withOpacity(0.5))
-                              : Icon(Icons.keyboard_arrow_down_rounded, size: 24, color: darkGray.withOpacity(0.5))),
-                    ).paddingSymmetric(horizontal: 16).visible(!veterineryController.refreshWidget.value),
+                                ).paddingOnly(
+                                  left: 12, top: 8, bottom: 8, right: 12),
+                          suffixIcon: veterineryController
+                                      .selectedVeterinaryType
+                                      .value
+                                      .categoryImage
+                                      .isNotEmpty &&
+                                  veterineryController.selectedVeterinaryType
+                                      .value.id.isNegative
+                              ? Icon(Icons.keyboard_arrow_down_rounded,
+                                  size: 24, color: darkGray.withOpacity(0.5))
+                              : Icon(Icons.keyboard_arrow_down_rounded,
+                                  size: 24, color: darkGray.withOpacity(0.5))),
+                    )
+                        .paddingSymmetric(horizontal: 16)
+                        .visible(!veterineryController.refreshWidget.value),
                   ),
                   32.height,
                   Obx(
@@ -118,7 +147,8 @@ class VeterineryServiceScreen extends StatelessWidget {
                       textFieldType: TextFieldType.NAME,
                       readOnly: true,
                       onTap: () async {
-                        if (veterineryController.selectedVeterinaryType.value.id.isNegative) {
+                        if (veterineryController
+                            .selectedVeterinaryType.value.id.isNegative) {
                           toast(locale.value.pleaseSelectVeterinaryType);
                           return;
                         }
@@ -131,10 +161,17 @@ class VeterineryServiceScreen extends StatelessWidget {
                               title: locale.value.chooseService,
                               hintText: locale.value.searchForService,
                               controller: veterineryController.searchCont,
-                              onChanged: veterineryController.onServiceSearchChange,
-                              hasError: veterineryController.hasErrorFetchingService.value,
-                              isEmpty: veterineryController.isShowServiceFullList ? veterineryController.serviceList.isEmpty : veterineryController.serviceFilterList.isEmpty,
-                              errorText: veterineryController.errorMessageService.value,
+                              onChanged:
+                                  veterineryController.onServiceSearchChange,
+                              hasError: veterineryController
+                                  .hasErrorFetchingService.value,
+                              isEmpty:
+                                  veterineryController.isShowServiceFullList
+                                      ? veterineryController.serviceList.isEmpty
+                                      : veterineryController
+                                          .serviceFilterList.isEmpty,
+                              errorText: veterineryController
+                                  .errorMessageService.value,
                               noDataTitle: locale.value.serviceListIsEmpty,
                               noDataSubTitle: locale.value.thereAreNoServices,
                               isLoading: veterineryController.isLoading,
@@ -143,7 +180,9 @@ class VeterineryServiceScreen extends StatelessWidget {
                               },
                               listWidget: Obx(
                                 () => serviceListWid(
-                                  veterineryController.isShowServiceFullList ? veterineryController.serviceList : veterineryController.serviceFilterList,
+                                  veterineryController.isShowServiceFullList
+                                      ? veterineryController.serviceList
+                                      : veterineryController.serviceFilterList,
                                 ).expand(),
                               ),
                             ),
@@ -154,22 +193,36 @@ class VeterineryServiceScreen extends StatelessWidget {
                           hintText: locale.value.chooseService,
                           fillColor: context.cardColor,
                           filled: true,
-                          prefixIconConstraints: BoxConstraints.loose(const Size.square(60)),
-                          prefixIcon: veterineryController.selectedService.value.serviceImage.isEmpty && veterineryController.selectedService.value.id.isNegative
+                          prefixIconConstraints:
+                              BoxConstraints.loose(const Size.square(60)),
+                          prefixIcon: veterineryController.selectedService.value
+                                      .serviceImage.isEmpty &&
+                                  veterineryController
+                                      .selectedService.value.id.isNegative
                               ? null
                               : CachedImageWidget(
-                                  url: veterineryController.selectedService.value.serviceImage,
+                                  url: veterineryController
+                                      .selectedService.value.serviceImage,
                                   height: 35,
                                   width: 35,
-                                  firstName: veterineryController.selectedService.value.name,
+                                  firstName: veterineryController
+                                      .selectedService.value.name,
                                   fit: BoxFit.cover,
                                   circle: true,
                                   usePlaceholderIfUrlEmpty: true,
-                                ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                          suffixIcon: veterineryController.selectedService.value.serviceImage.isNotEmpty && veterineryController.selectedService.value.id.isNegative
-                              ? Icon(Icons.keyboard_arrow_down_rounded, size: 24, color: darkGray.withOpacity(0.5))
-                              : Icon(Icons.keyboard_arrow_down_rounded, size: 24, color: darkGray.withOpacity(0.5))),
-                    ).paddingSymmetric(horizontal: 16).visible(!veterineryController.refreshWidget.value),
+                                ).paddingOnly(
+                                  left: 12, top: 8, bottom: 8, right: 12),
+                          suffixIcon: veterineryController.selectedService.value
+                                      .serviceImage.isNotEmpty &&
+                                  veterineryController
+                                      .selectedService.value.id.isNegative
+                              ? Icon(Icons.keyboard_arrow_down_rounded,
+                                  size: 24, color: darkGray.withOpacity(0.5))
+                              : Icon(Icons.keyboard_arrow_down_rounded,
+                                  size: 24, color: darkGray.withOpacity(0.5))),
+                    )
+                        .paddingSymmetric(horizontal: 16)
+                        .visible(!veterineryController.refreshWidget.value),
                   ),
                   32.height,
                   Obx(
@@ -180,7 +233,8 @@ class VeterineryServiceScreen extends StatelessWidget {
                       textFieldType: TextFieldType.OTHER,
                       readOnly: true,
                       onTap: () async {
-                        if (veterineryController.selectedService.value.id.isNegative) {
+                        if (veterineryController
+                            .selectedService.value.id.isNegative) {
                           toast(locale.value.pleaseSelectService);
                           return;
                         }
@@ -192,18 +246,25 @@ class VeterineryServiceScreen extends StatelessWidget {
                               hintText: locale.value.searchForVet,
                               controller: veterineryController.searchCont,
                               onChanged: veterineryController.onVetSearchChange,
-                              hasError: veterineryController.hasErrorFetchingVet.value,
-                              isEmpty: veterineryController.isShowVetFullList ? veterineryController.vetList.isEmpty : veterineryController.vetFilterList.isEmpty,
-                              errorText: veterineryController.errorMessageVet.value,
+                              hasError: veterineryController
+                                  .hasErrorFetchingVet.value,
+                              isEmpty: veterineryController.isShowVetFullList
+                                  ? veterineryController.vetList.isEmpty
+                                  : veterineryController.vetFilterList.isEmpty,
+                              errorText:
+                                  veterineryController.errorMessageVet.value,
                               isLoading: veterineryController.isLoading,
                               noDataTitle: locale.value.vetListIsEmpty,
-                              noDataSubTitle: locale.value.thereAreNoVeterinarians,
+                              noDataSubTitle:
+                                  locale.value.thereAreNoVeterinarians,
                               onRetry: () {
                                 veterineryController.getVet();
                               },
                               listWidget: Obx(
                                 () => vetListWid(
-                                  veterineryController.isShowVetFullList ? veterineryController.vetList : veterineryController.vetFilterList,
+                                  veterineryController.isShowVetFullList
+                                      ? veterineryController.vetList
+                                      : veterineryController.vetFilterList,
                                 ).expand(),
                               ),
                             ),
@@ -215,19 +276,29 @@ class VeterineryServiceScreen extends StatelessWidget {
                         hintText: locale.value.chooseVet,
                         fillColor: context.cardColor,
                         filled: true,
-                        prefixIconConstraints: BoxConstraints.loose(const Size.square(60)),
-                        prefixIcon: veterineryController.selectedVet.value.profileImage.value.isEmpty && veterineryController.selectedVet.value.id.isNegative
+                        prefixIconConstraints:
+                            BoxConstraints.loose(const Size.square(60)),
+                        prefixIcon: veterineryController.selectedVet.value
+                                    .profileImage.value.isEmpty &&
+                                veterineryController
+                                    .selectedVet.value.id.isNegative
                             ? null
                             : CachedImageWidget(
-                                url: veterineryController.selectedVet.value.profileImage.value,
+                                url: veterineryController
+                                    .selectedVet.value.profileImage.value,
                                 height: 35,
                                 width: 35,
-                                firstName: veterineryController.selectedVet.value.fullName,
+                                firstName: veterineryController
+                                    .selectedVet.value.fullName,
                                 fit: BoxFit.cover,
                                 circle: true,
                                 usePlaceholderIfUrlEmpty: true,
-                              ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                        suffixIcon: veterineryController.selectedVet.value.profileImage.value.isEmpty && veterineryController.selectedVet.value.id.isNegative
+                              ).paddingOnly(
+                                left: 12, top: 8, bottom: 8, right: 12),
+                        suffixIcon: veterineryController.selectedVet.value
+                                    .profileImage.value.isEmpty &&
+                                veterineryController
+                                    .selectedVet.value.id.isNegative
                             ? Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 size: 24,
@@ -241,7 +312,9 @@ class VeterineryServiceScreen extends StatelessWidget {
                                 size: 11,
                               ),
                       ),
-                    ).paddingSymmetric(horizontal: 16).visible(!veterineryController.refreshWidget.value),
+                    )
+                        .paddingSymmetric(horizontal: 16)
+                        .visible(!veterineryController.refreshWidget.value),
                   ),
                   32.height,
                   AppTextField(
@@ -254,15 +327,21 @@ class VeterineryServiceScreen extends StatelessWidget {
                       hintText: '${locale.value.eG}  ${locale.value.fever}',
                       fillColor: context.cardColor,
                       filled: true,
-                      suffixIcon: Assets.profileIconsIcReason.iconImage(fit: BoxFit.contain).paddingAll(14),
+                      suffixIcon: Assets.profileIconsIcReason
+                          .iconImage(fit: BoxFit.contain)
+                          .paddingAll(14),
                     ),
                   ).paddingSymmetric(horizontal: 16),
                   32.height,
                   AddFilesWidget(
                     fileList: veterineryController.medicalReportfiles,
-                    onFilePick: veterineryController.handleFilesPickerClick,
+                    onFilePick: () async {
+                      await veterineryController
+                          .handleFilesPickerClick(context);
+                    },
                     onFilePathRemove: (index) {
-                      veterineryController.medicalReportfiles.remove(veterineryController.medicalReportfiles[index]);
+                      veterineryController.medicalReportfiles.remove(
+                          veterineryController.medicalReportfiles[index]);
                     },
                   ),
                 ],
@@ -286,7 +365,9 @@ class VeterineryServiceScreen extends StatelessWidget {
                   }
                 }
               },
-            ).paddingSymmetric(horizontal: 16).visible(veterineryController.showBookBtn.value),
+            )
+                .paddingSymmetric(horizontal: 16)
+                .visible(veterineryController.showBookBtn.value),
           ),
         ],
       ),
@@ -311,12 +392,19 @@ class VeterineryServiceScreen extends StatelessWidget {
                   textFieldType: TextFieldType.NAME,
                   readOnly: true,
                   onTap: () async {
-                    DateTime? selectedDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2101));
+                    DateTime? selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2101));
 
                     if (selectedDate != null) {
-                      veterineryController.bookVeterinaryReq.date = selectedDate.formatDateYYYYmmdd();
-                      veterineryController.dateCont.text = selectedDate.formatDateDDMMYY();
-                      debugPrint('REQ: ${veterineryController.bookVeterinaryReq.toJson()}');
+                      veterineryController.bookVeterinaryReq.date =
+                          selectedDate.formatDateYYYYmmdd();
+                      veterineryController.dateCont.text =
+                          selectedDate.formatDateDDMMYY();
+                      debugPrint(
+                          'REQ: ${veterineryController.bookVeterinaryReq.toJson()}');
                     } else {
                       log("Date is not selected");
                     }
@@ -326,7 +414,10 @@ class VeterineryServiceScreen extends StatelessWidget {
                     hintText: locale.value.selectDate,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.navigationIcCalendarOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.navigationIcCalendarOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -351,9 +442,12 @@ class VeterineryServiceScreen extends StatelessWidget {
                       );
 
                       if (pickedTime != null) {
-                        if ("${veterineryController.bookVeterinaryReq.date} ${pickedTime.formatTimeHHmm24Hour()}".isAfterCurrentDateTime) {
-                          veterineryController.bookVeterinaryReq.time = pickedTime.formatTimeHHmm24Hour();
-                          veterineryController.timeCont.text = pickedTime.formatTimeHHmmAMPM();
+                        if ("${veterineryController.bookVeterinaryReq.date} ${pickedTime.formatTimeHHmm24Hour()}"
+                            .isAfterCurrentDateTime) {
+                          veterineryController.bookVeterinaryReq.time =
+                              pickedTime.formatTimeHHmm24Hour();
+                          veterineryController.timeCont.text =
+                              pickedTime.formatTimeHHmmAMPM();
                         } else {
                           toast(locale.value.oopsItSeemsYouVe);
                         }
@@ -367,7 +461,10 @@ class VeterineryServiceScreen extends StatelessWidget {
                     hintText: locale.value.selectTime,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.iconsIcTimeOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.iconsIcTimeOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -386,15 +483,22 @@ class VeterineryServiceScreen extends StatelessWidget {
         return SettingItemWidget(
           title: list[index].name,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].categoryImage, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].categoryImage,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             veterineryController.selectedVeterinaryType(list[index]);
-            veterineryController.veterinaryTypeCont.text = veterineryController.selectedVeterinaryType.value.name;
+            veterineryController.veterinaryTypeCont.text =
+                veterineryController.selectedVeterinaryType.value.name;
             veterineryController.serviceCont.clear();
             veterineryController.vetCont.clear();
             veterineryController.vetList.clear();
             veterineryController.showBookBtn(false);
-            veterineryController.selectedVet = EmployeeModel(profileImage: "".obs).obs;
+            veterineryController.selectedVet =
+                EmployeeModel(profileImage: "".obs).obs;
             veterineryController.selectedService = ServiceModel().obs;
             veterineryController.getService();
             veterineryController.reloadWidget();
@@ -402,7 +506,8 @@ class VeterineryServiceScreen extends StatelessWidget {
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 
@@ -414,13 +519,24 @@ class VeterineryServiceScreen extends StatelessWidget {
         return SettingItemWidget(
           title: list[index].name,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].serviceImage, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].serviceImage,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             veterineryController.selectedService(list[index]);
-            veterineryController.serviceCont.text = veterineryController.selectedService.value.name;
-            currentSelectedService.value.serviceAmount = veterineryController.selectedService.value.defaultPrice.toDouble();
-            veterineryController.bookVeterinaryReq.price = veterineryController.selectedService.value.defaultPrice.toDouble();
-            debugPrint('BOOKBOARDINGREQ.PRICE: ${veterineryController.bookVeterinaryReq.price}');
+            veterineryController.serviceCont.text =
+                veterineryController.selectedService.value.name;
+            currentSelectedService.value.serviceAmount = veterineryController
+                .selectedService.value.defaultPrice
+                .toDouble();
+            veterineryController.bookVeterinaryReq.price = veterineryController
+                .selectedService.value.defaultPrice
+                .toDouble();
+            debugPrint(
+                'BOOKBOARDINGREQ.PRICE: ${veterineryController.bookVeterinaryReq.price}');
             debugPrint('percentTaxAmount: $percentTaxAmount');
             debugPrint('fixedTaxAmount: $fixedTaxAmount');
             log('TOTAL AMOUNT: $totalAmount');
@@ -433,7 +549,8 @@ class VeterineryServiceScreen extends StatelessWidget {
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 
@@ -445,16 +562,23 @@ class VeterineryServiceScreen extends StatelessWidget {
         return SettingItemWidget(
           title: list[index].fullName,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].profileImage.value, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].profileImage.value,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             veterineryController.selectedVet(list[index]);
-            veterineryController.vetCont.text = veterineryController.selectedVet.value.fullName;
+            veterineryController.vetCont.text =
+                veterineryController.selectedVet.value.fullName;
             veterineryController.reloadWidget();
             Get.back();
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 }

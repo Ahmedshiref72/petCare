@@ -13,6 +13,7 @@ import 'common_file_placeholders.dart';
 
 class AddFilesWidget extends StatelessWidget {
   final String? eId;
+
   final RxList<FileElement>? eFiles;
   final RxList<PlatformFile> fileList;
   final VoidCallback onFilePick;
@@ -35,7 +36,8 @@ class AddFilesWidget extends StatelessWidget {
       crossAxisAlignment: CrossAxisAlignment.start,
       mainAxisSize: MainAxisSize.min,
       children: [
-        Text(locale.value.otherMedicalReport, style: boldTextStyle(size: 16)).paddingSymmetric(horizontal: 16),
+        Text(locale.value.otherMedicalReport, style: boldTextStyle(size: 16))
+            .paddingSymmetric(horizontal: 16),
         8.height,
         if (eId != null)
           SingleChildScrollView(
@@ -54,7 +56,8 @@ class AddFilesWidget extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.add_circle_outline_rounded, color: primaryColor, size: 24),
+                      const Icon(Icons.add_circle_outline_rounded,
+                          color: primaryColor, size: 24),
                       8.height,
                       Text(
                         locale.value.addFiles,
@@ -65,7 +68,8 @@ class AddFilesWidget extends StatelessWidget {
                   ),
                 ).paddingSymmetric(horizontal: 16),
                 ...List.generate(eFiles.validate().length, (index) {
-                  debugPrint('EVENTFILES[INDEX].URL: ${eFiles.validate()[index].url}');
+                  debugPrint(
+                      'EVENTFILES[INDEX].URL: ${eFiles.validate()[index].url}');
                   return Padding(
                     padding: const EdgeInsets.symmetric(horizontal: 8),
                     child: Stack(
@@ -83,7 +87,12 @@ class AddFilesWidget extends StatelessWidget {
                                 height: 80,
                                 width: 80,
                               )
-                            : CommonPdfPlaceHolder(text: eFiles.validate()[index].url.split("/").last),
+                            : CommonPdfPlaceHolder(
+                                text: eFiles
+                                    .validate()[index]
+                                    .url
+                                    .split("/")
+                                    .last),
                         Positioned(
                           right: -8,
                           top: -8,
@@ -93,7 +102,8 @@ class AddFilesWidget extends StatelessWidget {
                               shape: BoxShape.circle,
                               color: primaryColor,
                             ),
-                            child: const Icon(Icons.close, color: Colors.white, size: 18),
+                            child: const Icon(Icons.close,
+                                color: Colors.white, size: 18),
                           ).onTap(() {
                             if (onFileRemove != null) {
                               onFileRemove!.call(index);
@@ -122,7 +132,8 @@ class AddFilesWidget extends StatelessWidget {
                                 width: 80,
                                 height: 80,
                                 fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) => const SizedBox(
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const SizedBox(
                                   width: 80,
                                   height: 80,
                                 ),
@@ -137,7 +148,8 @@ class AddFilesWidget extends StatelessWidget {
                               shape: BoxShape.circle,
                               color: primaryColor,
                             ),
-                            child: const Icon(Icons.close, color: Colors.white, size: 18),
+                            child: const Icon(Icons.close,
+                                color: Colors.white, size: 18),
                           ).onTap(() => onFilePathRemove.call(index)),
                         ),
                       ],
@@ -163,7 +175,8 @@ class AddFilesWidget extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(Icons.add_circle_outline_rounded, color: primaryColor, size: 24),
+                      const Icon(Icons.add_circle_outline_rounded,
+                          color: primaryColor, size: 24),
                       8.height,
                       Text(
                         locale.value.addFiles,
@@ -191,7 +204,8 @@ class AddFilesWidget extends StatelessWidget {
                                 width: 80,
                                 height: 80,
                                 fit: BoxFit.cover,
-                                errorBuilder: (context, error, stackTrace) => const SizedBox(
+                                errorBuilder: (context, error, stackTrace) =>
+                                    const SizedBox(
                                   width: 80,
                                   height: 80,
                                 ),
@@ -206,7 +220,8 @@ class AddFilesWidget extends StatelessWidget {
                               shape: BoxShape.circle,
                               color: primaryColor,
                             ),
-                            child: const Icon(Icons.close, color: Colors.white, size: 18),
+                            child: const Icon(Icons.close,
+                                color: Colors.white, size: 18),
                           ).onTap(() => onFilePathRemove.call(index)),
                         ),
                       ],
