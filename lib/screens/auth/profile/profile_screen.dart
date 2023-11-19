@@ -1,7 +1,10 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/main.dart';
+import 'package:pawlly/screens/auth/password/change_password_screen.dart';
 import 'package:pawlly/screens/shop/order/new_order_screen.dart';
 
 import '../../../components/app_scaffold.dart';
@@ -143,23 +146,26 @@ class ProfileScreen extends StatelessWidget {
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
                 commonDivider,
-                SettingItemWidget(
-                  title: locale.value.settings,
-                  subTitle:
-                      "${locale.value.changePassword},${locale.value.themeAndMore}",
-                  splashColor: transparentColor,
-                  onTap: () {
-                    Get.to(() => SettingScreen());
-                  },
-                  titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(
-                      imgPath: Assets.profileIconsIcSettingOutlined,
-                      icon: Icons.settings_outlined,
-                      color: secondaryColor),
-                  trailing: trailing,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                ),
+
+                //TODO
+
+                // SettingItemWidget(
+                //   title: locale.value.settings,
+                //   subTitle:
+                //       "${locale.value.changePassword},${locale.value.themeAndMore}",
+                //   splashColor: transparentColor,
+                //   onTap: () {
+                //     Get.to(() => SettingScreen());
+                //   },
+                //   titleTextStyle: primaryTextStyle(),
+                //   leading: commonLeadingWid(
+                //       imgPath: Assets.profileIconsIcSettingOutlined,
+                //       icon: Icons.settings_outlined,
+                //       color: secondaryColor),
+                //   trailing: trailing,
+                //   padding:
+                //       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                // ),
                 commonDivider,
                 SettingItemWidget(
                   title: locale.value.rateApp,
@@ -200,6 +206,41 @@ class ProfileScreen extends StatelessWidget {
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
+
+//TODO
+                commonDivider,
+                SizedBox(height: 10),
+                SettingItemWidget(
+                  title: locale.value.changePassword,
+                  onTap: () {
+                    Get.to(() => ChangePassword());
+                  },
+                  titleTextStyle: primaryTextStyle(),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.iconsIcLock,
+                      icon: Icons.lock_outline_sharp,
+                      color: secondaryColor),
+                ).visible(isLoggedIn.value),
+                SizedBox(height: 10),
+                commonDivider,
+                SizedBox(height: 10),
+                SettingItemWidget(
+                  title: locale.value.deleteAccount,
+                  onTap: () {
+                    ifNotTester(() async {
+                      if (await isNetworkAvailable()) {
+                      } else {
+                        toast(locale.value.yourInternetIsNotWorking);
+                      }
+                    });
+                  },
+                  titleTextStyle: primaryTextStyle(),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.iconsIcDelete,
+                      icon: Icons.lock_outline_sharp,
+                      color: secondaryColor),
+                ).visible(isLoggedIn.value),
+                SizedBox(height: 10),
                 commonDivider,
                 SettingItemWidget(
                   title: locale.value.logout,

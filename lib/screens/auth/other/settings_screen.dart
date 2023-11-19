@@ -164,35 +164,35 @@ class SettingScreen extends StatelessWidget {
                   ),
                 ),
               ),
-              SettingItemWidget(
-                title: locale.value.upcomingEvents,
-                onTap: () {
-                  Get.to(() => EventListScreen());
-                },
-                titleTextStyle: primaryTextStyle(),
-                leading: const Icon(
-                  Icons.event,
-                  color: secondaryColor,
-                ), //  commonLeadingWid(
-                //     imgPath: Assets.iconsIcLock,
-                //     icon: Icons.event_available_outlined,
-                //     color: primaryColor),
-              ),
-              SettingItemWidget(
-                title: locale.value.blogs,
-                onTap: () {
-                  Get.to(() => BlogListScreen());
-                },
-                titleTextStyle: primaryTextStyle(),
-                leading: const Icon(
-                  Icons.book_outlined,
-                  color: secondaryColor,
-                ),
-                //  commonLeadingWid(
-                //     imgPath: Assets.iconsIcLock,
-                //     icon: Icons.lock_outline_sharp,
-                //     color: primaryColor),
-              ),
+              // SettingItemWidget(
+              //   title: locale.value.upcomingEvents,
+              //   onTap: () {
+              //     Get.to(() => EventListScreen());
+              //   },
+              //   titleTextStyle: primaryTextStyle(),
+              //   leading: const Icon(
+              //     Icons.event,
+              //     color: secondaryColor,
+              //   ), //  commonLeadingWid(
+              //   //     imgPath: Assets.iconsIcLock,
+              //   //     icon: Icons.event_available_outlined,
+              //   //     color: primaryColor),
+              // ),
+              // SettingItemWidget(
+              //   title: locale.value.blogs,
+              //   onTap: () {
+              //     Get.to(() => BlogListScreen());
+              //   },
+              //   titleTextStyle: primaryTextStyle(),
+              //   leading: const Icon(
+              //     Icons.book_outlined,
+              //     color: secondaryColor,
+              //   ),
+              //   //  commonLeadingWid(
+              //   //     imgPath: Assets.iconsIcLock,
+              //   //     icon: Icons.lock_outline_sharp,
+              //   //     color: primaryColor),
+              // ),
               SettingItemWidget(
                 title: locale.value.changePassword,
                 onTap: () {
