@@ -166,7 +166,26 @@ class ProfileScreen extends StatelessWidget {
                 //   padding:
                 //       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 // ),
+           
                 commonDivider,
+                SettingItemWidget(
+                  title: locale.value.aboutApp,
+                  subTitle: locale.value.privacyPolicyTerms,
+                  splashColor: transparentColor,
+                  onTap: () {
+                    Get.to(() => const AboutScreen());
+                  },
+                  titleTextStyle: primaryTextStyle(),
+                  leading: commonLeadingWid(
+                      imgPath: Assets.profileIconsIcInfoOutlined,
+                      icon: Icons.info_outline_rounded,
+                      color: secondaryColor),
+                  trailing: trailing,
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
+                ),
+
+                     commonDivider,
                 SettingItemWidget(
                   title: locale.value.rateApp,
                   subTitle: locale.value.showSomeLoveShare,
@@ -185,23 +204,6 @@ class ProfileScreen extends StatelessWidget {
                       imgPath: Assets.profileIconsIcStarOutlined,
                       icon: Icons.star_outline_rounded,
                       color: primaryColor),
-                  trailing: trailing,
-                  padding:
-                      const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
-                ),
-                commonDivider,
-                SettingItemWidget(
-                  title: locale.value.aboutApp,
-                  subTitle: locale.value.privacyPolicyTerms,
-                  splashColor: transparentColor,
-                  onTap: () {
-                    Get.to(() => const AboutScreen());
-                  },
-                  titleTextStyle: primaryTextStyle(),
-                  leading: commonLeadingWid(
-                      imgPath: Assets.profileIconsIcInfoOutlined,
-                      icon: Icons.info_outline_rounded,
-                      color: secondaryColor),
                   trailing: trailing,
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
@@ -238,7 +240,7 @@ class ProfileScreen extends StatelessWidget {
                   leading: commonLeadingWid(
                       imgPath: Assets.iconsIcDelete,
                       icon: Icons.lock_outline_sharp,
-                      color: secondaryColor),
+                      color: primaryColor),
                 ).visible(isLoggedIn.value),
                 SizedBox(height: 10),
                 commonDivider,
@@ -264,7 +266,7 @@ class ProfileScreen extends StatelessWidget {
                   leading: commonLeadingWid(
                       imgPath: Assets.profileIconsIcLogoutOutlined,
                       icon: Icons.logout_outlined,
-                      color: primaryColor),
+                      color: secondaryColor),
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 16),
                 ),
