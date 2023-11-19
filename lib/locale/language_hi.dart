@@ -1513,6 +1513,8 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get addressLine => 'पता पंक्ति';
+  @override
+  String get addressLine1 => 'पता पंक्ति';
 
   @override
   String get apt => 'उपयुक्त';

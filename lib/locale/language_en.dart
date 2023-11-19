@@ -1502,7 +1502,9 @@ class LanguageEn extends BaseLanguage {
   String get selectCity => 'Select City';
 
   @override
-  String get addressLine => 'Address Line';
+  String get addressLine => 'Address Line 1';
+  @override
+  String get addressLine1 => 'Address Line 2';
 
   @override
   String get apt => 'Apt';

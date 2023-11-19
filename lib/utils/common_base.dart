@@ -878,13 +878,25 @@ Future<ImageSource?> showImageSourceOptions(BuildContext context) async {
           mainAxisSize: MainAxisSize.min,
           children: <Widget>[
             ListTile(
-              leading: Icon(Icons.camera),
-              title: Text('Camera'),
+              leading: Icon(
+                Icons.camera,
+                color: primaryColor,
+              ),
+              title: Text(
+                'Camera',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               onTap: () => Navigator.of(context).pop(ImageSource.camera),
             ),
             ListTile(
-              leading: Icon(Icons.image),
-              title: Text('Gallery'),
+              leading: Icon(
+                Icons.image,
+                color: primaryColor,
+              ),
+              title: Text(
+                'Gallery',
+                style: TextStyle(fontWeight: FontWeight.bold),
+              ),
               onTap: () => Navigator.of(context).pop(ImageSource.gallery),
             ),
           ],

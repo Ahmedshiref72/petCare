@@ -1494,7 +1494,9 @@ class LanguageAr extends BaseLanguage {
   String get selectCity => 'اختر مدينة';
 
   @override
-  String get addressLine => 'خط عنوان';
+  String get addressLine => 'الشارع';
+  @override
+  String get addressLine1 => 'القطعة';
 
   @override
   String get apt => 'ملائم';

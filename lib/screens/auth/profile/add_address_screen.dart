@@ -18,7 +18,8 @@ class AddAddressScreen extends StatelessWidget {
 
   final ScrollController scrollController = ScrollController();
 
-  final AddAddressController addAddressController = Get.put(AddAddressController());
+  final AddAddressController addAddressController =
+      Get.put(AddAddressController());
 
   AddAddressScreen({super.key});
 
@@ -31,7 +32,8 @@ class AddAddressScreen extends StatelessWidget {
         children: [
           AnimatedScrollView(
             controller: scrollController,
-            padding: const EdgeInsets.only(left: 16, right: 16, bottom: 60, top: 30),
+            padding:
+                const EdgeInsets.only(left: 16, right: 16, bottom: 60, top: 30),
             children: [
               Form(
                 key: formKey,
@@ -52,7 +54,9 @@ class AddAddressScreen extends StatelessWidget {
                         fillColor: context.cardColor,
                         filled: true,
                       ),
-                      suffix: Assets.profileIconsIcUserOutlined.iconImage(fit: BoxFit.contain).paddingAll(14),
+                      suffix: Assets.profileIconsIcUserOutlined
+                          .iconImage(fit: BoxFit.contain)
+                          .paddingAll(14),
                     ),
                     16.height,
                     AppTextField(
@@ -67,7 +71,9 @@ class AddAddressScreen extends StatelessWidget {
                         fillColor: context.cardColor,
                         filled: true,
                       ),
-                      suffix: Assets.profileIconsIcUserOutlined.iconImage(fit: BoxFit.contain).paddingAll(14),
+                      suffix: Assets.profileIconsIcUserOutlined
+                          .iconImage(fit: BoxFit.contain)
+                          .paddingAll(14),
                     ),
                     16.height,
                     Row(
@@ -75,7 +81,8 @@ class AddAddressScreen extends StatelessWidget {
                         Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            Text(locale.value.country, style: primaryTextStyle()),
+                            Text(locale.value.country,
+                                style: primaryTextStyle()),
                             4.height,
                             Obx(
                               () => DropdownButtonFormField<CountryData>(
@@ -86,32 +93,44 @@ class AddAddressScreen extends StatelessWidget {
                                   filled: true,
                                 ),
                                 isExpanded: true,
-                                value: addAddressController.selectedCountry.value.id > 0 ? addAddressController.selectedCountry.value : null,
+                                value: addAddressController
+                                            .selectedCountry.value.id >
+                                        0
+                                    ? addAddressController.selectedCountry.value
+                                    : null,
                                 dropdownColor: context.cardColor,
-                                items: addAddressController.countryList.map((CountryData e) {
+                                items: addAddressController.countryList
+                                    .map((CountryData e) {
                                   return DropdownMenuItem<CountryData>(
                                     value: e,
-                                    child: Text(e.name, style: primaryTextStyle(), maxLines: 1, overflow: TextOverflow.ellipsis),
+                                    child: Text(e.name,
+                                        style: primaryTextStyle(),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis),
                                   );
                                 }).toList(),
                                 onChanged: (CountryData? value) async {
                                   hideKeyboard(context);
                                   addAddressController.countryId(value!.id);
                                   addAddressController.selectedCountry(value);
-                                  addAddressController.selectedState(StateData());
-                                  addAddressController.selectedCity(CityData(pivot: Pivot()));
+                                  addAddressController
+                                      .selectedState(StateData());
+                                  addAddressController
+                                      .selectedCity(CityData(pivot: Pivot()));
                                   addAddressController.getStates(value.id);
                                 },
                               ),
                             ),
                           ],
                         ).expand(),
-                        Obx(() => 12.width.visible(addAddressController.stateList.isNotEmpty)),
+                        Obx(() => 12.width.visible(
+                            addAddressController.stateList.isNotEmpty)),
                         Obx(
                           () => Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(locale.value.state, style: primaryTextStyle()),
+                              Text(locale.value.state,
+                                  style: primaryTextStyle()),
                               4.height,
                               Obx(
                                 () => DropdownButtonFormField<StateData>(
@@ -123,24 +142,35 @@ class AddAddressScreen extends StatelessWidget {
                                   ),
                                   isExpanded: true,
                                   dropdownColor: context.cardColor,
-                                  value: addAddressController.selectedState.value.id > 0 ? addAddressController.selectedState.value : null,
-                                  items: addAddressController.stateList.map((StateData e) {
+                                  value: addAddressController
+                                              .selectedState.value.id >
+                                          0
+                                      ? addAddressController.selectedState.value
+                                      : null,
+                                  items: addAddressController.stateList
+                                      .map((StateData e) {
                                     return DropdownMenuItem<StateData>(
                                       value: e,
-                                      child: Text(e.name, style: primaryTextStyle(), maxLines: 1, overflow: TextOverflow.ellipsis),
+                                      child: Text(e.name,
+                                          style: primaryTextStyle(),
+                                          maxLines: 1,
+                                          overflow: TextOverflow.ellipsis),
                                     );
                                   }).toList(),
                                   onChanged: (StateData? value) async {
                                     hideKeyboard(context);
-                                    addAddressController.selectedCity(CityData(pivot: Pivot()));
+                                    addAddressController
+                                        .selectedCity(CityData(pivot: Pivot()));
                                     addAddressController.selectedState(value);
                                     addAddressController.stateId(value!.id);
-                                    await addAddressController.getCity(value.id);
+                                    await addAddressController
+                                        .getCity(value.id);
                                   },
                                 ),
                               ),
                             ],
-                          ).expand().visible(addAddressController.stateList.isNotEmpty),
+                          ).expand().visible(
+                              addAddressController.stateList.isNotEmpty),
                         ),
                       ],
                     ),
@@ -151,7 +181,8 @@ class AddAddressScreen extends StatelessWidget {
                           () => Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
-                              Text(locale.value.city, style: primaryTextStyle()),
+                              Text(locale.value.city,
+                                  style: primaryTextStyle()),
                               4.height,
                               DropdownButtonFormField<CityData>(
                                 decoration: inputDecoration(
@@ -161,13 +192,21 @@ class AddAddressScreen extends StatelessWidget {
                                   filled: true,
                                 ),
                                 isExpanded: true,
-                                value: addAddressController.selectedCity.value.id > 0 ? addAddressController.selectedCity.value : null,
+                                value: addAddressController
+                                            .selectedCity.value.id >
+                                        0
+                                    ? addAddressController.selectedCity.value
+                                    : null,
                                 style: primaryTextStyle(size: 12),
                                 dropdownColor: context.cardColor,
-                                items: addAddressController.cityList.map((CityData e) {
+                                items: addAddressController.cityList
+                                    .map((CityData e) {
                                   return DropdownMenuItem<CityData>(
                                     value: e,
-                                    child: Text(e.name, style: primaryTextStyle(), maxLines: 1, overflow: TextOverflow.ellipsis),
+                                    child: Text(e.name,
+                                        style: primaryTextStyle(),
+                                        maxLines: 1,
+                                        overflow: TextOverflow.ellipsis),
                                   );
                                 }).toList(),
                                 onChanged: (CityData? value) async {
@@ -177,10 +216,13 @@ class AddAddressScreen extends StatelessWidget {
                                 },
                               ),
                             ],
-                          ).expand().visible(addAddressController.cityList.isNotEmpty),
+                          ).expand().visible(
+                              addAddressController.cityList.isNotEmpty),
                         ),
-                        Obx(() => 12.width.visible(addAddressController.cityList.isNotEmpty)),
-                        AppTextField(
+                        Obx(() => 12
+                            .width
+                            .visible(addAddressController.cityList.isNotEmpty)),
+                        /*AppTextField(
                           title: locale.value.pinCode,
                           textStyle: primaryTextStyle(size: 12),
                           textFieldType: TextFieldType.NUMBER,
@@ -200,12 +242,12 @@ class AddAddressScreen extends StatelessWidget {
                           onChanged: (p0) {
                             scrollController.animToBottom();
                           },
-                        ).expand(),
+                        ).expand(),*/
                       ],
                     ),
                     16.height,
                     AppTextField(
-                      title: "${locale.value.addressLine} 1",
+                      title: "${locale.value.addressLine} ",
                       textStyle: primaryTextStyle(size: 12),
                       textFieldType: TextFieldType.MULTILINE,
                       minLines: 3,
@@ -214,14 +256,15 @@ class AddAddressScreen extends StatelessWidget {
                       focus: addAddressController.addressLine1FocusNode,
                       decoration: inputDecoration(
                         context,
-                        hintText: "${locale.value.eG} 123, ${locale.value.mainStreet}",
+                        hintText:
+                            "${locale.value.eG} 123, ${locale.value.mainStreet}",
                         fillColor: context.cardColor,
                         filled: true,
                       ),
                     ),
                     16.height,
                     AppTextField(
-                      title: "${locale.value.addressLine} 2",
+                      title: "${locale.value.addressLine1} ",
                       textStyle: primaryTextStyle(size: 12),
                       textFieldType: TextFieldType.MULTILINE,
                       minLines: 3,
@@ -230,7 +273,8 @@ class AddAddressScreen extends StatelessWidget {
                       focus: addAddressController.addressLine2FocusNode,
                       decoration: inputDecoration(
                         context,
-                        hintText: "${locale.value.eG} ${locale.value.apt} 4B", //No Localization here
+                        hintText:
+                            "${locale.value.eG} ${locale.value.apt} 4B", //No Localization here
                         fillColor: context.cardColor,
                         filled: true,
                       ),
@@ -260,7 +304,11 @@ class AddAddressScreen extends StatelessWidget {
                   }
                 }
               },
-              child: Text(addAddressController.isEdit.value ? locale.value.saveChanges : locale.value.save, style: primaryTextStyle(color: white)),
+              child: Text(
+                  addAddressController.isEdit.value
+                      ? locale.value.saveChanges
+                      : locale.value.save,
+                  style: primaryTextStyle(color: white)),
             ),
           ),
         ],
@@ -276,7 +324,11 @@ class AddAddressScreen extends StatelessWidget {
         child: CheckboxListTile(
           value: addAddressController.isPrimary.value,
           checkColor: white,
-          title: Text(locale.value.setAsPrimary, style: primaryTextStyle(color: isDarkMode.value ? textPrimaryColorGlobal : primaryColor, size: 14)),
+          title: Text(locale.value.setAsPrimary,
+              style: primaryTextStyle(
+                  color:
+                      isDarkMode.value ? textPrimaryColorGlobal : primaryColor,
+                  size: 14)),
           contentPadding: EdgeInsets.zero,
           controlAffinity: ListTileControlAffinity.leading,
           checkboxShape: RoundedRectangleBorder(borderRadius: radius(5)),
@@ -284,7 +336,8 @@ class AddAddressScreen extends StatelessWidget {
           dense: true,
           activeColor: isDarkMode.value ? primaryColor : primaryColor,
           onChanged: (value) {
-            addAddressController.isPrimary(!addAddressController.isPrimary.value);
+            addAddressController
+                .isPrimary(!addAddressController.isPrimary.value);
           },
         ),
       ),

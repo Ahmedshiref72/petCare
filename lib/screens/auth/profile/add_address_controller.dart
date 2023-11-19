@@ -93,7 +93,8 @@ class AddAddressController extends GetxController {
   Future<void> getStates(int countryId) async {
     isLoading(true);
 
-    await UserAddressesApis.getStateList(countryId: countryId).then((value) async {
+    await UserAddressesApis.getStateList(countryId: countryId)
+        .then((value) async {
       isLoading(false);
       stateList.clear();
       stateList(value);
@@ -136,7 +137,7 @@ class AddAddressController extends GetxController {
       "last_name": lastNameCont.text.trim(),
       "address_line_1": addressLine1Controller.text.trim(),
       "address_line_2": addressLine2Controller.text.trim(),
-      "postal_code": pinCodeCont.text.trim(),
+      "postal_code": '',
       "city": cityId.value,
       "state": stateId.value,
       "country": countryId.value,
@@ -147,7 +148,8 @@ class AddAddressController extends GetxController {
       req.putIfAbsent("id", () => addressData.value.id.value);
     }
 
-    UserAddressesApis.addEditAddress(request: req, isEdit: isEdit.value).then((value) {
+    UserAddressesApis.addEditAddress(request: req, isEdit: isEdit.value)
+        .then((value) {
       Get.back(result: true);
       isLoading(false);
     }).catchError(onError);

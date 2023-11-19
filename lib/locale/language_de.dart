@@ -1521,6 +1521,8 @@ class LanguageDe extends BaseLanguage {
 
   @override
   String get addressLine => 'Adresszeile';
+  @override
+  String get addressLine1 => 'Adresszeile';
 
   @override
   String get apt => 'Geeignet';

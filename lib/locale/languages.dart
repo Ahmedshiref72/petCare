@@ -966,6 +966,7 @@ abstract class BaseLanguage {
   String get selectCity;
 
   String get addressLine;
+  String get addressLine1;
 
   String get apt;
 

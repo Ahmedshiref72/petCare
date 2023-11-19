@@ -1530,6 +1530,9 @@ class LanguageFr extends BaseLanguage {
   String get addressLine => "Ligne d'adresse";
 
   @override
+  String get addressLine1 => "Ligne d'adresse";
+
+  @override
   String get apt => 'Apte';
 
   @override
