@@ -4,6 +4,9 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/screens/dashboard/dashboard_res_model.dart';
+import 'package:pawlly/screens/home/blog/blog_home_component.dart';
+import 'package:pawlly/screens/home/event/event_list_screen.dart';
+import 'package:pawlly/screens/home/event/your_events_components.dart';
 import 'package:pawlly/screens/pet/my_pets_controller.dart';
 import 'package:pawlly/utils/common_base.dart';
 
@@ -145,20 +148,20 @@ class HomeScreen extends StatelessWidget {
                                   .visible(homeScreenController.dashboardData
                                       .value.featuresProduct.isNotEmpty),
                             ),
-                            // 16.height,
-                            // ViewAllLabel(
-                            //   label: locale.value.upcomingEvents,
-                            //   onTap: () {
-                            //     Get.to(() => EventListScreen());
-                            //   },
-                            // ).visible(homeScreenController.dashboardData.value.event.isNotEmpty).paddingOnly(left: 16, right: 8),
-                            //
-                            // Obx(() => YourEventsComponents(
-                            //       events: homeScreenController.dashboardData.value.event,
-                            //     ).visible(homeScreenController.dashboardData.value.event.isNotEmpty)),
-/*
+                            16.height,
+                            ViewAllLabel(
+                              label: locale.value.upcomingEvents,
+                              onTap: () {
+                                Get.to(() => EventListScreen());
+                              },
+                            ).visible(homeScreenController.dashboardData.value.event.isNotEmpty).paddingOnly(left: 16, right: 8),
+                            
+                            Obx(() => YourEventsComponents(
+                                  events: homeScreenController.dashboardData.value.event,
+                                ).visible(homeScreenController.dashboardData.value.event.isNotEmpty)),
+
                             Obx(() => BlogHomeComponent().visible(homeScreenController.dashboardData.value.blog.isNotEmpty)),
-*/
+
                           ],
                         ).visible(!homeScreenController.isLoading.value),
                       ),
