@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:pawlly/utils/colors.dart';
 
 import '../utils/app_common.dart';
 import '../utils/common_base.dart';
@@ -42,7 +43,7 @@ class PriceWidget extends StatelessWidget {
       if (isSemiBoldText) {
         return primaryTextStyle(
           size: aSize ?? size!.toInt(),
-          color: color ?? context.primaryColor,
+          color: color ??primaryColor,
           fontFamily: fontFamilyFontWeight600,
           decoration: textDecoration(),
         );
@@ -50,13 +51,13 @@ class PriceWidget extends StatelessWidget {
       return isBoldText
           ? boldTextStyle(
               size: aSize ?? size!.toInt(),
-              color: color ?? context.primaryColor,
+              color: color ??primaryColor,
               fontFamily: fontFamilyFontBold,
               decoration: textDecoration(),
             )
           : secondaryTextStyle(
               size: aSize ?? size!.toInt(),
-              color: color ?? context.primaryColor,
+              color: color ??primaryColor,
               decoration: textDecoration(),
             );
     }

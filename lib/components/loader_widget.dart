@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:pawlly/utils/colors.dart';
 
 class LoaderWidget extends StatelessWidget {
   const LoaderWidget({super.key});
@@ -8,7 +9,7 @@ class LoaderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Loader(
       valueColor: AlwaysStoppedAnimation(
-        context.primaryColor,
+       primaryColor,
       ),
     );
   }
