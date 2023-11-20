@@ -1,20 +1,22 @@
-import 'package:get/get.dart';
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/main.dart';
+
 import '../../../components/app_scaffold.dart';
 import '../../../generated/assets.dart';
-import '../../home/home_controller.dart';
-import 'option_controller.dart';
 import '../../../utils/app_common.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../../dashboard/dashboard_screen.dart';
+import '../../home/home_controller.dart';
 import '../sign_in_sign_up/signin_screen.dart';
+import 'option_controller.dart';
 
 class OptionScreen extends StatelessWidget {
   OptionScreen({Key? key}) : super(key: key);
-  final OptionScreenController optionScreenController = Get.put(OptionScreenController());
+  final OptionScreenController optionScreenController =
+      Get.put(OptionScreenController());
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +29,7 @@ class OptionScreen extends StatelessWidget {
           Container(
             height: Get.height,
             width: Get.width,
-            color: context.primaryColor,
+            color: primaryColor,
           ),
           Positioned(
             bottom: 0,
@@ -38,7 +40,7 @@ class OptionScreen extends StatelessWidget {
                 Positioned(
                   bottom: optionScreenController.bottomWidgetHeight - 4,
                   child: Container(
-                    color: context.primaryColor,
+                    color: primaryColor,
                     child: Image.asset(
                       Assets.imagesOptionImage,
                       width: Get.width,
@@ -52,7 +54,9 @@ class OptionScreen extends StatelessWidget {
                   height: optionScreenController.bottomWidgetHeight,
                   decoration: boxDecorationDefault(
                     color: context.cardColor,
-                    borderRadius: BorderRadius.only(topRight: radiusCircular(30), topLeft: const Radius.circular(30)),
+                    borderRadius: BorderRadius.only(
+                        topRight: radiusCircular(30),
+                        topLeft: const Radius.circular(30)),
                   ),
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
@@ -83,8 +87,16 @@ class OptionScreen extends StatelessWidget {
                                 arguments: true,
                                 binding: BindingsBuilder(() {
                                   isDarkMode.value
-                                      ? setStatusBarColor(scaffoldDarkColor, statusBarIconBrightness: Brightness.light, statusBarBrightness: Brightness.light)
-                                      : setStatusBarColor(context.scaffoldBackgroundColor, statusBarIconBrightness: Brightness.dark, statusBarBrightness: Brightness.light);
+                                      ? setStatusBarColor(scaffoldDarkColor,
+                                          statusBarIconBrightness:
+                                              Brightness.light,
+                                          statusBarBrightness: Brightness.light)
+                                      : setStatusBarColor(
+                                          context.scaffoldBackgroundColor,
+                                          statusBarIconBrightness:
+                                              Brightness.dark,
+                                          statusBarBrightness:
+                                              Brightness.light);
                                 }),
                               );
                             },
@@ -100,8 +112,16 @@ class OptionScreen extends StatelessWidget {
                                 binding: BindingsBuilder(() {
                                   Get.put(HomeScreenController());
                                   isDarkMode.value
-                                      ? setStatusBarColor(scaffoldDarkColor, statusBarIconBrightness: Brightness.light, statusBarBrightness: Brightness.light)
-                                      : setStatusBarColor(context.scaffoldBackgroundColor, statusBarIconBrightness: Brightness.dark, statusBarBrightness: Brightness.light);
+                                      ? setStatusBarColor(scaffoldDarkColor,
+                                          statusBarIconBrightness:
+                                              Brightness.light,
+                                          statusBarBrightness: Brightness.light)
+                                      : setStatusBarColor(
+                                          context.scaffoldBackgroundColor,
+                                          statusBarIconBrightness:
+                                              Brightness.dark,
+                                          statusBarBrightness:
+                                              Brightness.light);
                                 }),
                               );
                             },

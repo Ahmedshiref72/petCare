@@ -8,10 +8,10 @@ import 'package:pawlly/screens/pet/add_pet_pageview.dart';
 import 'package:pawlly/utils/app_common.dart';
 
 import '../../../components/cached_image_widget.dart';
-import '../../pet/my_pets_controller.dart';
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../../pet/model/pet_list_res_model.dart';
+import '../../pet/my_pets_controller.dart';
 
 Rx<PetData> selectedPet = PetData().obs;
 
@@ -28,7 +28,8 @@ class ChooseYourPet extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(locale.value.chooseYourPet, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+        Text(locale.value.chooseYourPet, style: primaryTextStyle())
+            .paddingSymmetric(horizontal: 16),
         8.height,
         Obx(
           () => SnapHelperWidget(
@@ -44,7 +45,9 @@ class ChooseYourPet extends StatelessWidget {
             loadingWidget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${locale.value.loading}... ", style: secondaryTextStyle(size: 14, fontFamily: fontFamilyFontBold)),
+                Text("${locale.value.loading}... ",
+                    style: secondaryTextStyle(
+                        size: 14, fontFamily: fontFamilyFontBold)),
               ],
             ),
             onSuccess: (pets) {
@@ -54,9 +57,13 @@ class ChooseYourPet extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.center,
                       children: [
                         AppButton(
-                          text: isLoggedIn.value ? locale.value.addYourPet : locale.value.signIn,
-                          textStyle: secondaryTextStyle(color: primaryColor, fontFamily: fontFamilyFontBold),
-                          color: lightPrimaryColor2,
+                          text: isLoggedIn.value
+                              ? locale.value.addYourPet
+                              : locale.value.signIn,
+                          textStyle: secondaryTextStyle(
+                              color: Colors.white,
+                              fontFamily: fontFamilyFontBold),
+                          color: primaryColor,
                           onTap: () {
                             if (isLoggedIn.value) {
                               Get.to(() => AddPetInfoScreen(), arguments: true);
@@ -75,7 +82,9 @@ class ChooseYourPet extends StatelessWidget {
                       padding: const EdgeInsets.only(left: 16, right: 16),
                       itemBuilder: (context, index) {
                         afterBuildCreated(() {
-                          selectedPet(myPetsScreenController.myPets.firstWhere((element) => element.id == selectedPet.value.id, orElse: () => PetData()));
+                          selectedPet(myPetsScreenController.myPets.firstWhere(
+                              (element) => element.id == selectedPet.value.id,
+                              orElse: () => PetData()));
                         });
                         // bool isSelected = boardingPetController.petSelectIndex == index;
                         return Obx(
@@ -88,9 +97,12 @@ class ChooseYourPet extends StatelessWidget {
                             child: AnimatedContainer(
                               alignment: Alignment.center,
                               duration: const Duration(milliseconds: 300),
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
                               decoration: boxDecorationDefault(
-                                color: selectedPet.value == pets[index] ? lightPrimaryColor : context.cardColor,
+                                color: selectedPet.value == pets[index]
+                                    ? lightPrimaryColor
+                                    : context.cardColor,
                               ),
                               child: Row(
                                 children: [
@@ -103,7 +115,12 @@ class ChooseYourPet extends StatelessWidget {
                                     fit: BoxFit.cover,
                                   ),
                                   8.width,
-                                  Text(pets[index].name, style: secondaryTextStyle(color: selectedPet.value == pets[index] ? primaryColor : null)),
+                                  Text(pets[index].name,
+                                      style: secondaryTextStyle(
+                                          color:
+                                              selectedPet.value == pets[index]
+                                                  ? primaryColor
+                                                  : null)),
                                 ],
                               ),
                             ),

@@ -4,15 +4,24 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/utils/app_common.dart';
 
 import '../../../main.dart';
+import '../../../utils/colors.dart';
 import '../../../utils/constants.dart';
 import 'model/cart_list_model.dart';
 import 'product_cart_api.dart';
 
 class CartController extends GetxController {
-  Rx<Future<(List<CartListData>, CartListResponse)>> getCartList = Future(() => (const <CartListData>[], CartListResponse(cartPriceData: CartPriceData(taxData: CartTaxData())))).obs;
+  Rx<Future<(List<CartListData>, CartListResponse)>> getCartList =
+      Future(() => (
+            const <CartListData>[],
+            CartListResponse(
+                cartPriceData: CartPriceData(taxData: CartTaxData()))
+          )).obs;
   RxBool isLoading = false.obs;
   RxBool isLastPage = false.obs;
-  Rx<(List<CartListData>, CartListResponse)> cartList = (<CartListData>[], CartListResponse(cartPriceData: CartPriceData(taxData: CartTaxData()))).obs;
+  Rx<(List<CartListData>, CartListResponse)> cartList = (
+    <CartListData>[],
+    CartListResponse(cartPriceData: CartPriceData(taxData: CartTaxData()))
+  ).obs;
   RxInt page = 1.obs;
 
   @override
@@ -38,10 +47,11 @@ class CartController extends GetxController {
     }).whenComplete(() => isLoading(false));
   }
 
-  Future<void> removeCart({required BuildContext context, required int cartId}) async {
+  Future<void> removeCart(
+      {required BuildContext context, required int cartId}) async {
     showConfirmDialogCustom(
       context,
-      primaryColor: context.primaryColor,
+      primaryColor: primaryColor,
       title: "${locale.value.doYouWantToRemoveThisItem}?",
       positiveText: locale.value.remove,
       negativeText: locale.value.cancel,

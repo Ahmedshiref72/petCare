@@ -3,6 +3,7 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/main.dart';
 import 'package:pawlly/utils/app_common.dart';
 import 'package:url_launcher/url_launcher.dart';
+
 import '../../../components/app_scaffold.dart';
 import '../../../utils/common_base.dart';
 
@@ -19,16 +20,19 @@ class AboutScreen extends StatelessWidget {
             itemCount: aboutPages.length,
             shrinkWrap: true,
             itemBuilder: (context, index) {
-              if (aboutPages[index].name.isEmpty || aboutPages[index].url.isEmpty) {
+              if (aboutPages[index].name.isEmpty ||
+                  aboutPages[index].url.isEmpty) {
                 return const SizedBox();
               } else {
                 return SettingItemWidget(
                   title: aboutPages[index].name,
                   onTap: () {
-                    commonLaunchUrl(aboutPages[index].url.trim(), launchMode: LaunchMode.externalApplication);
+                    commonLaunchUrl(aboutPages[index].url.trim(),
+                        launchMode: LaunchMode.externalApplication);
                   },
                   titleTextStyle: primaryTextStyle(),
-                  padding: const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
+                  padding:
+                      const EdgeInsets.symmetric(vertical: 20, horizontal: 16),
                   // leading: commonLeadingWid(imgPath: Assets.iconsIcLock, icon: Icons.lock_outline_sharp, color: primaryColor),
                 );
               }
@@ -76,7 +80,7 @@ class _AboutScreenState extends State<AboutScreen> {
         children: [
           commonDivider,
           16.height,
-          Text(APP_NAME, style: boldTextStyle(size: 20, color: context.primaryColor)),
+          Text(APP_NAME, style: boldTextStyle(size: 20, color: primaryColor)),
           16.height,
           Align(
             alignment: Alignment.centerLeft,
@@ -93,7 +97,7 @@ class _AboutScreenState extends State<AboutScreen> {
                   decoration: boxDecorationWithRoundedCorners(borderRadius: radius(), backgroundColor: context.scaffoldBackgroundColor),
                   child: Column(
                     children: [
-                      Image.asset(Assets.profileIconsIcCall, height: 22, color: context.primaryColor),
+                      Image.asset(Assets.profileIconsIcCall, height: 22, color: primaryColor),
                       8.height,
                       Text(locale.value.call, style: secondaryTextStyle(), textAlign: TextAlign.center),
                     ],

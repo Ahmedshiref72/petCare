@@ -3,12 +3,15 @@
 import 'package:flutter/cupertino.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+
 import '../../../main.dart';
-import '../services/auth_service_apis.dart';
+import '../../../utils/colors.dart';
 import '../model/notification_model.dart';
+import '../services/auth_service_apis.dart';
 
 class NotificationScreenController extends GetxController {
-  Rx<Future<List<NotificationData>>> getNotifications = Future(() => <NotificationData>[]).obs;
+  Rx<Future<List<NotificationData>>> getNotifications =
+      Future(() => <NotificationData>[]).obs;
   RxBool isLoading = false.obs;
   RxList<NotificationData> notificationDetail = RxList();
   RxBool isLastPage = false.obs;
@@ -35,18 +38,21 @@ class NotificationScreenController extends GetxController {
     }).whenComplete(() => isLoading(false));
   }
 
-  Future<void> removeNotification({required BuildContext context, required String notificationId}) async {
+  Future<void> removeNotification(
+      {required BuildContext context, required String notificationId}) async {
     showConfirmDialogCustom(
       context,
-      primaryColor: context.primaryColor,
+      primaryColor: primaryColor,
       title: "${locale.value.doYouWantToRemoveNotification}?",
       positiveText: locale.value.yes,
       negativeText: locale.value.cancel,
       onAccept: (ctx) async {
         isLoading(true);
-        await AuthServiceApis.removeNotification(notificationId: notificationId).then((value) {
+        await AuthServiceApis.removeNotification(notificationId: notificationId)
+            .then((value) {
           init();
-          toast("${locale.value.notificationDeleted}  ${locale.value.successfully}");
+          toast(
+              "${locale.value.notificationDeleted}  ${locale.value.successfully}");
         }).catchError((error) {
           toast(error.toString());
         }).whenComplete(() => isLoading(false));
@@ -57,7 +63,7 @@ class NotificationScreenController extends GetxController {
   Future<void> clearAllNotification({required BuildContext context}) async {
     showConfirmDialogCustom(
       context,
-      primaryColor: context.primaryColor,
+      primaryColor: primaryColor,
       title: "${locale.value.doYouWantToClearAllNotification}?",
       positiveText: locale.value.yes,
       negativeText: locale.value.cancel,

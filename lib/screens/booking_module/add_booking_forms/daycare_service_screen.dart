@@ -1,6 +1,5 @@
-import 'package:get/get.dart';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/main.dart';
 
@@ -9,17 +8,17 @@ import '../../../components/bottom_selection_widget.dart';
 import '../../../components/cached_image_widget.dart';
 import '../../../components/service_app_button.dart';
 import '../../../generated/assets.dart';
-import 'daycare_service_controller.dart';
 import '../../../utils/app_common.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../model/choose_pet_widget.dart';
 import '../model/employe_model.dart';
+import 'daycare_service_controller.dart';
 
 class DayCareScreen extends StatelessWidget {
   DayCareScreen({Key? key}) : super(key: key);
-  final DayCareServiceController dayCareServiceController = Get.put(DayCareServiceController());
+  final DayCareServiceController dayCareServiceController =
+      Get.put(DayCareServiceController());
   final GlobalKey<FormState> _daycareformKey = GlobalKey();
 
   @override
@@ -47,7 +46,8 @@ class DayCareScreen extends StatelessWidget {
                   16.height,
                   ChooseYourPet(
                     onChanged: (selectedPet) {
-                      dayCareServiceController.bookDayCareReq.petId = selectedPet.id;
+                      dayCareServiceController.bookDayCareReq.petId =
+                          selectedPet.id;
                     },
                   ),
                   32.height,
@@ -69,19 +69,31 @@ class DayCareScreen extends StatelessWidget {
                                 title: locale.value.chooseDaycareTaker,
                                 hintText: locale.value.searchForDaycareTaker,
                                 controller: dayCareServiceController.searchCont,
-                                onChanged: dayCareServiceController.onSearchChange,
-                                hasError: dayCareServiceController.hasErrorFetchingDayCareTaker.value,
-                                isEmpty: dayCareServiceController.isShowFullList ? dayCareServiceController.dayCareTakerList.isEmpty : dayCareServiceController.dayCareTakerFilterList.isEmpty,
-                                errorText: dayCareServiceController.errorMessageDayCareTaker.value,
+                                onChanged:
+                                    dayCareServiceController.onSearchChange,
+                                hasError: dayCareServiceController
+                                    .hasErrorFetchingDayCareTaker.value,
+                                isEmpty: dayCareServiceController.isShowFullList
+                                    ? dayCareServiceController
+                                        .dayCareTakerList.isEmpty
+                                    : dayCareServiceController
+                                        .dayCareTakerFilterList.isEmpty,
+                                errorText: dayCareServiceController
+                                    .errorMessageDayCareTaker.value,
                                 isLoading: dayCareServiceController.isLoading,
-                                noDataTitle: locale.value.daycareTakerListIsEmpty,
+                                noDataTitle:
+                                    locale.value.daycareTakerListIsEmpty,
                                 noDataSubTitle: locale.value.thereAreNoDaycare,
                                 onRetry: () {
                                   dayCareServiceController.getDayCareTakers();
                                 },
                                 listWidget: Obx(
                                   () => daycareListWid(
-                                    dayCareServiceController.isShowFullList ? dayCareServiceController.dayCareTakerList : dayCareServiceController.dayCareTakerFilterList,
+                                    dayCareServiceController.isShowFullList
+                                        ? dayCareServiceController
+                                            .dayCareTakerList
+                                        : dayCareServiceController
+                                            .dayCareTakerFilterList,
                                   ).expand(),
                                 ),
                               ),
@@ -92,16 +104,33 @@ class DayCareScreen extends StatelessWidget {
                         hintText: locale.value.chooseDaycareTaker,
                         fillColor: context.cardColor,
                         filled: true,
-                        prefixIcon: dayCareServiceController.selectedDayCareTaker.value.profileImage.isEmpty && dayCareServiceController.selectedDayCareTaker.value.id.isNegative
+                        prefixIcon: dayCareServiceController
+                                    .selectedDayCareTaker
+                                    .value
+                                    .profileImage
+                                    .isEmpty &&
+                                dayCareServiceController
+                                    .selectedDayCareTaker.value.id.isNegative
                             ? null
                             : CachedImageWidget(
-                                url: dayCareServiceController.selectedDayCareTaker.value.profileImage.value,
+                                url: dayCareServiceController
+                                    .selectedDayCareTaker
+                                    .value
+                                    .profileImage
+                                    .value,
                                 height: 35,
                                 width: 35,
                                 fit: BoxFit.cover,
                                 circle: true,
-                              ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                        suffixIcon: dayCareServiceController.selectedDayCareTaker.value.profileImage.isEmpty && dayCareServiceController.selectedDayCareTaker.value.id.isNegative
+                              ).paddingOnly(
+                                left: 12, top: 8, bottom: 8, right: 12),
+                        suffixIcon: dayCareServiceController
+                                    .selectedDayCareTaker
+                                    .value
+                                    .profileImage
+                                    .isEmpty &&
+                                dayCareServiceController
+                                    .selectedDayCareTaker.value.id.isNegative
                             ? Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 size: 24,
@@ -110,7 +139,8 @@ class DayCareScreen extends StatelessWidget {
                             : appCloseIconButton(
                                 context,
                                 onPressed: () {
-                                  dayCareServiceController.clearDaycareTakerSelection();
+                                  dayCareServiceController
+                                      .clearDaycareTakerSelection();
                                 },
                                 size: 11,
                               ),
@@ -129,7 +159,11 @@ class DayCareScreen extends StatelessWidget {
                     minLines: 5,
                     controller: dayCareServiceController.addressCont,
                     // focus: editUserProfileController.addressFocus,
-                    decoration: inputDecoration(context, hintText: "${locale.value.eG} 123, ${locale.value.mainStreet}", fillColor: context.cardColor, filled: true),
+                    decoration: inputDecoration(context,
+                        hintText:
+                            "${locale.value.eG} 123, ${locale.value.mainStreet}",
+                        fillColor: context.cardColor,
+                        filled: true),
                   ).paddingSymmetric(horizontal: 16),
                   32.height,
                   AppTextField(
@@ -140,7 +174,10 @@ class DayCareScreen extends StatelessWidget {
                     minLines: 5,
                     controller: dayCareServiceController.additionalInfoCont,
                     // focus: editUserProfileController.addressFocus,
-                    decoration: inputDecoration(context, hintText: locale.value.writeHere, fillColor: context.cardColor, filled: true),
+                    decoration: inputDecoration(context,
+                        hintText: locale.value.writeHere,
+                        fillColor: context.cardColor,
+                        filled: true),
                   ).paddingSymmetric(horizontal: 16),
                 ],
               ),
@@ -163,7 +200,9 @@ class DayCareScreen extends StatelessWidget {
                   }
                 }
               },
-            ).paddingSymmetric(horizontal: 16).visible(!dayCareServiceController.isRefresh.value),
+            )
+                .paddingSymmetric(horizontal: 16)
+                .visible(!dayCareServiceController.isRefresh.value),
           ),
         ],
       ),
@@ -178,16 +217,24 @@ class DayCareScreen extends StatelessWidget {
         return SettingItemWidget(
           title: list[index].fullName,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].profileImage.value, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].profileImage.value,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             dayCareServiceController.selectedDayCareTaker(list[index]);
-            dayCareServiceController.daycareTakerCont.text = dayCareServiceController.selectedDayCareTaker.value.fullName;
-            dayCareServiceController.bookDayCareReq.employeeId = dayCareServiceController.selectedDayCareTaker.value.id;
+            dayCareServiceController.daycareTakerCont.text =
+                dayCareServiceController.selectedDayCareTaker.value.fullName;
+            dayCareServiceController.bookDayCareReq.employeeId =
+                dayCareServiceController.selectedDayCareTaker.value.id;
             Get.back();
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 
@@ -199,12 +246,19 @@ class DayCareScreen extends StatelessWidget {
       textFieldType: TextFieldType.NAME,
       readOnly: true,
       onTap: () async {
-        DateTime? selectedDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2101));
+        DateTime? selectedDate = await showDatePicker(
+            context: context,
+            initialDate: DateTime.now(),
+            firstDate: DateTime.now(),
+            lastDate: DateTime(2101));
 
         if (selectedDate != null) {
-          dayCareServiceController.bookDayCareReq.date = selectedDate.formatDateYYYYmmdd();
-          dayCareServiceController.dateCont.text = selectedDate.formatDateDDMMYY();
-          debugPrint('BOOKDAYCAREREQ: ${dayCareServiceController.bookDayCareReq.toJson()}');
+          dayCareServiceController.bookDayCareReq.date =
+              selectedDate.formatDateYYYYmmdd();
+          dayCareServiceController.dateCont.text =
+              selectedDate.formatDateDDMMYY();
+          debugPrint(
+              'BOOKDAYCAREREQ: ${dayCareServiceController.bookDayCareReq.toJson()}');
         } else {
           log("Date is not selected");
         }
@@ -214,7 +268,9 @@ class DayCareScreen extends StatelessWidget {
         hintText: locale.value.selectDate,
         fillColor: context.cardColor,
         filled: true,
-        suffixIcon: Assets.navigationIcCalendarOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+        suffixIcon: Assets.navigationIcCalendarOutlined
+            .iconImage(color: secondaryTextColor, fit: BoxFit.contain)
+            .paddingAll(14),
       ),
     ).paddingSymmetric(horizontal: 16);
   }
@@ -246,9 +302,12 @@ class DayCareScreen extends StatelessWidget {
                       );
 
                       if (pickedTime != null) {
-                        if ("${dayCareServiceController.bookDayCareReq.date} ${pickedTime.formatTimeHHmm24Hour()}".isAfterCurrentDateTime) {
-                          dayCareServiceController.bookDayCareReq.dropOfftime = pickedTime.formatTimeHHmm24Hour();
-                          dayCareServiceController.dropOffTimeCont.text = pickedTime.formatTimeHHmmAMPM();
+                        if ("${dayCareServiceController.bookDayCareReq.date} ${pickedTime.formatTimeHHmm24Hour()}"
+                            .isAfterCurrentDateTime) {
+                          dayCareServiceController.bookDayCareReq.dropOfftime =
+                              pickedTime.formatTimeHHmm24Hour();
+                          dayCareServiceController.dropOffTimeCont.text =
+                              pickedTime.formatTimeHHmmAMPM();
                         } else {
                           toast(locale.value.oopsItSeemsYouVe);
                         }
@@ -262,7 +321,10 @@ class DayCareScreen extends StatelessWidget {
                     hintText: locale.value.selectTime,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.iconsIcTimeOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.iconsIcTimeOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -280,7 +342,9 @@ class DayCareScreen extends StatelessWidget {
                   onTap: () async {
                     if (dayCareServiceController.dateCont.text.trim().isEmpty) {
                       toast(locale.value.pleaseSelectDateFirst);
-                    } else if (dayCareServiceController.dropOffTimeCont.text.trim().isEmpty) {
+                    } else if (dayCareServiceController.dropOffTimeCont.text
+                        .trim()
+                        .isEmpty) {
                       toast(locale.value.pleaseSelectDropOffTime);
                     } else {
                       TimeOfDay? pickedTime = await showTimePicker(
@@ -289,10 +353,17 @@ class DayCareScreen extends StatelessWidget {
                       );
 
                       if (pickedTime != null) {
-                        if ("${dayCareServiceController.bookDayCareReq.date} ${pickedTime.formatTimeHHmm24Hour()}".isAfterCurrentDateTime) {
-                          if (pickedTime.formatTimeHHmm24Hour().dateInHHmm24HourFormat.isAfter(dayCareServiceController.bookDayCareReq.dropOfftime.dateInHHmm24HourFormat)) {
-                            dayCareServiceController.bookDayCareReq.pickUptime = pickedTime.formatTimeHHmm24Hour();
-                            dayCareServiceController.pickUpTimeCont.text = pickedTime.formatTimeHHmmAMPM();
+                        if ("${dayCareServiceController.bookDayCareReq.date} ${pickedTime.formatTimeHHmm24Hour()}"
+                            .isAfterCurrentDateTime) {
+                          if (pickedTime
+                              .formatTimeHHmm24Hour()
+                              .dateInHHmm24HourFormat
+                              .isAfter(dayCareServiceController.bookDayCareReq
+                                  .dropOfftime.dateInHHmm24HourFormat)) {
+                            dayCareServiceController.bookDayCareReq.pickUptime =
+                                pickedTime.formatTimeHHmm24Hour();
+                            dayCareServiceController.pickUpTimeCont.text =
+                                pickedTime.formatTimeHHmmAMPM();
                           } else {
                             toast(locale.value.pleaseMakeSureTo);
                           }
@@ -309,7 +380,10 @@ class DayCareScreen extends StatelessWidget {
                     hintText: locale.value.selectTime,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.iconsIcTimeOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.iconsIcTimeOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -331,7 +405,9 @@ class DayCareScreen extends StatelessWidget {
         hintText: '${locale.value.eG}  ${locale.value.fish}',
         fillColor: context.cardColor,
         filled: true,
-        suffixIcon: Assets.imagesFavFood.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+        suffixIcon: Assets.imagesFavFood
+            .iconImage(color: secondaryTextColor, fit: BoxFit.contain)
+            .paddingAll(14),
       ),
     ).paddingSymmetric(horizontal: 16);
   }
@@ -347,7 +423,9 @@ class DayCareScreen extends StatelessWidget {
         hintText: '${locale.value.eG}  ${locale.value.playWithBall}',
         fillColor: context.cardColor,
         filled: true,
-        suffixIcon: Assets.imagesFavActivity.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+        suffixIcon: Assets.imagesFavActivity
+            .iconImage(color: secondaryTextColor, fit: BoxFit.contain)
+            .paddingAll(14),
       ),
     ).paddingSymmetric(horizontal: 16);
   }

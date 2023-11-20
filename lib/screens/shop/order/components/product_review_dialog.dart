@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/main.dart';
+
 import '../../../../components/loader_widget.dart';
 import '../../../../utils/colors.dart';
 import '../../../../utils/common_base.dart';
@@ -27,16 +28,20 @@ class ProductReviewDialog extends StatelessWidget {
             children: [
               Container(
                 width: Get.width,
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
+                padding:
+                    const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
                 decoration: boxDecorationDefault(
                   color: primaryColor,
                   borderRadius: radiusOnly(topRight: 8, topLeft: 8),
                 ),
                 child: Row(
                   children: [
-                    Text(locale.value.yourReview, style: boldTextStyle(color: Colors.white)).expand(),
+                    Text(locale.value.yourReview,
+                            style: boldTextStyle(color: Colors.white))
+                        .expand(),
                     IconButton(
-                      icon: const Icon(Icons.clear, color: Colors.white, size: 16),
+                      icon: const Icon(Icons.clear,
+                          color: Colors.white, size: 16),
                       onPressed: () {
                         finish(context);
                       },
@@ -52,14 +57,16 @@ class ProductReviewDialog extends StatelessWidget {
                     decoration: boxDecorationDefault(color: context.cardColor),
                     child: Row(
                       children: [
-                        Text(locale.value.yourReview, style: secondaryTextStyle()),
+                        Text(locale.value.yourReview,
+                            style: secondaryTextStyle()),
                         16.width,
                         Obx(
                           () => RatingBarWidget(
                             onRatingChanged: (rating) {
                               orderDetailController.selectedRating(rating);
                             },
-                            activeColor: getRatingBarColor(orderDetailController.selectedRating.value),
+                            activeColor: getRatingBarColor(
+                                orderDetailController.selectedRating.value),
                             inActiveColor: ratingBarColor,
                             rating: orderDetailController.selectedRating.value,
                             size: 18,
@@ -77,7 +84,8 @@ class ProductReviewDialog extends StatelessWidget {
                     textCapitalization: TextCapitalization.sentences,
                     decoration: inputDecoration(
                       context,
-                      labelText: "${locale.value.enterYourReview} ('${locale.value.optional}')",
+                      labelText:
+                          "${locale.value.enterYourReview} ('${locale.value.optional}')",
                     ).copyWith(fillColor: context.cardColor, filled: true),
                   ),
                   Obx(
@@ -85,17 +93,29 @@ class ProductReviewDialog extends StatelessWidget {
                       spacing: 10,
                       itemCount: orderDetailController.pickedFile.length,
                       itemBuilder: (context, index) {
-                        return Image.file(File(orderDetailController.pickedFile[index].path), width: 50, height: 50, fit: BoxFit.cover).cornerRadiusWithClipRRect(defaultRadius);
+                        return Image.file(
+                                File(orderDetailController
+                                    .pickedFile[index].path),
+                                width: 50,
+                                height: 50,
+                                fit: BoxFit.cover)
+                            .cornerRadiusWithClipRRect(defaultRadius);
                       },
-                    ).paddingTop(16).visible(orderDetailController.pickedFile.isNotEmpty),
+                    )
+                        .paddingTop(16)
+                        .visible(orderDetailController.pickedFile.isNotEmpty),
                   ),
                   Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                    decoration: boxDecorationDefault(border: Border.all(color: primaryColor), color: context.cardColor),
+                    padding:
+                        const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    decoration: boxDecorationDefault(
+                        border: Border.all(color: primaryColor),
+                        color: context.cardColor),
                     child: TextIcon(
                       text: locale.value.addPhoto,
                       textStyle: primaryTextStyle(),
-                      prefix: const Icon(Icons.camera_alt_outlined, color: primaryColor, size: 16),
+                      prefix: const Icon(Icons.camera_alt_outlined,
+                          color: primaryColor, size: 16),
                       edgeInsets: EdgeInsets.zero,
                       onTap: () {
                         hideKeyboard(context);
@@ -108,7 +128,9 @@ class ProductReviewDialog extends StatelessWidget {
                     children: [
                       AppButton(
                         text: locale.value.cancel,
-                        textColor: orderDetailController.isUpdate.value ? Colors.red : textPrimaryColorGlobal,
+                        textColor: orderDetailController.isUpdate.value
+                            ? Colors.red
+                            : textPrimaryColorGlobal,
                         color: context.cardColor,
                         onTap: () {
                           finish(context);
@@ -118,7 +140,7 @@ class ProductReviewDialog extends StatelessWidget {
                       AppButton(
                         textColor: Colors.white,
                         text: locale.value.submit,
-                        color: context.primaryColor,
+                        color: primaryColor,
                         onTap: () {
                           if (orderDetailController.selectedRating.value == 0) {
                             toast(locale.value.ratingIsRequired);
@@ -134,7 +156,9 @@ class ProductReviewDialog extends StatelessWidget {
             ],
           ),
         ),
-        Obx(() => const LoaderWidget().visible(orderDetailController.isLoading.value).withSize(height: 80, width: 80)),
+        Obx(() => const LoaderWidget()
+            .visible(orderDetailController.isLoading.value)
+            .withSize(height: 80, width: 80)),
       ],
     );
   }
