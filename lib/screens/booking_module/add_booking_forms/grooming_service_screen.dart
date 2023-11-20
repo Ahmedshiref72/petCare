@@ -8,14 +8,13 @@ import '../../../components/bottom_selection_widget.dart';
 import '../../../components/cached_image_widget.dart';
 import '../../../components/service_app_button.dart';
 import '../../../generated/assets.dart';
-import 'grooming_service_controller.dart';
 import '../../../utils/app_common.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../model/choose_pet_widget.dart';
 import '../model/employe_model.dart';
 import '../model/service_model.dart';
+import 'grooming_service_controller.dart';
 
 class GroomingScreen extends StatelessWidget {
   GroomingScreen({Key? key}) : super(key: key);
@@ -71,9 +70,13 @@ class GroomingScreen extends StatelessWidget {
                             hintText: locale.value.searchForService,
                             controller: groomingController.searchCont,
                             onChanged: groomingController.onServiceSearchChange,
-                            hasError: groomingController.hasErrorFetchingService.value,
-                            isEmpty: groomingController.isShowFullList ? groomingController.serviceList.isEmpty : groomingController.serviceFilterList.isEmpty,
-                            errorText: groomingController.errorMessageService.value,
+                            hasError: groomingController
+                                .hasErrorFetchingService.value,
+                            isEmpty: groomingController.isShowFullList
+                                ? groomingController.serviceList.isEmpty
+                                : groomingController.serviceFilterList.isEmpty,
+                            errorText:
+                                groomingController.errorMessageService.value,
                             noDataTitle: locale.value.serviceListIsEmpty,
                             noDataSubTitle: locale.value.thereAreNoServices,
                             isLoading: groomingController.isLoading,
@@ -82,7 +85,9 @@ class GroomingScreen extends StatelessWidget {
                             },
                             listWidget: Obx(
                               () => grommingServiceListWid(
-                                groomingController.isShowFullList ? groomingController.serviceList : groomingController.serviceFilterList,
+                                groomingController.isShowFullList
+                                    ? groomingController.serviceList
+                                    : groomingController.serviceFilterList,
                               ).expand(),
                             ),
                           ),
@@ -92,22 +97,36 @@ class GroomingScreen extends StatelessWidget {
                           hintText: locale.value.chooseService,
                           fillColor: context.cardColor,
                           filled: true,
-                          prefixIconConstraints: BoxConstraints.loose(const Size.square(60)),
-                          prefixIcon: groomingController.selectedService.value.serviceImage.isEmpty && groomingController.selectedService.value.id.isNegative
+                          prefixIconConstraints:
+                              BoxConstraints.loose(const Size.square(60)),
+                          prefixIcon: groomingController.selectedService.value
+                                      .serviceImage.isEmpty &&
+                                  groomingController
+                                      .selectedService.value.id.isNegative
                               ? null
                               : CachedImageWidget(
-                                  url: groomingController.selectedService.value.serviceImage,
+                                  url: groomingController
+                                      .selectedService.value.serviceImage,
                                   height: 35,
                                   width: 35,
-                                  firstName: groomingController.selectedService.value.name,
+                                  firstName: groomingController
+                                      .selectedService.value.name,
                                   fit: BoxFit.cover,
                                   circle: true,
                                   usePlaceholderIfUrlEmpty: true,
-                                ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                          suffixIcon: groomingController.selectedService.value.serviceImage.isNotEmpty && groomingController.selectedService.value.id.isNegative
-                              ? Icon(Icons.keyboard_arrow_down_rounded, size: 24, color: darkGray.withOpacity(0.5))
-                              : Icon(Icons.keyboard_arrow_down_rounded, size: 24, color: darkGray.withOpacity(0.5))),
-                    ).paddingSymmetric(horizontal: 16).visible(!groomingController.isRefresh.value),
+                                ).paddingOnly(
+                                  left: 12, top: 8, bottom: 8, right: 12),
+                          suffixIcon: groomingController.selectedService.value
+                                      .serviceImage.isNotEmpty &&
+                                  groomingController
+                                      .selectedService.value.id.isNegative
+                              ? Icon(Icons.keyboard_arrow_down_rounded,
+                                  size: 24, color: darkGray.withOpacity(0.5))
+                              : Icon(Icons.keyboard_arrow_down_rounded,
+                                  size: 24, color: darkGray.withOpacity(0.5))),
+                    )
+                        .paddingSymmetric(horizontal: 16)
+                        .visible(!groomingController.isRefresh.value),
                   ),
                   32.height,
                   Obx(
@@ -120,7 +139,8 @@ class GroomingScreen extends StatelessWidget {
                       onTap: () async {
                         groomingController.groomerFilterList.clear();
                         groomingController.searchCont.clear();
-                        if (groomingController.selectedService.value.id.isNegative) {
+                        if (groomingController
+                            .selectedService.value.id.isNegative) {
                           toast(locale.value.pleaseSelectService);
                           return;
                         }
@@ -135,9 +155,14 @@ class GroomingScreen extends StatelessWidget {
                                 debugPrint('P0: $p0');
                                 groomingController.onGroomerSearchChange(p0);
                               },
-                              hasError: groomingController.hasErrorFetchingGroomer.value,
-                              isEmpty: groomingController.isShowGroomerFullList ? groomingController.groomerList.isEmpty : groomingController.groomerFilterList.isEmpty,
-                              errorText: groomingController.errorMessageGroomer.value,
+                              hasError: groomingController
+                                  .hasErrorFetchingGroomer.value,
+                              isEmpty: groomingController.isShowGroomerFullList
+                                  ? groomingController.groomerList.isEmpty
+                                  : groomingController
+                                      .groomerFilterList.isEmpty,
+                              errorText:
+                                  groomingController.errorMessageGroomer.value,
                               noDataTitle: locale.value.groomerListIsEmpty,
                               noDataSubTitle: locale.value.thereAreNoGroomers,
                               isLoading: groomingController.isLoading,
@@ -146,7 +171,9 @@ class GroomingScreen extends StatelessWidget {
                               },
                               listWidget: Obx(
                                 () => groomerListWid(
-                                  groomingController.isShowGroomerFullList ? groomingController.groomerList : groomingController.groomerFilterList,
+                                  groomingController.isShowGroomerFullList
+                                      ? groomingController.groomerList
+                                      : groomingController.groomerFilterList,
                                 ).expand(),
                               ),
                             ),
@@ -158,17 +185,26 @@ class GroomingScreen extends StatelessWidget {
                         hintText: locale.value.chooseGroomer,
                         fillColor: context.cardColor,
                         filled: true,
-                        prefixIconConstraints: BoxConstraints.loose(const Size.square(60)),
-                        prefixIcon: groomingController.selectedGroomer.value.profileImage.isEmpty && groomingController.selectedGroomer.value.id.isNegative
+                        prefixIconConstraints:
+                            BoxConstraints.loose(const Size.square(60)),
+                        prefixIcon: groomingController.selectedGroomer.value
+                                    .profileImage.isEmpty &&
+                                groomingController
+                                    .selectedGroomer.value.id.isNegative
                             ? null
                             : CachedImageWidget(
-                                url: groomingController.selectedGroomer.value.profileImage.value,
+                                url: groomingController
+                                    .selectedGroomer.value.profileImage.value,
                                 height: 35,
                                 width: 35,
                                 fit: BoxFit.cover,
                                 circle: true,
-                              ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                        suffixIcon: groomingController.selectedGroomer.value.profileImage.isEmpty && groomingController.selectedGroomer.value.id.isNegative
+                              ).paddingOnly(
+                                left: 12, top: 8, bottom: 8, right: 12),
+                        suffixIcon: groomingController.selectedGroomer.value
+                                    .profileImage.isEmpty &&
+                                groomingController
+                                    .selectedGroomer.value.id.isNegative
                             ? Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 size: 24,
@@ -182,7 +218,9 @@ class GroomingScreen extends StatelessWidget {
                                 size: 11,
                               ),
                       ),
-                    ).paddingSymmetric(horizontal: 16).visible(!groomingController.isRefresh.value),
+                    )
+                        .paddingSymmetric(horizontal: 16)
+                        .visible(!groomingController.isRefresh.value),
                   ),
                   32.height,
                   AppTextField(
@@ -193,7 +231,10 @@ class GroomingScreen extends StatelessWidget {
                     minLines: 5,
                     controller: groomingController.additionalInfoCont,
                     // focus: editUserProfileController.addressFocus,
-                    decoration: inputDecoration(context, hintText: locale.value.writeHere, fillColor: context.cardColor, filled: true),
+                    decoration: inputDecoration(context,
+                        hintText: locale.value.writeHereee,
+                        fillColor: context.cardColor,
+                        filled: true),
                   ).paddingSymmetric(horizontal: 16),
                   96.height,
                 ],
@@ -217,7 +258,9 @@ class GroomingScreen extends StatelessWidget {
                   }
                 }
               },
-            ).paddingSymmetric(horizontal: 16).visible(groomingController.showBookBtn.value),
+            )
+                .paddingSymmetric(horizontal: 16)
+                .visible(groomingController.showBookBtn.value),
           ),
         ],
       ),
@@ -242,12 +285,19 @@ class GroomingScreen extends StatelessWidget {
                   textFieldType: TextFieldType.NAME,
                   readOnly: true,
                   onTap: () async {
-                    DateTime? selectedDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2101));
+                    DateTime? selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2101));
 
                     if (selectedDate != null) {
-                      groomingController.bookGroomingReq.date = selectedDate.formatDateYYYYmmdd();
-                      groomingController.dateCont.text = selectedDate.formatDateDDMMYY();
-                      debugPrint('REQ: ${groomingController.bookGroomingReq.toJson()}');
+                      groomingController.bookGroomingReq.date =
+                          selectedDate.formatDateYYYYmmdd();
+                      groomingController.dateCont.text =
+                          selectedDate.formatDateDDMMYY();
+                      debugPrint(
+                          'REQ: ${groomingController.bookGroomingReq.toJson()}');
                     } else {
                       log("Date is not selected");
                     }
@@ -257,7 +307,10 @@ class GroomingScreen extends StatelessWidget {
                     hintText: locale.value.selectDate,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.navigationIcCalendarOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.navigationIcCalendarOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -282,9 +335,12 @@ class GroomingScreen extends StatelessWidget {
                       );
 
                       if (pickedTime != null) {
-                        if ("${groomingController.bookGroomingReq.date} ${pickedTime.formatTimeHHmm24Hour()}".isAfterCurrentDateTime) {
-                          groomingController.bookGroomingReq.time = pickedTime.formatTimeHHmm24Hour();
-                          groomingController.timeCont.text = pickedTime.formatTimeHHmmAMPM();
+                        if ("${groomingController.bookGroomingReq.date} ${pickedTime.formatTimeHHmm24Hour()}"
+                            .isAfterCurrentDateTime) {
+                          groomingController.bookGroomingReq.time =
+                              pickedTime.formatTimeHHmm24Hour();
+                          groomingController.timeCont.text =
+                              pickedTime.formatTimeHHmmAMPM();
                         } else {
                           toast(locale.value.oopsItSeemsYouVe);
                         }
@@ -298,7 +354,10 @@ class GroomingScreen extends StatelessWidget {
                     hintText: locale.value.selectTime,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.iconsIcTimeOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.iconsIcTimeOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -317,14 +376,24 @@ class GroomingScreen extends StatelessWidget {
         return SettingItemWidget(
           title: list[index].name,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].serviceImage, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].serviceImage,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             groomingController.selectedService(list[index]);
-            groomingController.serviceCont.text = groomingController.selectedService.value.name;
-            groomingController.bookGroomingReq.price = groomingController.serviceList[index].defaultPrice;
-            currentSelectedService.value.serviceAmount = groomingController.selectedService.value.defaultPrice.toDouble();
+            groomingController.serviceCont.text =
+                groomingController.selectedService.value.name;
+            groomingController.bookGroomingReq.price =
+                groomingController.serviceList[index].defaultPrice;
+            currentSelectedService.value.serviceAmount = groomingController
+                .selectedService.value.defaultPrice
+                .toDouble();
             groomingController.groomerCont.clear();
-            groomingController.selectedGroomer = EmployeeModel(profileImage: "".obs).obs;
+            groomingController.selectedGroomer =
+                EmployeeModel(profileImage: "".obs).obs;
             groomingController.getGroomer();
             groomingController.showBookBtn(false);
             groomingController.showBookBtn(true);
@@ -332,7 +401,8 @@ class GroomingScreen extends StatelessWidget {
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 
@@ -344,17 +414,25 @@ class GroomingScreen extends StatelessWidget {
         return SettingItemWidget(
           title: list[index].fullName,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].profileImage.value, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].profileImage.value,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             groomingController.selectedGroomer(list[index]);
-            groomingController.groomerCont.text = groomingController.selectedGroomer.value.fullName;
-            groomingController.bookGroomingReq.employeeId = groomingController.selectedGroomer.value.id;
+            groomingController.groomerCont.text =
+                groomingController.selectedGroomer.value.fullName;
+            groomingController.bookGroomingReq.employeeId =
+                groomingController.selectedGroomer.value.id;
             groomingController.reloadWidget();
             Get.back();
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 }

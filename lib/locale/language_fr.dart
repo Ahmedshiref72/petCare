@@ -265,14 +265,30 @@ class LanguageFr extends BaseLanguage {
 
   @override
   String get writeHere => 'Écrivez ici..';
+
   @override
   String get writeHeree => 'Écrivez ici..';
+
+  @override
+  String get writeHereee => 'Écrivez ici..';
 
   @override
   String get addAddress => "Ajoutez l'adresse";
 
   @override
   String get save => 'Sauvegarder';
+
+  @override
+  String get phone => 'phone';
+
+  @override
+  String get houseNum => 'houseNum';
+
+  @override
+  String get department => 'department';
+
+  @override
+  String get floorNum => 'floorNum';
 
   @override
   String get firstName => 'Prénom';

@@ -171,7 +171,10 @@ abstract class BaseLanguage {
   String get noteFor;
 
   String get writeHere;
+
   String get writeHeree;
+
+  String get writeHereee;
 
   String get addAddress;
 
@@ -180,6 +183,8 @@ abstract class BaseLanguage {
   String get firstName;
 
   String get lastName;
+
+  String get phone;
 
   String get writeAddressHere;
 
@@ -538,6 +543,12 @@ abstract class BaseLanguage {
   String get groomingFor;
 
   String get merry;
+
+  String get floorNum;
+
+  String get department;
+
+  String get houseNum;
 
   String get doe;
 
@@ -966,6 +977,7 @@ abstract class BaseLanguage {
   String get selectCity;
 
   String get addressLine;
+
   String get addressLine1;
 
   String get apt;

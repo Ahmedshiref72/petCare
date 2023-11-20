@@ -76,6 +76,24 @@ class AddAddressScreen extends StatelessWidget {
                           .paddingAll(14),
                     ),
                     16.height,
+                    AppTextField(
+                      title: locale.value.phone,
+                      textStyle: primaryTextStyle(size: 12),
+                      controller: addAddressController.phoneCont,
+                      focus: addAddressController.phoneFocus,
+                      textFieldType: TextFieldType.NUMBER,
+                      decoration: inputDecoration(
+                        context,
+                        hintText: '+025',
+                        fillColor: context.cardColor,
+                        filled: true,
+                      ),
+                      suffix: Icon(
+                        Icons.phone,
+                        size: 20.0,
+                      ),
+                    ),
+                    16.height,
                     Row(
                       children: [
                         Column(
@@ -271,6 +289,7 @@ class AddAddressScreen extends StatelessWidget {
                       isValidationRequired: false,
                       controller: addAddressController.addressLine2Controller,
                       focus: addAddressController.addressLine2FocusNode,
+                      nextFocus: addAddressController.houseNumFocusNode,
                       decoration: inputDecoration(
                         context,
                         hintText:
@@ -279,7 +298,60 @@ class AddAddressScreen extends StatelessWidget {
                         filled: true,
                       ),
                     ),
-                    8.height,
+                    16.height,
+                    AppTextField(
+                      title: "${locale.value.houseNum} ",
+                      textStyle: primaryTextStyle(size: 12),
+                      textFieldType: TextFieldType.NAME,
+                      minLines: 1,
+                      isValidationRequired: true,
+                      controller: addAddressController.houseNumController,
+                      focus: addAddressController.houseNumFocusNode,
+                      nextFocus: addAddressController.floorNumFocusNode,
+                      decoration: inputDecoration(
+                        context,
+                        hintText:
+                            " ${locale.value.houseNum}  1", //No Localization here
+                        fillColor: context.cardColor,
+                        filled: true,
+                      ),
+                    ),
+                    16.height,
+                    AppTextField(
+                      title: "${locale.value.floorNum} ",
+                      textStyle: primaryTextStyle(size: 12),
+                      textFieldType: TextFieldType.NAME,
+                      minLines: 1,
+                      isValidationRequired: true,
+                      controller: addAddressController.floorNumController,
+                      focus: addAddressController.floorNumFocusNode,
+                      nextFocus: addAddressController.departmentFocusNode,
+                      decoration: inputDecoration(
+                        context,
+                        hintText:
+                            " ${locale.value.floorNum}  2", //No Localization here
+                        fillColor: context.cardColor,
+                        filled: true,
+                      ),
+                    ),
+                    16.height,
+                    AppTextField(
+                      title: "${locale.value.department} ",
+                      textStyle: primaryTextStyle(size: 12),
+                      textFieldType: TextFieldType.NAME,
+                      minLines: 1,
+                      isValidationRequired: true,
+                      controller: addAddressController.departmentController,
+                      focus: addAddressController.departmentFocusNode,
+                      decoration: inputDecoration(
+                        context,
+                        hintText:
+                            " ${locale.value.department}  7", //No Localization here
+                        fillColor: context.cardColor,
+                        filled: true,
+                      ),
+                    ),
+                    16.height,
                     setAsPrimaryWidget(),
                     16.height,
                   ],

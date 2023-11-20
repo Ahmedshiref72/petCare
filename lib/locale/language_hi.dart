@@ -247,6 +247,18 @@ class LanguageHi extends BaseLanguage {
   String get noFacility => 'कोई सुविधा नहीं';
 
   @override
+  String get phone => 'कोई सुविधा नहीं';
+
+  @override
+  String get floorNum => 'कोई सुविधा नहीं';
+
+  @override
+  String get department => 'कोई सुविधा नहीं';
+
+  @override
+  String get houseNum => 'कोई सुविधा नहीं';
+
+  @override
   String get thereAreCurrentlyNoFacilities =>
       'वर्तमान में आपके लिए कोई सुविधा नहीं है।';
 
@@ -264,8 +276,12 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get writeHere => 'यहाँ लिखें..';
+
   @override
   String get writeHeree => 'यहाँ लिखें..';
+
+  @override
+  String get writeHereee => 'यहाँ लिखें..';
 
   @override
   String get addAddress => 'पता जोड़ें';
@@ -1513,6 +1529,7 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get addressLine => 'पता पंक्ति';
+
   @override
   String get addressLine1 => 'पता पंक्ति';
 

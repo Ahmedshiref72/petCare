@@ -264,9 +264,20 @@ class LanguageEn extends BaseLanguage {
   String get writeHere => 'Write here..';
   @override
   String get writeHeree => 'Example : my dog have pain stomach ';
+  @override
+  String get writeHereee =>
+      'Example : Don\'t clip the nails; instead, file them down.';
 
   @override
   String get addAddress => 'Add Address';
+  @override
+  String get phone => 'Phone';
+  @override
+  String get houseNum => 'House Number';
+  @override
+  String get department => 'Department';
+  @override
+  String get floorNum => 'Floor Number';
 
   @override
   String get save => 'Save';

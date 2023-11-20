@@ -259,9 +259,25 @@ class LanguageAr extends BaseLanguage {
   String get noteFor => 'ملاحظة ل';
 
   @override
+  String get phone => 'الهاتف';
+
+  @override
+  String get houseNum => 'رقم المنزل';
+
+  @override
+  String get department => 'رقم الشقة';
+
+  @override
+  String get floorNum => 'رقم الطابق';
+
+  @override
   String get writeHere => 'اكتب هنا..';
+
   @override
   String get writeHeree => 'مثال : كلبي يعاني من مغص شديد';
+
+  @override
+  String get writeHereee => 'مثال : لا تقوم بقص الاظافر وقم ببردها';
 
   @override
   String get addAddress => 'اضف عنوان';
@@ -1495,6 +1511,7 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get addressLine => 'الشارع';
+
   @override
   String get addressLine1 => 'القطعة';
 

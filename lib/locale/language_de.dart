@@ -265,6 +265,8 @@ class LanguageDe extends BaseLanguage {
   @override
   String get writeHere => 'hier schreiben..';
   @override
+  String get writeHereee => 'hier schreiben..';
+  @override
   String get writeHeree => 'hier schreiben..';
 
   @override
@@ -272,6 +274,8 @@ class LanguageDe extends BaseLanguage {
 
   @override
   String get save => 'Speichern';
+  @override
+  String get phone => 'phone';
 
   @override
   String get firstName => 'Vorname';
@@ -839,6 +843,12 @@ class LanguageDe extends BaseLanguage {
 
   @override
   String get merry => 'Fröhlich';
+  @override
+  String get floorNum => 'floorNum';
+  @override
+  String get houseNum => 'houseNum';
+  @override
+  String get department => 'Department Num';
 
   @override
   String get doe => 'Damhirschkuh';

@@ -1,6 +1,7 @@
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../../configs.dart';
+import '../../../main.dart';
 import '../../../utils/constants.dart';
 
 class ConfigurationResponse {
@@ -46,23 +47,55 @@ class ConfigurationResponse {
 
   factory ConfigurationResponse.fromJson(Map<String, dynamic> json) {
     return ConfigurationResponse(
-      onesignalCustomerApp: json['onesignal_customer_app'] is Map ? OnesignalCustomerApp.fromJson(json['onesignal_customer_app']) : OnesignalCustomerApp(),
-      customerAppUrl: json['customer_app_url'] is Map ? CustomerAppUrl.fromJson(json['customer_app_url']) : CustomerAppUrl(),
-      razorPay: json['razor_pay'] is Map ? RazorPay.fromJson(json['razor_pay']) : RazorPay(),
-      stripePay: json['stripe_pay'] is Map ? StripePay.fromJson(json['stripe_pay']) : StripePay(),
-      paystackPay: json['paystack_pay'] is Map ? PaystackPay.fromJson(json['paystack_pay']) : PaystackPay(),
-      paypalPay: json['paypal_pay'] is Map ? PaypalPay.fromJson(json['paypal_pay']) : PaypalPay(),
-      flutterwavePay: json['flutterwave_pay'] is Map ? FlutterwavePay.fromJson(json['flutterwave_pay']) : FlutterwavePay(),
-      zoom: json['zoom'] is Map ? ZoomConfig.fromJson(json['zoom']) : ZoomConfig(),
-      currency: json['currency'] is Map ? Currency.fromJson(json['currency']) : Currency(),
-      googleLoginStatus: json['google_login_status'] is String ? json['google_login_status'] : "",
-      appleLoginStatus: json['apple_login_status'] is String ? json['apple_login_status'] : "",
-      otpLoginStatus: json['otp_login_status'] is String ? json['otp_login_status'] : "",
-      siteDescription: json['site_description'] is String ? json['site_description'] : "",
-      applicationLanguage: json['application_language'] is String ? json['application_language'] : DEFAULT_LANGUAGE,
-      isForceUpdate: json['isForceUpdate'] is int ? (json['isForceUpdate'] as int).getBoolInt() : false,
-      minimumForceUpdateCode: json['minimum_force_update_code'] is int ? json['minimum_force_update_code'] : 0,
-      latestVersionUpdateCode: json['latest_version_update_code'] is int ? json['latest_version_update_code'] : 0,
+      onesignalCustomerApp: json['onesignal_customer_app'] is Map
+          ? OnesignalCustomerApp.fromJson(json['onesignal_customer_app'])
+          : OnesignalCustomerApp(),
+      customerAppUrl: json['customer_app_url'] is Map
+          ? CustomerAppUrl.fromJson(json['customer_app_url'])
+          : CustomerAppUrl(),
+      razorPay: json['razor_pay'] is Map
+          ? RazorPay.fromJson(json['razor_pay'])
+          : RazorPay(),
+      stripePay: json['stripe_pay'] is Map
+          ? StripePay.fromJson(json['stripe_pay'])
+          : StripePay(),
+      paystackPay: json['paystack_pay'] is Map
+          ? PaystackPay.fromJson(json['paystack_pay'])
+          : PaystackPay(),
+      paypalPay: json['paypal_pay'] is Map
+          ? PaypalPay.fromJson(json['paypal_pay'])
+          : PaypalPay(),
+      flutterwavePay: json['flutterwave_pay'] is Map
+          ? FlutterwavePay.fromJson(json['flutterwave_pay'])
+          : FlutterwavePay(),
+      zoom: json['zoom'] is Map
+          ? ZoomConfig.fromJson(json['zoom'])
+          : ZoomConfig(),
+      currency: json['currency'] is Map
+          ? Currency.fromJson(json['currency'])
+          : Currency(),
+      googleLoginStatus: json['google_login_status'] is String
+          ? json['google_login_status']
+          : "",
+      appleLoginStatus: json['apple_login_status'] is String
+          ? json['apple_login_status']
+          : "",
+      otpLoginStatus:
+          json['otp_login_status'] is String ? json['otp_login_status'] : "",
+      siteDescription:
+          json['site_description'] is String ? json['site_description'] : "",
+      applicationLanguage: json['application_language'] is String
+          ? json['application_language']
+          : DEFAULT_LANGUAGE,
+      isForceUpdate: json['isForceUpdate'] is int
+          ? (json['isForceUpdate'] as int).getBoolInt()
+          : false,
+      minimumForceUpdateCode: json['minimum_force_update_code'] is int
+          ? json['minimum_force_update_code']
+          : 0,
+      latestVersionUpdateCode: json['latest_version_update_code'] is int
+          ? json['latest_version_update_code']
+          : 0,
       status: json['status'] is bool ? json['status'] : false,
     );
   }
@@ -112,13 +145,21 @@ class Currency {
 
   factory Currency.fromJson(Map<String, dynamic> json) {
     return Currency(
-      currencyName: json['currency_name'] is String ? json['currency_name'] : "Doller",
-      currencySymbol: json['currency_symbol'] is String ? json['currency_symbol'] : "\$",
-      currencyCode: json['currency_code'] is String ? json['currency_code'] : "USD",
-      currencyPosition: json['currency_position'] is String ? json['currency_position'] : "left",
+      currencyName:
+          json['currency_name'] is String ? json['currency_name'] : "Doller",
+      currencySymbol:
+          json['currency_symbol'] is String ? json['currency_symbol'] : "\$",
+      currencyCode:
+          json['currency_code'] is String ? json['currency_code'] : "USD",
+      currencyPosition: json['currency_position'] is String
+          ? json['currency_position']
+          : "left",
       noOfDecimal: json['no_of_decimal'] is int ? json['no_of_decimal'] : 2,
-      thousandSeparator: json['thousand_separator'] is String ? json['thousand_separator'] : ",",
-      decimalSeparator: json['decimal_separator'] is String ? json['decimal_separator'] : ".",
+      thousandSeparator: json['thousand_separator'] is String
+          ? json['thousand_separator']
+          : ",",
+      decimalSeparator:
+          json['decimal_separator'] is String ? json['decimal_separator'] : ".",
     );
   }
 
@@ -146,8 +187,12 @@ class CustomerAppUrl {
 
   factory CustomerAppUrl.fromJson(Map<String, dynamic> json) {
     return CustomerAppUrl(
-      customerAppPlayStore: json['customer_app_play_store'] is String ? json['customer_app_play_store'] : APP_PLAY_STORE_URL,
-      customerAppAppStore: json['customer_app_app_store'] is String ? json['customer_app_app_store'] : APP_APPSTORE_URL,
+      customerAppPlayStore: json['customer_app_play_store'] is String
+          ? json['customer_app_play_store']
+          : APP_PLAY_STORE_URL,
+      customerAppAppStore: json['customer_app_app_store'] is String
+          ? json['customer_app_app_store']
+          : APP_APPSTORE_URL,
     );
   }
 
@@ -172,9 +217,14 @@ class OnesignalCustomerApp {
 
   factory OnesignalCustomerApp.fromJson(Map<String, dynamic> json) {
     return OnesignalCustomerApp(
-      onesignalAppId: json['onesignal_app_id'] is String ? json['onesignal_app_id'] : "",
-      onesignalRestApiKey: json['onesignal_rest_api_key'] is String ? json['onesignal_rest_api_key'] : "",
-      onesignalChannelId: json['onesignal_channel_id'] is String ? json['onesignal_channel_id'] : "",
+      onesignalAppId:
+          json['onesignal_app_id'] is String ? json['onesignal_app_id'] : "",
+      onesignalRestApiKey: json['onesignal_rest_api_key'] is String
+          ? json['onesignal_rest_api_key']
+          : "",
+      onesignalChannelId: json['onesignal_channel_id'] is String
+          ? json['onesignal_channel_id']
+          : "",
     );
   }
 
@@ -196,7 +246,9 @@ class RazorPay {
 
   factory RazorPay.fromJson(Map<String, dynamic> json) {
     return RazorPay(
-      razorpaySecretkey: json['razorpay_secretkey'] is String ? json['razorpay_secretkey'] : "",
+      razorpaySecretkey: json['razorpay_secretkey'] is String
+          ? json['razorpay_secretkey']
+          : "",
     );
   }
 
@@ -218,8 +270,10 @@ class StripePay {
 
   factory StripePay.fromJson(Map<String, dynamic> json) {
     return StripePay(
-      stripeSecretkey: json['stripe_secretkey'] is String ? json['stripe_secretkey'] : "",
-      stripePublickey: json['stripe_publickey'] is String ? json['stripe_publickey'] : "",
+      stripeSecretkey:
+          json['stripe_secretkey'] is String ? json['stripe_secretkey'] : "",
+      stripePublickey:
+          json['stripe_publickey'] is String ? json['stripe_publickey'] : "",
     );
   }
 
@@ -242,8 +296,12 @@ class PaystackPay {
 
   factory PaystackPay.fromJson(Map<String, dynamic> json) {
     return PaystackPay(
-      paystackSecretkey: json['paystack_secretkey'] is String ? json['paystack_secretkey'] : "",
-      paystackPublickey: json['paystack_publickey'] is String ? json['paystack_publickey'] : "",
+      paystackSecretkey: json['paystack_secretkey'] is String
+          ? json['paystack_secretkey']
+          : "",
+      paystackPublickey: json['paystack_publickey'] is String
+          ? json['paystack_publickey']
+          : "",
     );
   }
 
@@ -266,8 +324,10 @@ class PaypalPay {
 
   factory PaypalPay.fromJson(Map<String, dynamic> json) {
     return PaypalPay(
-      paypalSecretkey: json['paypal_secretkey'] is String ? json['paypal_secretkey'] : "",
-      paypalClientid: json['paypal_clientid'] is String ? json['paypal_clientid'] : "",
+      paypalSecretkey:
+          json['paypal_secretkey'] is String ? json['paypal_secretkey'] : "",
+      paypalClientid:
+          json['paypal_clientid'] is String ? json['paypal_clientid'] : "",
     );
   }
 
@@ -290,8 +350,12 @@ class FlutterwavePay {
 
   factory FlutterwavePay.fromJson(Map<String, dynamic> json) {
     return FlutterwavePay(
-      flutterwaveSecretkey: json['flutterwave_secretkey'] is String ? json['flutterwave_secretkey'] : "",
-      flutterwavePublickey: json['flutterwave_publickey'] is String ? json['flutterwave_publickey'] : "",
+      flutterwaveSecretkey: json['flutterwave_secretkey'] is String
+          ? json['flutterwave_secretkey']
+          : "",
+      flutterwavePublickey: json['flutterwave_publickey'] is String
+          ? json['flutterwave_publickey']
+          : "",
     );
   }
 
@@ -318,7 +382,8 @@ class ZoomConfig {
     return ZoomConfig(
       accountId: json['account_id'] is String ? json['account_id'] : "",
       clientId: json['client_id'] is String ? json['client_id'] : "",
-      clientSecret: json['client_secret'] is String ? json['client_secret'] : "",
+      clientSecret:
+          json['client_secret'] is String ? json['client_secret'] : "",
     );
   }
 

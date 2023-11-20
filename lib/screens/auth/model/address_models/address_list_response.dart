@@ -14,7 +14,10 @@ class AddressListResponse {
   factory AddressListResponse.fromJson(Map<String, dynamic> json) {
     return AddressListResponse(
       message: json['message'] is String ? json['message'] : "",
-      userAddress: json['data'] is List ? List<UserAddress>.from(json['data'].map((x) => UserAddress.fromJson(x))) : [],
+      userAddress: json['data'] is List
+          ? List<UserAddress>.from(
+              json['data'].map((x) => UserAddress.fromJson(x)))
+          : [],
       status: json['status'] is bool ? json['status'] : false,
     );
   }
@@ -32,6 +35,10 @@ class UserAddress {
   RxInt id;
   String firstName;
   String lastName;
+  String phone;
+  String floor;
+  String department;
+  String house;
   String addressLine1;
   String addressLine2;
   String postalCode;
@@ -47,6 +54,10 @@ class UserAddress {
     required this.id,
     this.firstName = "",
     this.lastName = "",
+    this.phone = "",
+    this.floor = "",
+    this.department = "",
+    this.house = "",
     this.addressLine1 = "",
     this.addressLine2 = "",
     this.postalCode = "",
@@ -64,8 +75,14 @@ class UserAddress {
       id: json['id'] is int ? (json['id'] as int).obs : (-1).obs,
       firstName: json['first_name'] is String ? json['first_name'] : "",
       lastName: json['last_name'] is String ? json['last_name'] : "",
-      addressLine1: json['address_line_1'] is String ? json['address_line_1'] : "",
-      addressLine2: json['address_line_2'] is String ? json['address_line_2'] : "",
+      phone: json['phone'] is String ? json['phone'] : "",
+      house: json['house'] is String ? json['house'] : "",
+      department: json['department'] is String ? json['department'] : "",
+      floor: json['floor'] is String ? json['floor'] : "",
+      addressLine1:
+          json['address_line_1'] is String ? json['address_line_1'] : "",
+      addressLine2:
+          json['address_line_2'] is String ? json['address_line_2'] : "",
       postalCode: json['postal_code'] is String ? json['postal_code'] : "",
       city: json['city'] is String ? json['city'] : "",
       state: json['state'] is String ? json['state'] : "",
@@ -82,6 +99,10 @@ class UserAddress {
       'id': id,
       'first_name': firstName,
       'last_name': lastName,
+      'phone': phone,
+      'floor': floor,
+      'department': department,
+      'house': house,
       'address_line_1': addressLine1,
       'address_line_2': addressLine2,
       'postal_code': postalCode,

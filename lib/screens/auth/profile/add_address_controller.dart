@@ -23,15 +23,22 @@ class AddAddressController extends GetxController {
 
   TextEditingController firstNameCont = TextEditingController();
   TextEditingController lastNameCont = TextEditingController();
+  TextEditingController phoneCont = TextEditingController();
   TextEditingController addressLine1Controller = TextEditingController();
   TextEditingController addressLine2Controller = TextEditingController();
+  TextEditingController houseNumController = TextEditingController();
+  TextEditingController floorNumController = TextEditingController();
+  TextEditingController departmentController = TextEditingController();
   TextEditingController pinCodeCont = TextEditingController();
 
   FocusNode firstNameFocus = FocusNode();
   FocusNode lastNameFocus = FocusNode();
+  FocusNode phoneFocus = FocusNode();
   FocusNode addressLine1FocusNode = FocusNode();
   FocusNode addressLine2FocusNode = FocusNode();
-  FocusNode pinCodeFocus = FocusNode();
+  FocusNode houseNumFocusNode = FocusNode();
+  FocusNode floorNumFocusNode = FocusNode();
+  FocusNode departmentFocusNode = FocusNode();
 
   RxBool isEdit = false.obs;
   RxBool isPrimary = false.obs;
@@ -47,6 +54,10 @@ class AddAddressController extends GetxController {
       isEdit(true);
       firstNameCont.text = addressData.value.firstName;
       lastNameCont.text = addressData.value.lastName;
+      phoneCont.text = addressData.value.phone;
+      floorNumController.text = addressData.value.floor;
+      houseNumController.text = addressData.value.house;
+      departmentController.text = addressData.value.department;
       addressLine1Controller.text = addressData.value.addressLine1;
       addressLine2Controller.text = addressData.value.addressLine2;
       pinCodeCont.text = addressData.value.postalCode.toString();
@@ -135,6 +146,10 @@ class AddAddressController extends GetxController {
     Map req = {
       "first_name": firstNameCont.text.trim(),
       "last_name": lastNameCont.text.trim(),
+      "phone": phoneCont.text.trim(),
+      "house": houseNumController.text.trim(),
+      "floor": floorNumController.text.trim(),
+      "department": departmentController.text.trim(),
       "address_line_1": addressLine1Controller.text.trim(),
       "address_line_2": addressLine2Controller.text.trim(),
       "postal_code": '',

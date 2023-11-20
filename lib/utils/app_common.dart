@@ -3,13 +3,14 @@ import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/screens/auth/model/app_configuration_res.dart';
 
 import '../configs.dart';
+import '../main.dart';
+import '../screens/auth/model/login_response.dart';
+import '../screens/booking_module/model/save_booking_res.dart';
+import '../screens/booking_module/model/save_payment_req.dart';
+import '../screens/dashboard/dashboard_res_model.dart';
 import '../screens/home/model/about_page_res.dart';
 import '../screens/home/model/pet_center_detail.dart';
 import '../screens/home/model/status_list_res.dart';
-import '../screens/auth/model/login_response.dart';
-import '../screens/dashboard/dashboard_res_model.dart';
-import '../screens/booking_module/model/save_booking_res.dart';
-import '../screens/booking_module/model/save_payment_req.dart';
 import '../screens/shop/order/model/order_status_model.dart';
 import 'constants.dart';
 
@@ -56,24 +57,42 @@ Rx<SaveBookingRes> saveBookingRes = SaveBookingRes().obs;
 //region Tax CalCulation
 RxList<TaxPercentage> taxPercentage = RxList();
 
-double get fixedTaxAmount => taxPercentage.where((element) => element.type.toLowerCase().contains(TaxType.FIXED.toLowerCase())).sumByDouble((p0) => p0.value.validate());
+double get fixedTaxAmount => taxPercentage
+    .where((element) =>
+        element.type.toLowerCase().contains(TaxType.FIXED.toLowerCase()))
+    .sumByDouble((p0) => p0.value.validate());
 
 ///Note:don't forget to set currentSelectedService.value.serviceAmount in onInit of That service
-double get percentTaxAmount => taxPercentage.where((element) => element.type.toLowerCase().contains(TaxType.PERCENT.toLowerCase())).sumByDouble((p0) => ((currentSelectedService.value.serviceAmount * p0.value.validate()) / 100));
+double get percentTaxAmount => taxPercentage
+    .where((element) =>
+        element.type.toLowerCase().contains(TaxType.PERCENT.toLowerCase()))
+    .sumByDouble((p0) =>
+        ((currentSelectedService.value.serviceAmount * p0.value.validate()) /
+            100));
 
-num get totalTax => (fixedTaxAmount + percentTaxAmount).toStringAsFixed(Constants.DECIMAL_POINT).toDouble();
+num get totalTax => (fixedTaxAmount + percentTaxAmount)
+    .toStringAsFixed(Constants.DECIMAL_POINT)
+    .toDouble();
 
 num get totalAmount => (currentSelectedService.value.serviceAmount + totalTax);
 //endregion
 
 // Currency position common
-bool get isCurrencyPositionLeft => appCurrency.value.currencyPosition == CurrencyPosition.CURRENCY_POSITION_LEFT;
+bool get isCurrencyPositionLeft =>
+    appCurrency.value.currencyPosition ==
+    CurrencyPosition.CURRENCY_POSITION_LEFT;
 
-bool get isCurrencyPositionRight => appCurrency.value.currencyPosition == CurrencyPosition.CURRENCY_POSITION_RIGHT;
+bool get isCurrencyPositionRight =>
+    appCurrency.value.currencyPosition ==
+    CurrencyPosition.CURRENCY_POSITION_RIGHT;
 
-bool get isCurrencyPositionLeftWithSpace => appCurrency.value.currencyPosition == CurrencyPosition.CURRENCY_POSITION_LEFT_WITH_SPACE;
+bool get isCurrencyPositionLeftWithSpace =>
+    appCurrency.value.currencyPosition ==
+    CurrencyPosition.CURRENCY_POSITION_LEFT_WITH_SPACE;
 
-bool get isCurrencyPositionRightWithSpace => appCurrency.value.currencyPosition == CurrencyPosition.CURRENCY_POSITION_RIGHT_WITH_SPACE;
+bool get isCurrencyPositionRightWithSpace =>
+    appCurrency.value.currencyPosition ==
+    CurrencyPosition.CURRENCY_POSITION_RIGHT_WITH_SPACE;
 //endregion
 
 RxBool updateUi = false.obs;
