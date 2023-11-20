@@ -969,6 +969,7 @@ abstract class BaseLanguage {
   String get selectCountry;
 
   String get state;
+  String get start;
 
   String get selectState;
 

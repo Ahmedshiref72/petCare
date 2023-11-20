@@ -283,6 +283,9 @@ class LanguageEn extends BaseLanguage {
   String get save => 'Save';
 
   @override
+  String get start => 'Get Started';
+
+  @override
   String get firstName => 'First Name';
 
   @override

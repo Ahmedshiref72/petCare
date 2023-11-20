@@ -114,7 +114,7 @@ class WalkthroughScreen extends StatelessWidget {
                         : TextButton(
                             onPressed: walkthroughController.handleNext,
                             child: Text(
-                              "Get Started",
+                              "${locale.value.state} ",
                               style: boldTextStyle(color: primaryColor, size: 14),
                             ),
                           ),

@@ -852,6 +852,8 @@ class LanguageDe extends BaseLanguage {
 
   @override
   String get doe => 'Damhirschkuh';
+  @override
+  String get start => 'Damhirschkuh';
 
   @override
   String get welcomeBackToThe => 'Willkommen zurück in die';

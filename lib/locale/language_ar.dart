@@ -263,6 +263,8 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get houseNum => 'رقم المنزل';
+  @override
+  String get start => 'ابدأ';
 
   @override
   String get department => 'رقم الشقة';

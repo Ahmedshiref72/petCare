@@ -251,6 +251,8 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get floorNum => 'कोई सुविधा नहीं';
+  @override
+  String get start => 'कोई  नहीं';
 
   @override
   String get department => 'कोई सुविधा नहीं';
