@@ -280,7 +280,8 @@ class ProfileScreen extends StatelessWidget {
 
                 //TODO
                 Obx(
-                  () => SettingItemWidget(
+                  () => 
+                  SettingItemWidget(
                     title: locale.value.language,
                     padding:
                         const EdgeInsets.symmetric(vertical: 4, horizontal: 16),
