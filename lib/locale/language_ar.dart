@@ -1190,7 +1190,7 @@ class LanguageAr extends BaseLanguage {
   String get orSignInWith => 'أو تسجيل الدخول مع';
 
   @override
-  String get pawlcomeToYourPetSHaven => 'Pawlcome إلى ملاذ حيوانك الأليف';
+  String get pawlcomeToYourPetSHaven => 'welcome إلى ملاذ حيوانك الأليف';
 
   @override
   String get unlockAWorldOf => 'فتح عالم رعاية الحيوانات الأليفة فرويك';

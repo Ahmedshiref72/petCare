@@ -1,7 +1,6 @@
 import 'package:nb_utils/nb_utils.dart';
 
 import '../../../configs.dart';
-import '../../../main.dart';
 import '../../../utils/constants.dart';
 
 class ConfigurationResponse {

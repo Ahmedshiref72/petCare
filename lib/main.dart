@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_crashlytics/firebase_crashlytics.dart';
 import 'package:flutter/foundation.dart';
@@ -56,7 +58,8 @@ void main() async {
   defaultAppButtonRadius = defaultRadius;
   defaultAppButtonElevation = 0;
   defaultAppButtonTextColorGlobal = Colors.white;
-
+  print(Platform.localeName.split("_").first.toLowerCase());
+  print('Platform.localeName.split("_").first.toLowerCase()');
   await initialize(aLocaleLanguageList: languageList());
 
   selectedLanguageCode(
@@ -140,7 +143,7 @@ class MyApp extends StatelessWidget {
           ],
           localeResolutionCallback: (locale, supportedLocales) =>
               Locale(selectedLanguageCode.value),
-          fallbackLocale: const Locale(DEFAULT_LANGUAGE),
+          fallbackLocale: const Locale('el'),
           locale: Locale(selectedLanguageCode.value),
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,
