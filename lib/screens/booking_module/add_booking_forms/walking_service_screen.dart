@@ -157,12 +157,13 @@ class WalkingServiceScreen extends StatelessWidget {
                                 if (selectAddressController
                                     .addressList.isEmpty) {
                                   return Center(
-                                      child: InkWell(
-                                          onTap: () {
-                                            Get.to(() => AddAddressScreen());
-                                          },
-                                          child: const Text(
-                                              'No addresses available, tap here to add one ')));
+                                    child: InkWell(
+                                      onTap: () {
+                                        Get.to(() => AddAddressScreen());
+                                      },
+                                      child: Text(locale.value.noAddress),
+                                    ),
+                                  );
                                 }
 
                                 return ListView.builder(
