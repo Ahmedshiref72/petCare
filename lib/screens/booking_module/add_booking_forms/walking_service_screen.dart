@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:pawlly/screens/auth/profile/add_address_screen.dart';
+import 'package:pawlly/screens/auth/profile/select_address_controller.dart';
 import '../../../components/app_scaffold.dart';
 import '../../../components/bottom_selection_widget.dart';
 import '../../../components/cached_image_widget.dart';
@@ -16,9 +18,12 @@ import '../model/employe_model.dart';
 
 class WalkingServiceScreen extends StatelessWidget {
   WalkingServiceScreen({Key? key}) : super(key: key);
-  final WalkingServiceController walkingServiceController = Get.put(WalkingServiceController());
+  final WalkingServiceController walkingServiceController =
+      Get.put(WalkingServiceController());
   final GlobalKey<FormState> _walkingformKey = GlobalKey();
 
+  final SelectAddressController selectAddressController =
+      Get.put(SelectAddressController());
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -43,7 +48,8 @@ class WalkingServiceScreen extends StatelessWidget {
                   16.height,
                   ChooseYourPet(
                     onChanged: (selectedPet) {
-                      walkingServiceController.bookWalkingReq.petId = selectedPet.id;
+                      walkingServiceController.bookWalkingReq.petId =
+                          selectedPet.id;
                     },
                   ),
                   32.height,
@@ -51,46 +57,184 @@ class WalkingServiceScreen extends StatelessWidget {
                   32.height,
                   Obx(() => durationWidget()),
                   32.height,
-                  AppTextField(
-                    title: locale.value.dropoffPickupAddress,
-                    textStyle: primaryTextStyle(size: 12),
-                    textFieldType: TextFieldType.MULTILINE,
-                    minLines: 5,
-                    controller: walkingServiceController.addressCont,
-                    // focus: editUserProfileController.addressFocus,
-                    decoration: inputDecoration(
-                      context,
-                      hintText: locale.value.writeHere,
-                      fillColor: context.cardColor,
-                      filled: true,
-                    ),
-                  ).paddingSymmetric(horizontal: 16),
+                  //TODO
+                  // AppTextField(
+                  //   title: locale.value.dropoffPickupAddress,
+                  //   textStyle: primaryTextStyle(size: 12),
+                  //   textFieldType: TextFieldType.MULTILINE,
+                  //   minLines: 5,
+                  //   controller: walkingServiceController.addressCont,
+                  //   // focus: editUserProfileController.addressFocus,
+                  //   decoration: inputDecoration(
+                  //     context,
+                  //     hintText: locale.value.writeHere,
+                  //     fillColor: context.cardColor,
+                  //     filled: true,
+                  //   ),
+                  // ).paddingSymmetric(horizontal: 16),
+
+                  // Obx(() {
+                  //   var addresses = selectAddressController
+                  //       .addressList; // Accessing the address list
+                  //   if (addresses.isEmpty) {
+                  //     return Text('No addresses available');
+                  //   }
+                  //   return Column(
+                  //     children: [
+                  //       Padding(
+                  //         padding: const EdgeInsets.symmetric(horizontal: 10.0),
+                  //         child: DropdownButtonFormField<UserAddress>(
+                  //           decoration: InputDecoration(
+                  //             border: OutlineInputBorder(
+
+                  //               borderRadius: BorderRadius.circular(10.0),
+                  //               borderSide: const BorderSide(color:  Colors.white)
+                  //             ),
+                  //             filled: true,
+                  //             fillColor: Colors.white,
+                  //           ),
+                  //           hint: Text(locale.value.myAddresses),
+                  //           value: walkingServiceController.selectedAddress
+                  //               .value, // Use the value of selectedAddress
+                  //           onChanged: (UserAddress? newValue) {
+                  //             walkingServiceController.selectedAddress.value =
+                  //                 newValue; // Update the Rx variable directly
+                  //           },
+                  //           items: addresses.map<DropdownMenuItem<UserAddress>>(
+                  //               (UserAddress address) {
+                  //             return DropdownMenuItem<UserAddress>(
+                  //               value: address,
+                  //               child: Text(address
+                  //                   .addressLine1), // Display addressLine1 instead of the entire UserAddress object
+                  //             );
+                  //           }).toList(),
+                  //           dropdownColor: Colors.white,
+                  //           icon: const Icon(Icons.arrow_drop_down,
+                  //               color: Colors.grey),
+                  //           iconSize: 24,
+                  //           elevation: 16,
+                  //           alignment: AlignmentDirectional.bottomCenter,
+                  //           menuMaxHeight: 200,
+                  //         ),
+                  //       ),
+                  //     ],
+                  //   );
+                  // }),
+
                   24.height,
                   SizedBox(
                     height: 32,
                     child: Row(
                       children: [
-                        Text(locale.value.walker, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+                        Text(locale.value.myAddresses,
+                                style: primaryTextStyle())
+                            .paddingSymmetric(horizontal: 16),
+                        const Spacer(),
+                      ],
+                    ),
+                  ),
+                  Obx(
+                    () => AppTextField(
+                      textStyle: primaryTextStyle(size: 12),
+                      controller: TextEditingController(
+                        text: walkingServiceController
+                                .selectedAddress.value?.addressLine1 ??
+                            '',
+                      ),
+                      textFieldType: TextFieldType.OTHER,
+                      readOnly: true,
+                      onTap: () {
+                        showModalBottomSheet(
+                          context: context,
+                          builder: (BuildContext context) {
+                            return Obx(
+                              () {
+                                if (selectAddressController.isLoading.isTrue) {
+                                  return const Center(
+                                      child: CircularProgressIndicator());
+                                }
+
+                                if (selectAddressController
+                                    .addressList.isEmpty) {
+                                  return Center(
+                                      child: InkWell(
+                                          onTap: () {
+                                            Get.to(() => AddAddressScreen());
+                                          },
+                                          child: const Text(
+                                              'No addresses available, tap here to add one ')));
+                                }
+
+                                return ListView.builder(
+                                  itemCount: selectAddressController
+                                      .addressList.length,
+                                  itemBuilder: (context, index) {
+                                    var address = selectAddressController
+                                        .addressList[index];
+                                    return ListTile(
+                                      title: Text(address.addressLine1),
+                                      onTap: () {
+                                        walkingServiceController
+                                            .selectedAddress.value = address;
+                                        Navigator.pop(context);
+                                      },
+                                    );
+                                  },
+                                );
+                              },
+                            );
+                          },
+                        );
+                      },
+                      decoration: inputDecoration(
+                        context,
+                        hintText: 'Choose Address',
+                        fillColor: context.cardColor,
+                        filled: true,
+                        suffixIcon: Icon(
+                          Icons.keyboard_arrow_down_rounded,
+                          size: 24,
+                          color: Colors.grey,
+                        ),
+                      ),
+                    ).paddingSymmetric(horizontal: 16),
+                  ),
+
+                  24.height,
+                  SizedBox(
+                    height: 32,
+                    child: Row(
+                      children: [
+                        Text(locale.value.walker, style: primaryTextStyle())
+                            .paddingSymmetric(horizontal: 16),
                         const Spacer(),
                         Obx(
                           () => Row(
                             children: [
                               Text(
                                 locale.value.showNearby,
-                                style: secondaryTextStyle(color: darkGrayGeneral),
+                                style:
+                                    secondaryTextStyle(color: darkGrayGeneral),
                               ),
                               Transform.scale(
                                 scale: 0.65,
                                 child: Switch(
                                   activeTrackColor: switchActiveTrackColor,
-                                  value: walkingServiceController.isShowNearBy.value,
+                                  value: walkingServiceController
+                                      .isShowNearBy.value,
                                   activeColor: switchActiveColor,
-                                  inactiveTrackColor: switchColor.withOpacity(0.2),
+                                  inactiveTrackColor:
+                                      switchColor.withOpacity(0.2),
                                   onChanged: (bool value) {
-                                    walkingServiceController.isShowNearBy.value = !walkingServiceController.isShowNearBy.value;
+                                    walkingServiceController
+                                            .isShowNearBy.value =
+                                        !walkingServiceController
+                                            .isShowNearBy.value;
 
-                                    if (walkingServiceController.isShowNearBy.value) {
-                                      walkingServiceController.handleCurrentLocationClick();
+                                    if (walkingServiceController
+                                        .isShowNearBy.value) {
+                                      walkingServiceController
+                                          .handleCurrentLocationClick();
                                     } else {
                                       walkingServiceController.getWalker();
                                     }
@@ -119,10 +263,17 @@ class WalkingServiceScreen extends StatelessWidget {
                                 title: locale.value.chooseWalker,
                                 hintText: locale.value.searchForWalker,
                                 controller: walkingServiceController.searchCont,
-                                onChanged: walkingServiceController.onSearchChange,
-                                hasError: walkingServiceController.hasErrorFetchingWalker.value,
-                                isEmpty: walkingServiceController.isShowFullList ? walkingServiceController.walkerList.isEmpty : walkingServiceController.walkerFilterList.isEmpty,
-                                errorText: walkingServiceController.errorMessageWalker.value,
+                                onChanged:
+                                    walkingServiceController.onSearchChange,
+                                hasError: walkingServiceController
+                                    .hasErrorFetchingWalker.value,
+                                isEmpty: walkingServiceController.isShowFullList
+                                    ? walkingServiceController
+                                        .walkerList.isEmpty
+                                    : walkingServiceController
+                                        .walkerFilterList.isEmpty,
+                                errorText: walkingServiceController
+                                    .errorMessageWalker.value,
                                 isLoading: walkingServiceController.isLoading,
                                 noDataTitle: locale.value.walkerListIsEmpty,
                                 noDataSubTitle: locale.value.thereAreNoWalkers,
@@ -131,7 +282,10 @@ class WalkingServiceScreen extends StatelessWidget {
                                 },
                                 listWidget: Obx(
                                   () => walkerListWid(
-                                    walkingServiceController.isShowFullList ? walkingServiceController.walkerList : walkingServiceController.walkerFilterList,
+                                    walkingServiceController.isShowFullList
+                                        ? walkingServiceController.walkerList
+                                        : walkingServiceController
+                                            .walkerFilterList,
                                   ).expand(),
                                 ),
                               ),
@@ -142,18 +296,27 @@ class WalkingServiceScreen extends StatelessWidget {
                         hintText: locale.value.chooseWalker,
                         fillColor: context.cardColor,
                         filled: true,
-                        prefixIconConstraints: BoxConstraints.loose(const Size.square(60)),
-                        prefixIcon: walkingServiceController.selectedWalker.value.profileImage.isEmpty && walkingServiceController.selectedWalker.value.id.isNegative
+                        prefixIconConstraints:
+                            BoxConstraints.loose(const Size.square(60)),
+                        prefixIcon: walkingServiceController.selectedWalker
+                                    .value.profileImage.isEmpty &&
+                                walkingServiceController
+                                    .selectedWalker.value.id.isNegative
                             ? null
                             : CachedImageWidget(
-                                url: walkingServiceController.selectedWalker.value.profileImage.value,
+                                url: walkingServiceController
+                                    .selectedWalker.value.profileImage.value,
                                 height: 35,
                                 width: 35,
                                 fit: BoxFit.cover,
                                 circle: true,
                                 usePlaceholderIfUrlEmpty: true,
-                              ).paddingOnly(left: 12, top: 8, bottom: 8, right: 12),
-                        suffixIcon: walkingServiceController.selectedWalker.value.profileImage.isEmpty && walkingServiceController.selectedWalker.value.id.isNegative
+                              ).paddingOnly(
+                                left: 12, top: 8, bottom: 8, right: 12),
+                        suffixIcon: walkingServiceController.selectedWalker
+                                    .value.profileImage.isEmpty &&
+                                walkingServiceController
+                                    .selectedWalker.value.id.isNegative
                             ? Icon(
                                 Icons.keyboard_arrow_down_rounded,
                                 size: 24,
@@ -162,7 +325,8 @@ class WalkingServiceScreen extends StatelessWidget {
                             : appCloseIconButton(
                                 context,
                                 onPressed: () {
-                                  walkingServiceController.clearWalkerSelection();
+                                  walkingServiceController
+                                      .clearWalkerSelection();
                                 },
                                 size: 11,
                               ),
@@ -178,7 +342,10 @@ class WalkingServiceScreen extends StatelessWidget {
                     minLines: 5,
                     controller: walkingServiceController.additionalInfoCont,
                     // focus: editUserProfileController.addressFocus,
-                    decoration: inputDecoration(context, hintText: locale.value.writeHere, fillColor: context.cardColor, filled: true),
+                    decoration: inputDecoration(context,
+                        hintText: locale.value.writeHere,
+                        fillColor: context.cardColor,
+                        filled: true),
                   ).paddingSymmetric(horizontal: 16),
                 ],
               ),
@@ -193,17 +360,23 @@ class WalkingServiceScreen extends StatelessWidget {
               onTap: () {
                 if (_walkingformKey.currentState!.validate()) {
                   _walkingformKey.currentState!.save();
-                  if (walkingServiceController.selectedDuration.value.id > 0 && walkingServiceController.bookWalkingReq.petId > 0) {
+                  if (walkingServiceController.selectedDuration.value.id > 0 &&
+                      walkingServiceController.bookWalkingReq.petId > 0) {
                     hideKeyboard(context);
                     walkingServiceController.handleBookNowClick();
-                  } else if (walkingServiceController.selectedDuration.value.id <= 0) {
+                  } else if (walkingServiceController
+                          .selectedDuration.value.id <=
+                      0) {
                     toast(locale.value.pleaseChooseDuration);
-                  } else if (walkingServiceController.bookWalkingReq.petId <= 0) {
+                  } else if (walkingServiceController.bookWalkingReq.petId <=
+                      0) {
                     toast(locale.value.pleaseSelectPet);
                   }
                 }
               },
-            ).paddingSymmetric(horizontal: 16).visible(walkingServiceController.showBookBtn.value),
+            )
+                .paddingSymmetric(horizontal: 16)
+                .visible(walkingServiceController.showBookBtn.value),
           ),
         ],
       ),
@@ -228,11 +401,18 @@ class WalkingServiceScreen extends StatelessWidget {
                   textFieldType: TextFieldType.NAME,
                   readOnly: true,
                   onTap: () async {
-                    DateTime? selectedDate = await showDatePicker(context: context, initialDate: DateTime.now(), firstDate: DateTime.now(), lastDate: DateTime(2101));
+                    DateTime? selectedDate = await showDatePicker(
+                        context: context,
+                        initialDate: DateTime.now(),
+                        firstDate: DateTime.now(),
+                        lastDate: DateTime(2101));
                     if (selectedDate != null) {
-                      walkingServiceController.bookWalkingReq.date = selectedDate.formatDateYYYYmmdd();
-                      walkingServiceController.dateCont.text = selectedDate.formatDateDDMMYY();
-                      debugPrint('walkingServiceController.BOOKBOARDINGREQ: ${walkingServiceController.bookWalkingReq.toJson()}');
+                      walkingServiceController.bookWalkingReq.date =
+                          selectedDate.formatDateYYYYmmdd();
+                      walkingServiceController.dateCont.text =
+                          selectedDate.formatDateDDMMYY();
+                      debugPrint(
+                          'walkingServiceController.BOOKBOARDINGREQ: ${walkingServiceController.bookWalkingReq.toJson()}');
                     } else {
                       log("Date is not selected");
                     }
@@ -242,7 +422,10 @@ class WalkingServiceScreen extends StatelessWidget {
                     hintText: locale.value.selectDate,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.navigationIcCalendarOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.navigationIcCalendarOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -266,9 +449,12 @@ class WalkingServiceScreen extends StatelessWidget {
                         context: context,
                       );
                       if (pickedTime != null) {
-                        if ("${walkingServiceController.bookWalkingReq.date} ${pickedTime.formatTimeHHmm24Hour()}".isAfterCurrentDateTime) {
-                          walkingServiceController.bookWalkingReq.time = pickedTime.formatTimeHHmm24Hour();
-                          walkingServiceController.timeCont.text = pickedTime.formatTimeHHmmAMPM();
+                        if ("${walkingServiceController.bookWalkingReq.date} ${pickedTime.formatTimeHHmm24Hour()}"
+                            .isAfterCurrentDateTime) {
+                          walkingServiceController.bookWalkingReq.time =
+                              pickedTime.formatTimeHHmm24Hour();
+                          walkingServiceController.timeCont.text =
+                              pickedTime.formatTimeHHmmAMPM();
                         } else {
                           toast(locale.value.oopsItSeemsYouVe);
                         }
@@ -282,7 +468,10 @@ class WalkingServiceScreen extends StatelessWidget {
                     hintText: locale.value.selectTime,
                     fillColor: context.cardColor,
                     filled: true,
-                    suffixIcon: Assets.iconsIcTimeOutlined.iconImage(color: secondaryTextColor, fit: BoxFit.contain).paddingAll(14),
+                    suffixIcon: Assets.iconsIcTimeOutlined
+                        .iconImage(
+                            color: secondaryTextColor, fit: BoxFit.contain)
+                        .paddingAll(14),
                   ),
                 ),
               ],
@@ -297,7 +486,8 @@ class WalkingServiceScreen extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        Text(locale.value.duration, style: primaryTextStyle()).paddingSymmetric(horizontal: 16),
+        Text(locale.value.duration, style: primaryTextStyle())
+            .paddingSymmetric(horizontal: 16),
         8.height,
         Obx(() => SnapHelperWidget(
             future: walkingServiceController.duration.value,
@@ -309,7 +499,9 @@ class WalkingServiceScreen extends StatelessWidget {
             loadingWidget: Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
-                Text("${locale.value.loading}... ", style: secondaryTextStyle(size: 14, fontFamily: fontFamilyFontBold)),
+                Text("${locale.value.loading}... ",
+                    style: secondaryTextStyle(
+                        size: 14, fontFamily: fontFamilyFontBold)),
               ],
             ),
             onSuccess: (durationList) {
@@ -328,27 +520,44 @@ class WalkingServiceScreen extends StatelessWidget {
                         return Obx(
                           () => InkWell(
                             onTap: () {
-                              walkingServiceController.selectedDuration(durationList[index]);
-                              walkingServiceController.bookWalkingReq.duration = durationList[index].duration.toString();
-                              currentSelectedService.value.serviceAmount = walkingServiceController.selectedDuration.value.price.toDouble();
-                              walkingServiceController.bookWalkingReq.price = walkingServiceController.selectedDuration.value.price.toDouble();
+                              walkingServiceController
+                                  .selectedDuration(durationList[index]);
+                              walkingServiceController.bookWalkingReq.duration =
+                                  durationList[index].duration.toString();
+                              currentSelectedService.value.serviceAmount =
+                                  walkingServiceController
+                                      .selectedDuration.value.price
+                                      .toDouble();
+                              walkingServiceController.bookWalkingReq.price =
+                                  walkingServiceController
+                                      .selectedDuration.value.price
+                                      .toDouble();
                               walkingServiceController.showBookBtn(false);
                               walkingServiceController.showBookBtn(true);
                             },
                             borderRadius: radius(),
                             child: Container(
-                              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 12),
+                              padding: const EdgeInsets.symmetric(
+                                  horizontal: 20, vertical: 12),
                               decoration: boxDecorationDefault(
-                                color: walkingServiceController.selectedDuration.value == durationList[index]
+                                color: walkingServiceController
+                                            .selectedDuration.value ==
+                                        durationList[index]
                                     ? isDarkMode.value
                                         ? darkGrayGeneral2
                                         : lightPrimaryColor
                                     : context.cardColor,
                               ),
                               child: Text(
-                                durationList[index].duration.toFormattedDuration(),
+                                durationList[index]
+                                    .duration
+                                    .toFormattedDuration(),
                                 style: secondaryTextStyle(
-                                  color: walkingServiceController.selectedDuration.value == durationList[index] ? primaryColor : null,
+                                  color: walkingServiceController
+                                              .selectedDuration.value ==
+                                          durationList[index]
+                                      ? primaryColor
+                                      : null,
                                 ),
                               ),
                             ),
@@ -376,16 +585,24 @@ class WalkingServiceScreen extends StatelessWidget {
                       : "Distance Not Availabe"
                   : null,
           titleTextStyle: primaryTextStyle(size: 14),
-          leading: CachedImageWidget(url: list[index].profileImage.value, height: 35, fit: BoxFit.cover, width: 35, circle: true),
+          leading: CachedImageWidget(
+              url: list[index].profileImage.value,
+              height: 35,
+              fit: BoxFit.cover,
+              width: 35,
+              circle: true),
           onTap: () {
             walkingServiceController.selectedWalker(list[index]);
-            walkingServiceController.walkerCont.text = walkingServiceController.selectedWalker.value.fullName;
-            walkingServiceController.bookWalkingReq.employeeId = walkingServiceController.selectedWalker.value.id;
+            walkingServiceController.walkerCont.text =
+                walkingServiceController.selectedWalker.value.fullName;
+            walkingServiceController.bookWalkingReq.employeeId =
+                walkingServiceController.selectedWalker.value.id;
             Get.back();
           },
         );
       },
-      separatorBuilder: (context, index) => commonDivider.paddingSymmetric(vertical: 6),
+      separatorBuilder: (context, index) =>
+          commonDivider.paddingSymmetric(vertical: 6),
     );
   }
 }

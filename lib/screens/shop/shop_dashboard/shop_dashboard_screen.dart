@@ -5,6 +5,8 @@ import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/components/app_scaffold.dart';
 import 'package:pawlly/main.dart';
+import 'package:pawlly/screens/booking_module/add_booking_forms/daycare_service_controller.dart';
+import 'package:pawlly/screens/booking_module/model/choose_pet_widget.dart';
 import 'package:pawlly/screens/shop/shop_dashboard/model/category_model.dart';
 import 'package:pawlly/screens/shop/shop_dashboard/shop_dashboard_controller.dart';
 
@@ -25,7 +27,8 @@ class ShopDashboardScreen extends StatelessWidget {
   ShopDashboardScreen({super.key});
 
   final ShopDashboardController shopDashboardController = Get.put(ShopDashboardController());
-
+ final DayCareServiceController dayCareServiceController =
+      Get.put(DayCareServiceController());
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -94,6 +97,16 @@ class ShopDashboardScreen extends StatelessWidget {
                       Get.to(() => ShopSearchScreen());
                     },
                   ).paddingSymmetric(horizontal: 16),*/
+                  //TODO
+                  //just a view until the api being ready
+                          16.height,
+                  ChooseYourPet(
+                    onChanged: (selectedPet) {
+                      dayCareServiceController.bookDayCareReq.petId =
+                          selectedPet.id;
+                    },
+                  ),
+               
                   8.height,
                   DashboardCategoryComponents(productCategoryList: shopDashboardRes.shopDashData.category),
                   16.height,

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:pawlly/screens/auth/model/address_models/address_list_response.dart';
 import 'package:pawlly/utils/permissions.dart';
 import '../../dashboard/dashboard_res_model.dart';
 import '../model/booking_data_model.dart';
@@ -43,6 +44,9 @@ class WalkingServiceController extends GetxController {
   RxBool isShowNearBy = false.obs;
   RxList<DurationData> durationList = RxList();
 
+  Rx<UserAddress?> selectedAddress = Rx<UserAddress?>(null);
+
+  
   //Search
   TextEditingController searchCont = TextEditingController();
   void toggleSwitch() {
