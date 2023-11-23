@@ -20,8 +20,17 @@ class AddAddressController extends GetxController {
   Rx<StateData> selectedState = StateData().obs;
   Rx<CityData> selectedCity = CityData(pivot: Pivot()).obs;
   Rx<UserAddress> addressData = UserAddress(id: (-1).obs).obs;
+  void updateLatitude(double latitude) {
+    latCont.text = latitude.toString();
+  }
+
+  void updateLongitude(double longitude) {
+    longCont.text = longitude.toString();
+  }
 
   TextEditingController firstNameCont = TextEditingController();
+  TextEditingController longCont = TextEditingController();
+  TextEditingController latCont = TextEditingController();
   TextEditingController lastNameCont = TextEditingController();
   TextEditingController phoneCont = TextEditingController();
   TextEditingController addressLine1Controller = TextEditingController();
@@ -54,7 +63,9 @@ class AddAddressController extends GetxController {
       isEdit(true);
       firstNameCont.text = addressData.value.firstName;
       lastNameCont.text = addressData.value.lastName;
-      phoneCont.text = addressData.value.phone;
+      phoneCont.text = addressData.value.phone.toString();
+      longCont.text = addressData.value.lat;
+      latCont.text = addressData.value.long;
       floorNumController.text = addressData.value.floor;
       houseNumController.text = addressData.value.house;
       departmentController.text = addressData.value.department;
@@ -153,6 +164,8 @@ class AddAddressController extends GetxController {
       "address_line_1": addressLine1Controller.text.trim(),
       "address_line_2": addressLine2Controller.text.trim(),
       "postal_code": '',
+      "latitude": latCont.text.trim(),
+      "longitude": longCont.text.trim(),
       "city": cityId.value,
       "state": stateId.value,
       "country": countryId.value,

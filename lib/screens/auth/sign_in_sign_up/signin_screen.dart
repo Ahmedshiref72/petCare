@@ -1,18 +1,17 @@
 import 'package:flutter/material.dart';
-import 'package:nb_utils/nb_utils.dart';
 import 'package:get/get.dart';
+import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/configs.dart';
 import 'package:pawlly/main.dart';
 
 import '../../../components/app_logo_widget.dart';
 import '../../../components/app_scaffold.dart';
 import '../../../generated/assets.dart';
-import 'sign_in_controller.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../../../utils/constants.dart';
 import '../password/forget_password_screen.dart';
+import 'sign_in_controller.dart';
 import 'signup_screen.dart';
 
 class SignInScreen extends StatelessWidget {
@@ -44,7 +43,8 @@ class SignInScreen extends StatelessWidget {
                     height: Constants.appLogoSize,
                     width: Constants.appLogoSize,
                     fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) => const AppLogoWidget(),
+                    errorBuilder: (context, error, stackTrace) =>
+                        const AppLogoWidget(),
                   ),
                   16.height,
                   Text(
@@ -53,7 +53,9 @@ class SignInScreen extends StatelessWidget {
                   ),
                   8.height,
                   Text(
-                    signInController.userName.value.isNotEmpty ? '${locale.value.welcomeBackToThe}  $APP_NAME  ${locale.value.app}' : '${locale.value.welcomeToThe} $APP_NAME ${locale.value.care}',
+                    signInController.userName.value.isNotEmpty
+                        ? '${locale.value.welcomeBackToThe}  $APP_NAME  ${locale.value.app}'
+                        : '${locale.value.welcomeToThe} $APP_NAME ${locale.value.care}',
                     style: secondaryTextStyle(size: 14),
                   ),
                   50.height,
@@ -77,7 +79,9 @@ class SignInScreen extends StatelessWidget {
                             filled: true,
                             hintText: "${locale.value.eG} merry_456@gmail.com",
                           ),
-                          suffix: Assets.iconsIcMail.iconImage(fit: BoxFit.contain).paddingAll(14),
+                          suffix: Assets.iconsIcMail
+                              .iconImage(fit: BoxFit.contain)
+                              .paddingAll(14),
                         ),
                         16.height,
                         AppTextField(
@@ -93,8 +97,16 @@ class SignInScreen extends StatelessWidget {
                             filled: true,
                             hintText: "••••••••",
                           ),
-                          suffixPasswordVisibleWidget: commonLeadingWid(imgPath: Assets.iconsIcEye, icon: Icons.password_outlined, size: 14).paddingAll(12),
-                          suffixPasswordInvisibleWidget: commonLeadingWid(imgPath: Assets.iconsIcEyeSlash, icon: Icons.password_outlined, size: 14).paddingAll(12),
+                          suffixPasswordVisibleWidget: commonLeadingWid(
+                                  imgPath: Assets.iconsIcEye,
+                                  icon: Icons.password_outlined,
+                                  size: 14)
+                              .paddingAll(12),
+                          suffixPasswordInvisibleWidget: commonLeadingWid(
+                                  imgPath: Assets.iconsIcEyeSlash,
+                                  icon: Icons.password_outlined,
+                                  size: 14)
+                              .paddingAll(12),
                         ),
                         8.height,
                         Row(
@@ -109,10 +121,13 @@ class SignInScreen extends StatelessWidget {
                                     Transform.scale(
                                       scale: 0.75,
                                       child: Switch(
-                                        activeTrackColor: switchActiveTrackColor,
-                                        value: signInController.isRememberMe.value,
+                                        activeTrackColor:
+                                            switchActiveTrackColor,
+                                        value:
+                                            signInController.isRememberMe.value,
                                         activeColor: switchActiveColor,
-                                        inactiveTrackColor: switchColor.withOpacity(0.2),
+                                        inactiveTrackColor:
+                                            switchColor.withOpacity(0.2),
                                         onChanged: (bool value) {
                                           signInController.toggleSwitch();
                                         },
@@ -120,7 +135,8 @@ class SignInScreen extends StatelessWidget {
                                     ),
                                     Text(
                                       locale.value.rememberMe,
-                                      style: secondaryTextStyle(color: darkGrayGeneral),
+                                      style: secondaryTextStyle(
+                                          color: darkGrayGeneral),
                                     ),
                                   ],
                                 ),
@@ -162,7 +178,8 @@ class SignInScreen extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(locale.value.notRegistered, style: secondaryTextStyle()),
+                      Text(locale.value.notRegistered,
+                          style: secondaryTextStyle()),
                       4.width,
                       TextButton(
                         style: TextButton.styleFrom(
@@ -208,7 +225,10 @@ class SignInScreen extends StatelessWidget {
                         child: const Divider(
                           color: borderColor,
                         )).expand(),
-                    Text(locale.value.orSignInWith, style: primaryTextStyle(color: secondaryTextColor, size: 14)).paddingSymmetric(horizontal: 20),
+                    Text(locale.value.orSignInWith,
+                            style: primaryTextStyle(
+                                color: secondaryTextColor, size: 14))
+                        .paddingSymmetric(horizontal: 20),
                     Container(
                       margin: const EdgeInsets.only(right: 10.0),
                       child: const Divider(
@@ -233,7 +253,8 @@ class SignInScreen extends StatelessWidget {
                           height: 20,
                           width: 20,
                           fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) => const Icon(Icons.g_mobiledata_rounded),
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.g_mobiledata_rounded),
                         ),
                         8.width,
                         Text(
@@ -261,7 +282,8 @@ class SignInScreen extends StatelessWidget {
                           height: 20,
                           width: 20,
                           fit: BoxFit.contain,
-                          errorBuilder: (context, error, stackTrace) => const Icon(Icons.g_mobiledata_rounded),
+                          errorBuilder: (context, error, stackTrace) =>
+                              const Icon(Icons.g_mobiledata_rounded),
                         ),
                         8.width,
                         Text(

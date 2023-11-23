@@ -543,10 +543,10 @@ class LanguageAr extends BaseLanguage {
   String get dropOffAddress => 'عنوان الانخفاض';
 
   @override
-  String get boarder => 'الحدود';
+  String get boarder => 'المركز';
 
   @override
-  String get chooseBoarder => 'اختر الحدود';
+  String get chooseBoarder => 'اختر المركز';
 
   @override
   String get additionalInformation => 'معلومات إضافية';
@@ -627,7 +627,7 @@ class LanguageAr extends BaseLanguage {
   String get service => 'خدمة';
 
   @override
-  String get groomer => 'العريس';
+  String get groomer => 'مركز العنايه';
 
   @override
   String get chooseGroomer => 'اختر Groomer';
@@ -664,25 +664,27 @@ class LanguageAr extends BaseLanguage {
   String get chooseTraining => 'اختر التدريب';
 
   @override
-  String get trainer => 'مدرب';
+  String get trainer => 'مركز التدريب';
 
   @override
-  String get chooseTrainer => 'اختر المدرب';
+  String get chooseTrainer => 'اختر مركز التدريب';
 
   @override
   String get pleaseChooseDuration => 'الرجاء اختيار المدة';
 
   @override
   String get veterinaryType => 'النوع البيطري';
+  @override
+  String get noAddress => 'لا يوجد عناوين اضغط هنا لإضافة عنوان جديد';
 
   @override
   String get chooseVeterinaryType => 'اختر النوع البيطري';
 
   @override
-  String get vet => 'دكتور بيطري';
+  String get vet => 'العيادة';
 
   @override
-  String get chooseVet => 'اختر الطبيب البيطري';
+  String get chooseVet => 'اختر العيادة';
 
   @override
   String get veterinary => 'طبيب بيطري - بيطري';

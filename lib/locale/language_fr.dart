@@ -285,6 +285,8 @@ class LanguageFr extends BaseLanguage {
   String get houseNum => 'houseNum';
   @override
   String get start => 'start';
+  @override
+  String get noAddress => 'No addresses available, tap here to add one ';
 
   @override
   String get department => 'department';

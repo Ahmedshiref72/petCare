@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:geolocator/geolocator.dart';
 import 'package:get/get.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/screens/auth/profile/add_address_controller.dart';
 import 'package:pawlly/utils/app_common.dart';
@@ -12,8 +14,16 @@ import '../../../utils/common_base.dart';
 import '../model/address_models/country_list_response.dart';
 import '../model/address_models/logistic_zone_response.dart';
 import '../model/address_models/state_list_response.dart';
+import 'map_screen.dart';
 
-class AddAddressScreen extends StatelessWidget {
+class AddAddressScreen extends StatefulWidget {
+  AddAddressScreen({super.key});
+
+  @override
+  State<AddAddressScreen> createState() => _AddAddressScreenState();
+}
+
+class _AddAddressScreenState extends State<AddAddressScreen> {
   final GlobalKey<FormState> formKey = GlobalKey<FormState>();
 
   final ScrollController scrollController = ScrollController();
@@ -21,7 +31,51 @@ class AddAddressScreen extends StatelessWidget {
   final AddAddressController addAddressController =
       Get.put(AddAddressController());
 
-  AddAddressScreen({super.key});
+  String latitude = "Latitude";
+
+  String longitude = "Longitude";
+  bool isLoading = false; // Loading indicator flag
+
+  Future<Position> _determinePosition() async {
+    bool serviceEnabled;
+    LocationPermission permission;
+
+    while (true) {
+      // Check if location services are enabled.
+      serviceEnabled = await Geolocator.isLocationServiceEnabled();
+      if (!serviceEnabled) {
+        // Location services are not enabled; request the user to enable them.
+        bool opened = await Geolocator.openLocationSettings();
+        if (!opened) {
+          // If the user refuses to open location settings, exit the loop or handle accordingly.
+          return Future.error('Location services are disabled.');
+        }
+        continue; // Re-check if location services are enabled after returning from settings.
+      }
+
+      permission = await Geolocator.checkPermission();
+      if (permission == LocationPermission.denied) {
+        // Permissions are denied; request permissions.
+        permission = await Geolocator.requestPermission();
+        if (permission == LocationPermission.denied) {
+          // Permissions are denied; they need to be approved.
+          return Future.error('Location permissions are denied');
+        }
+      }
+
+      if (permission == LocationPermission.deniedForever) {
+        // Permissions are denied forever; handle appropriately.
+        return Future.error(
+            'Location permissions are permanently denied, we cannot request permissions.');
+      }
+
+      // If permissions are granted and location services are enabled, get the current position.
+      if (serviceEnabled && permission == LocationPermission.whileInUse ||
+          permission == LocationPermission.always) {
+        return await Geolocator.getCurrentPosition();
+      }
+    }
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -33,7 +87,7 @@ class AddAddressScreen extends StatelessWidget {
           AnimatedScrollView(
             controller: scrollController,
             padding:
-                const EdgeInsets.only(left: 16, right: 16, bottom: 60, top: 30),
+                const EdgeInsets.only(left: 16, right: 16, bottom: 60, top: 10),
             children: [
               Form(
                 key: formKey,
@@ -41,6 +95,71 @@ class AddAddressScreen extends StatelessWidget {
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
+                    isLoading
+                        ? // Loading indicator
+                        Center(
+                            child: CircularProgressIndicator(
+                            color: primaryColor,
+                          ))
+                        : GestureDetector(
+                            onTap: () async {
+                              setState(() {
+                                isLoading = true; // Start loading
+                              });
+                              try {
+                                final position = await _determinePosition();
+                                final newLocation = await Navigator.push(
+                                  context,
+                                  MaterialPageRoute(
+                                    builder: (context) => MapScreen(
+                                        initialPosition: LatLng(
+                                            position.latitude,
+                                            position.longitude)),
+                                  ),
+                                );
+
+                                if (newLocation != null) {
+                                  setState(() {
+                                    latitude =
+                                        "Latitude: ${newLocation.latitude}";
+                                    longitude =
+                                        "Longitude: ${newLocation.longitude}";
+                                  });
+                                  // Update the controller with the new latitude and longitude
+                                  addAddressController
+                                      .updateLatitude(newLocation.latitude);
+                                  addAddressController
+                                      .updateLongitude(newLocation.longitude);
+                                }
+                              } catch (e) {
+                                // Handle exceptions
+                                print(e);
+                              } finally {
+                                setState(() {
+                                  isLoading = false; // Stop loading
+                                });
+                              }
+                            },
+                            child: Padding(
+                              padding: const EdgeInsets.all(15.0),
+                              child: Container(
+                                decoration: BoxDecoration(
+                                  borderRadius: BorderRadius.circular(25),
+                                ),
+                                height: 150,
+                                width: double.infinity,
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(25),
+                                  child: Image(
+                                    image: NetworkImage(
+                                      'https://media.wired.com/photos/59269cd37034dc5f91bec0f1/191:100/w_1280,c_limit/GoogleMapTA.jpg',
+                                    ),
+                                    fit: BoxFit.fill,
+                                  ),
+                                ),
+                              ),
+                            ),
+                          ),
                     AppTextField(
                       title: locale.value.firstName,
                       textStyle: primaryTextStyle(size: 12),
@@ -84,7 +203,7 @@ class AddAddressScreen extends StatelessWidget {
                       textFieldType: TextFieldType.NUMBER,
                       decoration: inputDecoration(
                         context,
-                        hintText: '+025',
+                        hintText: '+965',
                         fillColor: context.cardColor,
                         filled: true,
                       ),

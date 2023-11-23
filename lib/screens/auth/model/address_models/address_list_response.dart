@@ -36,6 +36,8 @@ class UserAddress {
   String firstName;
   String lastName;
   String phone;
+  String long;
+  String lat;
   String floor;
   String department;
   String house;
@@ -53,6 +55,8 @@ class UserAddress {
   UserAddress({
     required this.id,
     this.firstName = "",
+    this.long = "",
+    this.lat = "",
     this.lastName = "",
     this.phone = "",
     this.floor = "",
@@ -74,6 +78,8 @@ class UserAddress {
     return UserAddress(
       id: json['id'] is int ? (json['id'] as int).obs : (-1).obs,
       firstName: json['first_name'] is String ? json['first_name'] : "",
+      long: json['long'] is String ? json['long'] : "",
+      lat: json['lat'] is String ? json['lat'] : "",
       lastName: json['last_name'] is String ? json['last_name'] : "",
       phone: json['phone'] is String ? json['phone'] : "",
       house: json['house'] is String ? json['house'] : "",
@@ -98,6 +104,8 @@ class UserAddress {
     return {
       'id': id,
       'first_name': firstName,
+      'long': long,
+      'lat': lat,
       'last_name': lastName,
       'phone': phone,
       'floor': floor,

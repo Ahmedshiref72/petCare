@@ -12,7 +12,10 @@ class ServiceRes {
   factory ServiceRes.fromJson(Map<String, dynamic> json) {
     return ServiceRes(
       status: json['status'] is bool ? json['status'] : false,
-      data: json['data'] is List ? List<ServiceModel>.from(json['data'].map((x) => ServiceModel.fromJson(x))) : [],
+      data: json['data'] is List
+          ? List<ServiceModel>.from(
+              json['data'].map((x) => ServiceModel.fromJson(x)))
+          : [],
       message: json['message'] is String ? json['message'] : "",
     );
   }
@@ -75,9 +78,12 @@ class ServiceModel {
       defaultPrice: json['default_price'] is int ? json['default_price'] : -1,
       status: json['status'] is int ? json['status'] : -1,
       categoryId: json['category_id'] is int ? json['category_id'] : -1,
-      categoryName: json['category_name'] is String ? json['category_name'] : "",
-      subCategoryId: json['sub_category_id'] is int ? json['sub_category_id'] : -1,
-      serviceImage: json['service_image'] is String ? json['service_image'] : "",
+      categoryName:
+          json['category_name'] is String ? json['category_name'] : "",
+      subCategoryId:
+          json['sub_category_id'] is int ? json['sub_category_id'] : -1,
+      serviceImage:
+          json['service_image'] is String ? json['service_image'] : "",
       createdBy: json['created_by'],
       updatedBy: json['updated_by'],
       deletedBy: json['deleted_by'],

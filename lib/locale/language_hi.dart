@@ -226,6 +226,8 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get yourReview => 'आपकी समीक्षा';
+  @override
+  String get noAddress => 'आपकी समीक्षा';
 
   @override
   String get yourFeedbackWillImprove =>

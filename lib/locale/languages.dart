@@ -984,6 +984,7 @@ abstract class BaseLanguage {
   String get apt;
 
   String get saveChanges;
+  String get noAddress;
 
   String get setAsPrimary;
 

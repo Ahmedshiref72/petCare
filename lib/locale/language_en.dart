@@ -542,7 +542,7 @@ class LanguageEn extends BaseLanguage {
   String get dropOffAddress => 'Drop-Off Address';
 
   @override
-  String get boarder => 'Boarder';
+  String get boarder => 'Boarder Center';
 
   @override
   String get chooseBoarder => 'Choose Boarder';
@@ -628,7 +628,7 @@ class LanguageEn extends BaseLanguage {
   String get service => 'Service';
 
   @override
-  String get groomer => 'Groomer';
+  String get groomer => 'Grooming Center';
 
   @override
   String get chooseGroomer => 'Choose Groomer';
@@ -665,10 +665,12 @@ class LanguageEn extends BaseLanguage {
   String get chooseTraining => 'Choose Training';
 
   @override
-  String get trainer => 'Trainer';
+  String get trainer => 'Training Center';
+  @override
+  String get noAddress => 'No addresses available, tap here to add one ';
 
   @override
-  String get chooseTrainer => 'Choose Trainer';
+  String get chooseTrainer => 'Choose Center';
 
   @override
   String get pleaseChooseDuration => 'Please Choose Duration';
@@ -680,7 +682,7 @@ class LanguageEn extends BaseLanguage {
   String get chooseVeterinaryType => 'Choose Veterinary Type';
 
   @override
-  String get vet => 'Vet';
+  String get vet => 'Veterinary';
 
   @override
   String get chooseVet => 'Choose Vet';

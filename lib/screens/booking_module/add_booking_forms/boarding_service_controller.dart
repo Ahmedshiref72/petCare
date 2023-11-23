@@ -3,22 +3,22 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 import 'package:nb_utils/nb_utils.dart';
-import '../../pet/model/pet_list_res_model.dart';
-import '../../pet/my_pets_controller.dart';
-import '../model/choose_pet_widget.dart';
-import '../model/booking_data_model.dart';
-import '../model/employe_model.dart';
-import '../payment_screen.dart';
-import '../../../utils/constants.dart';
 
-import 'model/book_boarding_req.dart';
-import '../model/facilities_model.dart';
-import '../../dashboard/dashboard_res_model.dart';
-import '../services/services_form_api.dart';
 import '../../../utils/app_common.dart';
 import '../../../utils/common_base.dart';
+import '../../../utils/constants.dart';
+import '../../dashboard/dashboard_res_model.dart';
 import '../../home/home_controller.dart';
+import '../../pet/model/pet_list_res_model.dart';
+import '../../pet/my_pets_controller.dart';
+import '../model/booking_data_model.dart';
+import '../model/choose_pet_widget.dart';
+import '../model/employe_model.dart';
+import '../model/facilities_model.dart';
 import '../payment_controller.dart';
+import '../payment_screen.dart';
+import '../services/services_form_api.dart';
+import 'model/book_boarding_req.dart';
 
 class BoardingServiceController extends GetxController {
   RxBool isLoading = false.obs;
@@ -28,7 +28,11 @@ class BoardingServiceController extends GetxController {
   BookBoardingReq bookBoardingReq = BookBoardingReq();
   RxInt serviceDaysCount = 0.obs;
   Rx<PetBoardingAmount> petBoardingAmount = PetBoardingAmount().obs;
-  Rx<BookingDataModel> bookingFormData = BookingDataModel(service: SystemService(), payment: PaymentDetails(), training: Training()).obs;
+  Rx<BookingDataModel> bookingFormData = BookingDataModel(
+          service: SystemService(),
+          payment: PaymentDetails(),
+          training: Training())
+      .obs;
   RxBool isUpdateForm = false.obs;
   Rx<EmployeeModel> selectedBoarder = EmployeeModel(profileImage: "".obs).obs;
   RxList<EmployeeModel> boardersList = RxList();
@@ -43,7 +47,8 @@ class BoardingServiceController extends GetxController {
   TextEditingController medicalReportCont = TextEditingController();
   TextEditingController additionalInfoCont = TextEditingController();
   TextEditingController searchCont = TextEditingController();
-  Rx<Future<List<FacilityModel>>> getFacility = Future(() => <FacilityModel>[]).obs;
+  Rx<Future<List<FacilityModel>>> getFacility =
+      Future(() => <FacilityModel>[]).obs;
   RxList<FacilityModel> selectedFacilities = RxList();
   FilePickerResult? result;
 
@@ -60,12 +65,21 @@ class BoardingServiceController extends GetxController {
         isUpdateForm(true);
         bookingFormData(Get.arguments as BookingDataModel);
         getFacility(PetServiceFormApis.getFacility()).then((fullList) {
-          List<FacilityModel> previousSelected = fullList.where((item) => bookingFormData.value.additionalFacility.map((e) => e.id).toList().contains(item.id)).toList();
+          List<FacilityModel> previousSelected = fullList
+              .where((item) => bookingFormData.value.additionalFacility
+                  .map((e) => e.id)
+                  .toList()
+                  .contains(item.id))
+              .toList();
           previousSelected.map((item) => item.isChecked(true)).toList();
           selectedFacilities(previousSelected);
         });
         additionalInfoCont.text = bookingFormData.value.service.description;
-        selectedPet(myPetsScreenController.myPets.firstWhere((element) => element.name.toLowerCase() == bookingFormData.value.petName.toLowerCase(), orElse: () => PetData()));
+        selectedPet(myPetsScreenController.myPets.firstWhere(
+            (element) =>
+                element.name.toLowerCase() ==
+                bookingFormData.value.petName.toLowerCase(),
+            orElse: () => PetData()));
       } catch (e) {
         debugPrint('boarding book again E: $e');
       }
@@ -77,25 +91,32 @@ class BoardingServiceController extends GetxController {
     try {
       HomeScreenController homeController = Get.find();
       if (homeController.dashboardData.value.petBoardingAmount.isNotEmpty) {
-        petBoardingAmount(homeController.dashboardData.value.petBoardingAmount.first);
+        petBoardingAmount(
+            homeController.dashboardData.value.petBoardingAmount.first);
       }
     } catch (e) {
       HomeScreenController homeController = HomeScreenController();
       homeController.getDashboardDetail();
       if (homeController.dashboardData.value.petBoardingAmount.isNotEmpty) {
-        petBoardingAmount(homeController.dashboardData.value.petBoardingAmount.first);
+        petBoardingAmount(
+            homeController.dashboardData.value.petBoardingAmount.first);
       }
     }
   }
 
   onDateTimeChanges() {
     try {
-      serviceDaysCount(DateFormat(DateFormatConst.yyyy_MM_dd).parse(getpickUpDateTime).difference(DateFormat(DateFormatConst.yyyy_MM_dd).parse(getDropOFFDateTime)).inDays);
+      serviceDaysCount(DateFormat(DateFormatConst.yyyy_MM_dd)
+          .parse(getpickUpDateTime)
+          .difference(
+              DateFormat(DateFormatConst.yyyy_MM_dd).parse(getDropOFFDateTime))
+          .inDays);
       log('SERVICEDAYSCOUNT: ${serviceDaysCount.value}');
       if (serviceDaysCount < 1) {
         serviceDaysCount(1);
       }
-      bookBoardingReq.price = petBoardingAmount.value.val.toDouble() * serviceDaysCount.value;
+      bookBoardingReq.price =
+          petBoardingAmount.value.val.toDouble() * serviceDaysCount.value;
       currentSelectedService.value.serviceAmount = bookBoardingReq.price;
 
       ///calculationChecker();
@@ -117,8 +138,10 @@ class BoardingServiceController extends GetxController {
     log('TOTAL AMOUNT: $totalAmount');
   }
 
-  String get getDropOFFDateTime => "${bookBoardingReq.dropoffDate.trim()} ${bookBoardingReq.dropoffTime.trim()}";
-  String get getpickUpDateTime => "${bookBoardingReq.pickupDate.trim()} ${bookBoardingReq.pickupTime.trim()}";
+  String get getDropOFFDateTime =>
+      "${bookBoardingReq.dropoffDate.trim()} ${bookBoardingReq.dropoffTime.trim()}";
+  String get getpickUpDateTime =>
+      "${bookBoardingReq.pickupDate.trim()} ${bookBoardingReq.pickupTime.trim()}";
 
   void clearBoarderSelection() {
     boarderCont.clear();
@@ -128,12 +151,15 @@ class BoardingServiceController extends GetxController {
   ///Get Boarders List
   getBoarders() {
     isLoading(true);
-    PetServiceFormApis.getEmployee(role: EmployeeKeyConst.boarding).then((value) {
+    PetServiceFormApis.getEmployee(role: EmployeeKeyConst.boarding)
+        .then((value) {
       isLoading(false);
       boardersList(value.data);
       hasErrorFetchingBoarders(false);
       if (isUpdateForm.value) {
-        selectedBoarder(boardersList.firstWhere((p0) => p0.id == bookingFormData.value.employeeId, orElse: () => EmployeeModel(profileImage: "".obs)));
+        selectedBoarder(boardersList.firstWhere(
+            (p0) => p0.id == bookingFormData.value.employeeId,
+            orElse: () => EmployeeModel(profileImage: "".obs)));
         boarderCont.text = selectedBoarder.value.fullName;
       }
     }).onError((error, stackTrace) {
@@ -149,7 +175,11 @@ class BoardingServiceController extends GetxController {
     required RxList<EmployeeModel> daycareFilterList,
     required RxList<EmployeeModel> daycareSList,
   }) {
-    daycareFilterList.value = List.from(daycareSList.where((element) => element.fullName.toString().toLowerCase().contains(searchtext.toString().toLowerCase())));
+    daycareFilterList.value = List.from(daycareSList.where((element) => element
+        .fullName
+        .toString()
+        .toLowerCase()
+        .contains(searchtext.toString().toLowerCase())));
     for (var i = 0; i < daycareFilterList.length; i++) {
       log('SEARCHED NAMES : ${daycareFilterList[i].toJson()}');
     }
@@ -164,7 +194,8 @@ class BoardingServiceController extends GetxController {
     );
   }
 
-  bool get isShowFullList => boarderFilterList.isEmpty && searchCont.text.trim().isEmpty;
+  bool get isShowFullList =>
+      boarderFilterList.isEmpty && searchCont.text.trim().isEmpty;
 
   handleBookNowClick() {
     bookBoardingReq.dropoffAddress = dropAddressCont.text.trim();
@@ -177,7 +208,8 @@ class BoardingServiceController extends GetxController {
     bookingSuccessDate(getDropOFFDateTime);
     log('BOOKBOARDINGREQ.TOJSON(): ${bookBoardingReq.toJson()}');
     hideKeyBoardWithoutContext();
-    paymentController = PaymentController(bookingService: currentSelectedService.value);
+    paymentController =
+        PaymentController(bookingService: currentSelectedService.value);
     Get.to(() => const PaymentScreen());
   }
 }
