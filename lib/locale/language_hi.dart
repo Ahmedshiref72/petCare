@@ -223,6 +223,8 @@ class LanguageHi extends BaseLanguage {
 
   @override
   String get rate => 'दर';
+  @override
+  String get imagePath => 'दर';
 
   @override
   String get yourReview => 'आपकी समीक्षा';

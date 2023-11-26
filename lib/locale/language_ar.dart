@@ -1189,6 +1189,8 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get orSignInWith => 'أو تسجيل الدخول مع';
+  @override
+  String get imagePath => 'assets/images/option_image.png';
 
   @override
   String get pawlcomeToYourPetSHaven => 'لأن حيوانك الأليف فريد ومحبوب';

@@ -772,6 +772,8 @@ abstract class BaseLanguage {
 
   String get pawlcomeToYourPetSHaven;
 
+  String get imagePath;
+
   String get unlockAWorldOf;
 
   String get daycareTakerListIsEmpty;

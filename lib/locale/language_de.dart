@@ -853,6 +853,8 @@ class LanguageDe extends BaseLanguage {
   @override
   String get doe => 'Damhirschkuh';
   @override
+  String get imagePath => 'Damhirschkuh';
+  @override
   String get noAddress => 'Damhirschkuh';
   @override
   String get start => 'Damhirschkuh';

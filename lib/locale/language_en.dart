@@ -1055,6 +1055,8 @@ class LanguageEn extends BaseLanguage {
 
   @override
   String get medicalReport => 'Medical Report';
+  @override
+  String get imagePath => 'assets/images/option_image a.png';
 
   @override
   String get loading => 'Loading';

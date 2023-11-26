@@ -286,6 +286,8 @@ class LanguageFr extends BaseLanguage {
   @override
   String get start => 'start';
   @override
+  String get imagePath => 'start';
+  @override
   String get noAddress => 'No addresses available, tap here to add one ';
 
   @override

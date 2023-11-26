@@ -20,21 +20,13 @@ class OptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    // Get the current language code
-    String languageCode = Get.locale?.languageCode ?? 'en';
-
-    // Determine the image path based on the language
-    String imagePath = languageCode == 'ar'
-        ? 'assets/images/option_image.png'
-        : 'assets/images/option_image a.png';
-
     return AppScaffold(
       hideAppBar: true,
       isLoading: optionScreenController.isLoading,
       body: Stack(
         // fit: StackFit.expand,
         children: [
-          Image.asset(imagePath),
+          Image.asset(Assets.imagesOptionBack),
           Positioned(
             bottom: 0,
             child: Stack(
@@ -46,7 +38,7 @@ class OptionScreen extends StatelessWidget {
                   child: Container(
                     //  color: primaryColor,
                     child: Image.asset(
-                      Assets.imagesOptionImage,
+                      locale.value.imagePath,
                       width: Get.width,
                       fit: BoxFit.fitWidth,
                     ),
