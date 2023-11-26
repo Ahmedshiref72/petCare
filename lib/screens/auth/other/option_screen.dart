@@ -20,7 +20,10 @@ class OptionScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    // Get the current language code
     String languageCode = Get.locale?.languageCode ?? 'en';
+
+    // Determine the image path based on the language
     String imagePath = languageCode == 'ar'
         ? 'assets/images/option_image.png'
         : 'assets/images/option_image a.png';

@@ -22,7 +22,14 @@ class SplashScreenController extends GetxController {
   }
 
   void init() {
-    getAppConfigurations();
+    // Duration of the splash screen
+    Duration splashDuration =
+        Duration(seconds: 2); // Set this to your desired duration
+
+    // Delayed execution
+    Future.delayed(splashDuration, () {
+      getAppConfigurations();
+    });
   }
 
   ///Get ChooseService List
@@ -41,43 +48,43 @@ class SplashScreenController extends GetxController {
     });
   }
 
-void navigationLogic() {
-  bool isFirstTime = getValueFromLocal(SharedPreferenceConst.FIRST_TIME) ?? false;
-  bool isLoggedIn = getValueFromLocal(SharedPreferenceConst.IS_LOGGED_IN) == true;
+  void navigationLogic() {
+    bool isFirstTime =
+        getValueFromLocal(SharedPreferenceConst.FIRST_TIME) ?? false;
+    bool isLoggedIn =
+        getValueFromLocal(SharedPreferenceConst.IS_LOGGED_IN) == true;
 
-  if (!isFirstTime) {
-    // If it's the user's first time, show the Change Language screen
-    Get.offAll(() => ChangeLanguageScreen(onLanguageSelected: () {
-      navigateToWalkthroughScreen();
-    }));
-  } else if (isLoggedIn) {
-    // Logic for logged-in users
-    navigateToDashboardScreen();
-  } else {
-    // Logic for non-logged-in users
-    navigateToDashboardScreen();
+    if (!isFirstTime) {
+      // If it's the user's first time, show the Change Language screen
+      Get.offAll(() => ChangeLanguageScreen(onLanguageSelected: () {
+            navigateToWalkthroughScreen();
+          }));
+    } else if (isLoggedIn) {
+      // Logic for logged-in users
+      navigateToDashboardScreen();
+    } else {
+      // Logic for non-logged-in users
+      navigateToDashboardScreen();
+    }
   }
-}
 
-void navigateToWalkthroughScreen() {
-  Get.offAll(() => WalkthroughScreen());
-}
-
-void navigateToDashboardScreen() {
-  try {
-    final userData = getValueFromLocal(SharedPreferenceConst.USER_DATA);
-    isLoggedIn(true);
-    loginUserData(UserData.fromJson(userData));
-    Get.offAll(() => DashboardScreen(), binding: BindingsBuilder(() {
-      Get.put(HomeScreenController());
-    }));
-  } catch (e) {
-    debugPrint('SplashScreenController Err: $e');
-    Get.offAll(() => DashboardScreen(), binding: BindingsBuilder(() {
-      Get.put(HomeScreenController());
-    }));
+  void navigateToWalkthroughScreen() {
+    Get.offAll(() => WalkthroughScreen());
   }
-}
 
-
+  void navigateToDashboardScreen() {
+    try {
+      final userData = getValueFromLocal(SharedPreferenceConst.USER_DATA);
+      isLoggedIn(true);
+      loginUserData(UserData.fromJson(userData));
+      Get.offAll(() => DashboardScreen(), binding: BindingsBuilder(() {
+        Get.put(HomeScreenController());
+      }));
+    } catch (e) {
+      debugPrint('SplashScreenController Err: $e');
+      Get.offAll(() => DashboardScreen(), binding: BindingsBuilder(() {
+        Get.put(HomeScreenController());
+      }));
+    }
+  }
 }
