@@ -97,7 +97,7 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                   children: [
                     isLoading
                         ? // Loading indicator
-                        Center(
+                        const Center(
                             child: CircularProgressIndicator(
                             color: primaryColor,
                           ))
