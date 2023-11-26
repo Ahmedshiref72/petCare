@@ -64,7 +64,8 @@ class AppScaffold extends StatelessWidget {
               child: AppBar(
                 elevation: appBarelevation,
                 automaticallyImplyLeading: automaticallyImplyLeading,
-                backgroundColor: appBarbackgroundColor ?? context.scaffoldBackgroundColor,
+                backgroundColor:
+                    appBarbackgroundColor ?? context.scaffoldBackgroundColor,
                 centerTitle: isCenterTitle,
                 titleSpacing: 2,
                 title: appBarTitle ??
@@ -73,10 +74,12 @@ class AppScaffold extends StatelessWidget {
                       style: primaryTextStyle(size: 16),
                     ).paddingLeft(hasLeadingWidget ? 0 : 16),
                 actions: actions,
-                leading: leadingWidget ?? (hasLeadingWidget ? backButton() : null),
+                leading:
+                    leadingWidget ?? (hasLeadingWidget ? backButton() : null),
               ).paddingTop(10),
             ),
-      backgroundColor: scaffoldBackgroundColor ?? context.scaffoldBackgroundColor,
+      backgroundColor:
+          scaffoldBackgroundColor ?? context.scaffoldBackgroundColor,
       body: Body(
         isLoading: isLoading ?? false.obs,
         child: body,

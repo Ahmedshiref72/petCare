@@ -19,9 +19,10 @@ class SplashScreen extends StatelessWidget {
       hideAppBar: true,
       body: Stack(
         children: [
-          Image(
+          const Image(
             image: AssetImage(Assets.Splash),
-            fit: BoxFit.fill,
+            width: double.infinity,
+            height: double.infinity,
           ),
           Center(
             child: Image.asset(
