@@ -1,36 +1,36 @@
 import 'package:flutter/material.dart';
-
 import 'package:get/get.dart';
 import 'package:pawlly/utils/app_common.dart';
+
 import '../../components/app_logo_widget.dart';
 import '../../components/app_scaffold.dart';
-
 import '../../generated/assets.dart';
-import 'splash_controller.dart';
 import '../../utils/constants.dart';
+import 'splash_controller.dart';
 
 class SplashScreen extends StatelessWidget {
-  final SplashScreenController splashController = Get.put(SplashScreenController());
+  final SplashScreenController splashController =
+      Get.put(SplashScreenController());
   SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
       hideAppBar: true,
-      scaffoldBackgroundColor: isDarkMode.value ? const Color(0xFF0C0910) : const Color(0xFFFCFCFC),
-      body: Center(
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            Image.asset(
-              isDarkMode.value ? Assets.imagesPawllyLoaderDark : Assets.imagesPawllyLoaderLight,
+      body: Stack(
+        children: [
+          Image(image: AssetImage(Assets.Splash)),
+          Center(
+            child: Image.asset(
+              isDarkMode.value ? Assets.Splashlogo : Assets.Splashlogo,
               height: Constants.appLogoSize,
               width: Constants.appLogoSize,
               fit: BoxFit.contain,
-              errorBuilder: (context, error, stackTrace) => const AppLogoWidget(),
+              errorBuilder: (context, error, stackTrace) =>
+                  const AppLogoWidget(),
             ),
-          ],
-        ),
+          ),
+        ],
       ),
     );
   }

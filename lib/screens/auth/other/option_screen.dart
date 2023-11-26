@@ -26,11 +26,7 @@ class OptionScreen extends StatelessWidget {
       body: Stack(
         // fit: StackFit.expand,
         children: [
-          Container(
-            height: Get.height,
-            width: Get.width,
-            color: primaryColor,
-          ),
+          Image(image: AssetImage(Assets.imagesOptionBack)),
           Positioned(
             bottom: 0,
             child: Stack(
@@ -40,7 +36,7 @@ class OptionScreen extends StatelessWidget {
                 Positioned(
                   bottom: optionScreenController.bottomWidgetHeight - 4,
                   child: Container(
-                    color: primaryColor,
+                    //  color: primaryColor,
                     child: Image.asset(
                       Assets.imagesOptionImage,
                       width: Get.width,
@@ -64,7 +60,7 @@ class OptionScreen extends StatelessWidget {
                     children: [
                       Text(
                         locale.value.pawlcomeToYourPetSHaven,
-                        style: primaryTextStyle(size: 20),
+                        style: primaryTextStyle(size: 18),
                       ),
                       8.height,
                       Text(

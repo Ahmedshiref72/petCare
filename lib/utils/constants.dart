@@ -14,10 +14,11 @@ const CURRENT_ADDRESS = 'CURRENT_ADDRESS';
 class Constants {
   static const perPageItem = 20;
   static var labelTextSize = 17;
-  static var googleMapPrefix = 'https://www.google.com/maps/search/?api=1&query=';
+  static var googleMapPrefix =
+      'https://www.google.com/maps/search/?api=1&query=';
   static const DEFAULT_EMAIL = 'john@gmail.com';
   static const DEFAULT_PASS = '12345678';
-  static const appLogoSize = 98.0;
+  static const appLogoSize = 150.0;
   static const DECIMAL_POINT = 2;
 }
 
@@ -26,9 +27,12 @@ class DateFormatConst {
   static const DD_MM_YY = "dd-MM-yy"; //TODO Use to show only in UI
   static const MMMM_D_yyyy = "MMMM d, y"; //TODO Use to show only in UI
   static const D_MMMM_yyyy = "d MMMM, y"; //TODO Use to show only in UI
-  static const MMMM_D_yyyy_At_HH_mm_a = "MMMM d, y @ hh:mm a"; //TODO Use to show only in UI
-  static const EEEE_D_MMMM_At_HH_mm_a = "EEEE d MMMM @ hh:mm a"; //TODO Use to show only in UI
-  static const dd_MMM_yyyy_HH_mm_a = "dd MMM y, hh:mm a"; //TODO Use to show only in UI
+  static const MMMM_D_yyyy_At_HH_mm_a =
+      "MMMM d, y @ hh:mm a"; //TODO Use to show only in UI
+  static const EEEE_D_MMMM_At_HH_mm_a =
+      "EEEE d MMMM @ hh:mm a"; //TODO Use to show only in UI
+  static const dd_MMM_yyyy_HH_mm_a =
+      "dd MMM y, hh:mm a"; //TODO Use to show only in UI
   static const yyyy_MM_dd_HH_mm = 'yyyy-MM-dd HH:mm';
   static const yyyy_MM_dd = 'yyyy-MM-dd';
   static const HH_mm12Hour = 'hh:mm a';

@@ -1029,27 +1029,26 @@ class LanguageAr extends BaseLanguage {
   String get zoomVideoCall => 'تكبير مكالمة فيديو';
 
   @override
-  String get discoverPetCareExcellence =>
-      'اكتشف التميز في رعاية الحيوانات الأليفة';
+  String get discoverPetCareExcellence => 'عشق الحيوانات الأليفة قصة لاتنتهى ';
 
   @override
-  String get empowerYourPetSWellness => 'تمكين عافية حيوانك الأليف';
+  String get empowerYourPetSWellness =>
+      '  petcare  اختيارك المثالي لرعاية أليفك';
 
   @override
-  String get unleashPetHappinessWith =>
-      'أطلق العنان لسعادة الحيوانات الأليفة بسهولة';
+  String get unleashPetHappinessWith => 'نشر الوعي حول أهمية الحيوانات الأليفة';
 
   @override
   String get exploreAWorldOf =>
-      'استكشف عالمًا من خدمات رعاية الحيوانات الأليفة السلس ، من الرعاية البيطرية إلى الاستمالة ، كل ذلك في متناول يدك.';
+      'تجربة لمشاعر حب صادقة نابعة من قلوب جميع العاملين ب petcare لتوفير اعلى مراحل العناية بأليفك الصغير.';
 
   @override
   String get elevateYourPetSWellBeing =>
-      'ارفع رفاهية حيوانك الأليف مع تطبيقنا ، حيث يقدم خدمات التدريب والمشي والرعاية النهارية لحياة نابضة بالحياة.';
+      'نحن نبحث على الدوام عن أحدث الأساليب والطرق المتطورة في رعاية الحيوانات الأليفة لكي نقدم ما هو أفضل.';
 
   @override
   String get elevateYourPetSJoy =>
-      'ارفع فرحة حيوانك الأليف دون عناء من خلال مجموعة من الخدمات ، من الاستمالة إلى التدريب ، المتاحة في قيادتك.';
+      'تأثير الحيوانات الاليفة الإيجابي على حياتنا واضح, وهدفنا في petcare إنشاء مجتمع لأصحاب الحيوانات الأليفة الذين يهتمون بتعميق الروابط التي تربطهم بحيواناتهم الأليفة.';
 
   @override
   String get medicalReport => 'تقرير طبي';
@@ -1192,10 +1191,10 @@ class LanguageAr extends BaseLanguage {
   String get orSignInWith => 'أو تسجيل الدخول مع';
 
   @override
-  String get pawlcomeToYourPetSHaven => 'welcome إلى ملاذ حيوانك الأليف';
+  String get pawlcomeToYourPetSHaven => 'لأن حيوانك الأليف فريد ومحبوب';
 
   @override
-  String get unlockAWorldOf => 'فتح عالم رعاية الحيوانات الأليفة فرويك';
+  String get unlockAWorldOf => 'نحن نولي اهتماما كبيرا به في petcare';
 
   @override
   String get daycareTakerListIsEmpty => 'قائمة Taker للرعاية النهارية فارغة.';

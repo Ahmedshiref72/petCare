@@ -1030,25 +1030,28 @@ class LanguageEn extends BaseLanguage {
   String get zoomVideoCall => 'Zoom Video Call';
 
   @override
-  String get discoverPetCareExcellence => 'Discover Pet Care Excellence';
+  String get discoverPetCareExcellence =>
+      'Endless Love for Pets: A Never-Ending Story';
 
   @override
-  String get empowerYourPetSWellness => "Empower Your Pet's Wellness";
+  String get empowerYourPetSWellness =>
+      "petcare: Your Ideal Choice for Pet Care";
 
   @override
-  String get unleashPetHappinessWith => 'Unleash Pet Happiness with Ease';
+  String get unleashPetHappinessWith =>
+      'Spreading Awareness About the Importance of Pets';
 
   @override
   String get exploreAWorldOf =>
-      'Explore a world of seamless pet care services, from veterinary care to grooming, all at your fingertips.';
+      'An experience of genuine love emanating from the hearts of everyone at petcare, aimed at providing the highest level of care for your little companion.';
 
   @override
   String get elevateYourPetSWellBeing =>
-      "Elevate your pet's well-being with our app, offering training, walking, and daycare services for a vibrant life.";
+      " We constantly seek the latest and most advanced methods in pet care to offer the best possible service.";
 
   @override
   String get elevateYourPetSJoy =>
-      "Elevate your pet's joy effortlessly through a range of services, from grooming to training, available at your command.";
+      "The positive impact of pets on our lives is evident, and our goal at petcare is to build a community of pet owners who are dedicated to strengthening the bonds they share with their pets.";
 
   @override
   String get medicalReport => 'Medical Report';
@@ -1194,10 +1197,11 @@ class LanguageEn extends BaseLanguage {
   String get orSignInWith => 'Or sign in with';
 
   @override
-  String get pawlcomeToYourPetSHaven => "Pawlcome to Your Pet's Haven";
+  String get pawlcomeToYourPetSHaven =>
+      "Because your pet is unique and beloved";
 
   @override
-  String get unlockAWorldOf => 'Unlock a World of Care for Your Furry Pets';
+  String get unlockAWorldOf => 'we pay great attention to it at petcare.';
 
   @override
   String get daycareTakerListIsEmpty => 'Daycare taker list is empty.';

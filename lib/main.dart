@@ -143,7 +143,7 @@ class MyApp extends StatelessWidget {
           ],
           localeResolutionCallback: (locale, supportedLocales) =>
               Locale(selectedLanguageCode.value),
-          fallbackLocale: const Locale('el'),
+          fallbackLocale: const Locale('ar'),
           locale: Locale(selectedLanguageCode.value),
           theme: AppTheme.lightTheme,
           darkTheme: AppTheme.darkTheme,

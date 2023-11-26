@@ -65,7 +65,7 @@ class ChangeLanguageScreen extends StatelessWidget {
             child: ElevatedButton(
               onPressed: () => onLanguageSelected(),
               style: ElevatedButton.styleFrom(
-                primary: Color(0xFFf39231), // Button color
+                primary: primaryColor, // Button color
                 onPrimary: Colors.white, // Text color
               ),
               child: Text(locale.value.next),

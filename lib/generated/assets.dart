@@ -79,7 +79,10 @@ class Assets {
       'assets/images/ic_editprofile_outlined.png';
   static const String imagesLogo = 'assets/images/logo.png';
   static const String imagesOptionImage = 'assets/images/option_image.png';
+  static const String imagesOptionBack = 'assets/images/Asset 1.png';
   static const String imagesPawllyLoaderDark = 'assets/images/logo.png';
+  static const String Splash = 'assets/images/splash.png';
+  static const String Splashlogo = 'assets/images/splash logo.png';
   static const String imagesPawllyLoaderLight = 'assets/images/logo.png';
   static const String imagesPaymentImages = 'assets/images/payment_images.png';
   static const String imagesPaypalLogo = 'assets/images/paypal_logo.png';
@@ -161,10 +164,7 @@ class Assets {
   static const String sitterSitter4 = 'assets/images/sitter/sitter_4.png';
   static const String sitterSitter5 = 'assets/images/sitter/sitter_5.png';
   static const String sitterSitter6 = 'assets/images/sitter/sitter_6.png';
-  static const String walkthroughImagesWalkImage1 =
-      'assets/images/walkthrough_images/walk_image1.png';
-  static const String walkthroughImagesWalkImage2 =
-      'assets/images/walkthrough_images/walk_image2.png';
-  static const String walkthroughImagesWalkImage3 =
-      'assets/images/walkthrough_images/walk_image3.png';
+  static const String walkthroughImagesWalkImage1 = 'assets/images/1.jpg';
+  static const String walkthroughImagesWalkImage2 = 'assets/images/2.jpg';
+  static const String walkthroughImagesWalkImage3 = 'assets/images/3.jpg';
 }
