@@ -201,6 +201,24 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       controller: addAddressController.phoneCont,
                       focus: addAddressController.phoneFocus,
                       textFieldType: TextFieldType.NUMBER,
+                      validator: (v) {
+                        if (v == null || v.isEmpty) {
+                          return 'Please enter a number'; // Error message when the field is empty
+                        }
+                        if (!v.startsWith('965')) {
+                          return 'Number must begin with +965'; // Error message if not starting with +965
+                        }
+                        if (v.length < 0 + 4) {
+                          // Check for total length (+965 plus 8 digits)
+                          return 'Number must be followed by exactly 8 digits'; // Error message for short input
+                        }
+                        // Now it's safe to use substring
+                        String remainingNumbers = v.substring(4);
+                        if (!RegExp(r'^[0-9]{4}$').hasMatch(remainingNumbers)) {
+                          return 'Number must be followed by exactly 8 digits'; // Error message if not followed by 8 digits
+                        }
+                        return null; // Return null if the input is valid
+                      },
                       decoration: inputDecoration(
                         context,
                         hintText: '+965',
