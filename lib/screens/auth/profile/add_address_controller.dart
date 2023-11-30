@@ -33,6 +33,7 @@ class AddAddressController extends GetxController {
   TextEditingController latCont = TextEditingController();
   TextEditingController lastNameCont = TextEditingController();
   TextEditingController phoneCont = TextEditingController();
+
   TextEditingController addressLine1Controller = TextEditingController();
   TextEditingController addressLine2Controller = TextEditingController();
   TextEditingController houseNumController = TextEditingController();

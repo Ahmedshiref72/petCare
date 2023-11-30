@@ -195,30 +195,13 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                           .paddingAll(14),
                     ),
                     16.height,
+                    // Prefix field (read-only)
                     AppTextField(
                       title: locale.value.phone,
                       textStyle: primaryTextStyle(size: 12),
                       controller: addAddressController.phoneCont,
                       focus: addAddressController.phoneFocus,
                       textFieldType: TextFieldType.NUMBER,
-                      validator: (v) {
-                        if (v == null || v.isEmpty) {
-                          return 'Please enter a number'; // Error message when the field is empty
-                        }
-                        if (!v.startsWith('965')) {
-                          return 'Number must begin with +965'; // Error message if not starting with +965
-                        }
-                        if (v.length < 0 + 4) {
-                          // Check for total length (+965 plus 8 digits)
-                          return 'Number must be followed by exactly 8 digits'; // Error message for short input
-                        }
-                        // Now it's safe to use substring
-                        String remainingNumbers = v.substring(4);
-                        if (!RegExp(r'^[0-9]{4}$').hasMatch(remainingNumbers)) {
-                          return 'Number must be followed by exactly 8 digits'; // Error message if not followed by 8 digits
-                        }
-                        return null; // Return null if the input is valid
-                      },
                       decoration: inputDecoration(
                         context,
                         hintText: '+965',
@@ -229,6 +212,35 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                         Icons.phone,
                         size: 20.0,
                       ),
+                      onChanged: (value) {
+                        // Ensure '965' is at the start and avoid duplication
+                        if (!value.startsWith('965')) {
+                          String newPhone = '965';
+                          if (value.length > 3) {
+                            newPhone += value.substring(3);
+                          }
+                          if (newPhone.length > 11) {
+                            // Adjusted to 11 for the total length including '965'
+                            newPhone = newPhone.substring(0, 11);
+                          }
+                          addAddressController.phoneCont.value =
+                              TextEditingValue(
+                            text: newPhone,
+                            selection: TextSelection.collapsed(
+                                offset: newPhone.length),
+                          );
+                        }
+                      },
+                      validator: (v) {
+                        if (v == null || v.isEmpty) {
+                          return 'Please enter a number';
+                        }
+                        // Regex to ensure the string starts with '965' and is followed by exactly 8 digits
+                        if (!RegExp(r'^965\d{8}$').hasMatch(v)) {
+                          return 'Number must be followed by 8 digits';
+                        }
+                        return null;
+                      },
                     ),
                     16.height,
                     Row(
@@ -429,8 +441,8 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       nextFocus: addAddressController.houseNumFocusNode,
                       decoration: inputDecoration(
                         context,
-                        hintText:
-                            "${locale.value.eG} ${locale.value.apt} 4B", //No Localization here
+                        hintText: "${locale.value.eG} ${locale.value.apt} 4B",
+                        //No Localization here
                         fillColor: context.cardColor,
                         filled: true,
                       ),
