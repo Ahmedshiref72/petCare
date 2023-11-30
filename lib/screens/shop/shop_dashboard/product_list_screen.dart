@@ -19,7 +19,8 @@ class ProductListScreen extends StatelessWidget {
 
   ProductListScreen({super.key, this.title});
 
-  final ProductListController productListController = Get.put(ProductListController());
+  final ProductListController productListController =
+      Get.put(ProductListController());
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +33,11 @@ class ProductListScreen extends StatelessWidget {
             hideKeyboard(context);
             Get.to(() => ShopSearchScreen());
           },
-          icon: commonLeadingWid(imgPath: Assets.iconsIcSearch, color: switchColor, icon: Icons.search_outlined, size: 22),
+          icon: commonLeadingWid(
+              imgPath: Assets.iconsIcSearch,
+              color: switchColor,
+              icon: Icons.search_outlined,
+              size: 22),
         ),
       ],
       body: Obx(
@@ -64,10 +69,12 @@ class ProductListScreen extends StatelessWidget {
               );
             }
             return AnimatedScrollView(
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 16, bottom: 30),
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, top: 16, bottom: 30),
               onNextPage: () async {
                 if (!productListController.isLastPage.value) {
-                  productListController.page(productListController.page.value + 1);
+                  productListController
+                      .page(productListController.page.value + 1);
                   productListController.isLoading(true);
                   productListController.init();
                   return await Future.delayed(const Duration(seconds: 2), () {
@@ -94,7 +101,8 @@ class ProductListScreen extends StatelessWidget {
                   spacing: 16,
                   runSpacing: 16,
                   itemBuilder: (context, index) {
-                    return Obx(() => ProductItemComponents(productListData: productList[index]));
+                    return Obx(() => ProductItemComponents(
+                        productListData: productList[index]));
                   },
                 ),
               ],

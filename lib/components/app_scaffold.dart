@@ -76,7 +76,7 @@ class AppScaffold extends StatelessWidget {
                 actions: actions,
                 leading:
                     leadingWidget ?? (hasLeadingWidget ? backButton() : null),
-              ).paddingTop(10),
+              ).paddingAll(10),
             ),
       backgroundColor:
           scaffoldBackgroundColor ?? context.scaffoldBackgroundColor,

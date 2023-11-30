@@ -26,8 +26,9 @@ import 'shop_search_screen.dart';
 class ShopDashboardScreen extends StatelessWidget {
   ShopDashboardScreen({super.key});
 
-  final ShopDashboardController shopDashboardController = Get.put(ShopDashboardController());
- final DayCareServiceController dayCareServiceController =
+  final ShopDashboardController shopDashboardController =
+      Get.put(ShopDashboardController());
+  final DayCareServiceController dayCareServiceController =
       Get.put(DayCareServiceController());
   @override
   Widget build(BuildContext context) {
@@ -43,7 +44,11 @@ class ShopDashboardScreen extends StatelessWidget {
               Get.to(() => ShopSearchScreen());
             });
           },
-          icon: commonLeadingWid(imgPath: Assets.iconsIcSearch, color: switchColor, icon: Icons.search_outlined, size: 22),
+          icon: commonLeadingWid(
+              imgPath: Assets.iconsIcSearch,
+              color: switchColor,
+              icon: Icons.search_outlined,
+              size: 22),
         ),
         IconButton(
           onPressed: () async {
@@ -51,14 +56,16 @@ class ShopDashboardScreen extends StatelessWidget {
               Get.to(() => WishListScreen());
             });
           },
-          icon: const Icon(Icons.favorite_border_outlined, color: switchColor, size: 25),
+          icon: const Icon(Icons.favorite_border_outlined,
+              color: switchColor, size: 25),
         ),
         const CartIconBtn(),
       ],
       body: Obx(
         () => RefreshIndicator(
           onRefresh: () async {
-            shopDashboardController.getShopDashboardDetail(isFromSwipRefresh: true);
+            shopDashboardController.getShopDashboardDetail(
+                isFromSwipRefresh: true);
             return await Future.delayed(const Duration(seconds: 2));
           },
           child: SnapHelperWidget<DashboardShopRes>(
@@ -99,22 +106,30 @@ class ShopDashboardScreen extends StatelessWidget {
                   ).paddingSymmetric(horizontal: 16),*/
                   //TODO
                   //just a view until the api being ready
-                          16.height,
+                  16.height,
                   ChooseYourPet(
                     onChanged: (selectedPet) {
                       dayCareServiceController.bookDayCareReq.petId =
                           selectedPet.id;
                     },
                   ),
-               
+
                   8.height,
-                  DashboardCategoryComponents(productCategoryList: shopDashboardRes.shopDashData.category),
+                  DashboardCategoryComponents(
+                      productCategoryList:
+                          shopDashboardRes.shopDashData.category),
                   16.height,
-                  DashboardFeaturedComponents(featuredProductList: shopDashboardRes.shopDashData.featuredProduct),
+                  DashboardFeaturedComponents(
+                      featuredProductList:
+                          shopDashboardRes.shopDashData.featuredProduct),
                   16.height,
-                  BestSellerComponents(bestSellerProductList: shopDashboardRes.shopDashData.bestsellerProduct),
+                  BestSellerComponents(
+                      bestSellerProductList:
+                          shopDashboardRes.shopDashData.bestsellerProduct),
                   16.height,
-                  DealsComponents(discountProductList: shopDashboardRes.shopDashData.discountProduct),
+                  DealsComponents(
+                      discountProductList:
+                          shopDashboardRes.shopDashData.discountProduct),
                 ],
               );
             },
