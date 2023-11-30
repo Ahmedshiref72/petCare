@@ -12,9 +12,19 @@ class HomeScreenController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool isRefresh = false.obs;
   TextEditingController searchCont = TextEditingController();
-  Rx<Future<DashboardRes>> getDashboardDetailFuture = Future(() => DashboardRes(data: DashboardData(upcommingBooking: BookingDataModel(service: SystemService(), payment: PaymentDetails(), training: Training())))).obs;
+  Rx<Future<DashboardRes>> getDashboardDetailFuture = Future(() => DashboardRes(
+      data: DashboardData(
+          upcommingBooking: BookingDataModel(
+              service: SystemService(),
+              payment: PaymentDetails(),
+              training: Training())))).obs;
 
-  Rx<DashboardData> dashboardData = DashboardData(upcommingBooking: BookingDataModel(service: SystemService(), payment: PaymentDetails(), training: Training())).obs;
+  Rx<DashboardData> dashboardData = DashboardData(
+          upcommingBooking: BookingDataModel(
+              service: SystemService(),
+              payment: PaymentDetails(),
+              training: Training()))
+      .obs;
   PageController pageController = PageController();
   RxInt currentPage = 0.obs;
 
@@ -26,7 +36,8 @@ class HomeScreenController extends GetxController {
 
   void init() {
     try {
-      final dashboardResFromLocal = getValueFromLocal(APICacheConst.DASHBOARD_RESPONSE);
+      final dashboardResFromLocal =
+          getValueFromLocal(APICacheConst.DASHBOARD_RESPONSE);
       if (dashboardResFromLocal != null) {
         handleDashboardRes(DashboardRes.fromJson(dashboardResFromLocal));
       }

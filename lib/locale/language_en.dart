@@ -1055,6 +1055,7 @@ class LanguageEn extends BaseLanguage {
 
   @override
   String get medicalReport => 'Medical Report';
+
   @override
   String get imagePath => 'assets/images/option_image a.png';
 
@@ -1774,7 +1775,7 @@ class LanguageEn extends BaseLanguage {
   String get locationPermissionDenied => 'location permission denied';
 
   @override
-  String get permisionDeniedPermanently => 'permision denied permanently';
+  String get permisionDeniedPermanently => 'permission denied permanently';
 
   @override
   String get enableLocation => 'enable location';

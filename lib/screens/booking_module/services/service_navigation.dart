@@ -3,47 +3,52 @@ import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/generated/assets.dart';
+import 'package:pawlly/main.dart';
 import 'package:pawlly/screens/booking_module/add_booking_forms/boarding_service_controller.dart';
 import 'package:pawlly/screens/booking_module/add_booking_forms/daycare_service_controller.dart';
 import 'package:pawlly/screens/booking_module/add_booking_forms/grooming_service_controller.dart';
 import 'package:pawlly/screens/booking_module/add_booking_forms/training_service_controller.dart';
 import 'package:pawlly/screens/booking_module/add_booking_forms/veterinery_service_controller.dart';
 import 'package:pawlly/screens/booking_module/add_booking_forms/walking_service_controller.dart';
-import 'package:pawlly/main.dart';
 import 'package:pawlly/utils/colors.dart';
 
-import '../../dashboard/dashboard_screen.dart';
-import '../../pet/my_pets_controller.dart';
-import '../booking_list/bookings_controller.dart';
-import '../../dashboard/dashboard_controller.dart';
 import '../../../utils/app_common.dart';
 import '../../../utils/constants.dart';
-import '../../home/model/status_list_res.dart';
-import '../model/booking_data_model.dart';
+import '../../dashboard/dashboard_controller.dart';
+import '../../dashboard/dashboard_res_model.dart';
+import '../../dashboard/dashboard_screen.dart';
+import '../../pet/my_pets_controller.dart';
 import '../add_booking_forms/boarding_service_screen.dart';
 import '../add_booking_forms/daycare_service_screen.dart';
 import '../add_booking_forms/grooming_service_screen.dart';
-import '../../dashboard/dashboard_res_model.dart';
-import '../booking_success_screen.dart';
 import '../add_booking_forms/training_service_screen.dart';
 import '../add_booking_forms/veterinery_service_screen.dart';
 import '../add_booking_forms/walking_service_screen.dart';
+import '../booking_list/bookings_controller.dart';
+import '../booking_success_screen.dart';
+import '../model/booking_data_model.dart';
 
 void navigateToService(SystemService service, {dynamic arguments}) {
   currentSelectedService(service);
   myPetsScreenController.init();
-  if (service.slug.contains(ServicesKeyConst.boarding)) {
-    Get.to(() => BoardingServicesScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
-  } else if (service.slug.contains(ServicesKeyConst.veterinary)) {
-    Get.to(() => VeterineryServiceScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
-  } else if (service.slug.contains(ServicesKeyConst.grooming)) {
-    Get.to(() => GroomingScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
-  } else if (service.slug.contains(ServicesKeyConst.walking)) {
-    Get.to(() => WalkingServiceScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
-  } else if (service.slug.contains(ServicesKeyConst.training)) {
-    Get.to(() => TrainingServiceScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
-  } else if (service.slug.contains(ServicesKeyConst.dayCare)) {
-    Get.to(() => DayCareScreen(), arguments: arguments, duration: const Duration(milliseconds: 800));
+  if (service.id == 1) {
+    Get.to(() => BoardingServicesScreen(),
+        arguments: arguments, duration: const Duration(milliseconds: 800));
+  } else if (service.id == 2) {
+    Get.to(() => VeterineryServiceScreen(),
+        arguments: arguments, duration: const Duration(milliseconds: 800));
+  } else if (service.id == 3) {
+    Get.to(() => GroomingScreen(),
+        arguments: arguments, duration: const Duration(milliseconds: 800));
+  } else if (service.id == 4) {
+    Get.to(() => WalkingServiceScreen(),
+        arguments: arguments, duration: const Duration(milliseconds: 800));
+  } else if (service.id == 5) {
+    Get.to(() => TrainingServiceScreen(),
+        arguments: arguments, duration: const Duration(milliseconds: 800));
+  } else if (service.id == 6) {
+    Get.to(() => DayCareScreen(),
+        arguments: arguments, duration: const Duration(milliseconds: 800));
   }
 }
 
@@ -101,7 +106,8 @@ String getAddressByServiceElement({required BookingDataModel appointment}) {
   }
 }
 
-(Map<String, dynamic>, List<PlatformFile>? files) getBookingReqByServiceType({required String serviceType}) {
+(Map<String, dynamic>, List<PlatformFile>? files) getBookingReqByServiceType(
+    {required String serviceType}) {
   try {
     if (serviceType.contains(ServicesKeyConst.boarding)) {
       BoardingServiceController bCont = Get.find();
@@ -130,7 +136,8 @@ String getAddressByServiceElement({required BookingDataModel appointment}) {
   }
 }
 
-String getEmployeeRoleByServiceElement({required BookingDataModel appointment}) {
+String getEmployeeRoleByServiceElement(
+    {required BookingDataModel appointment}) {
   if (appointment.service.slug.contains(ServicesKeyConst.boarding)) {
     return locale.value.boarder;
   } else if (appointment.service.slug.contains(ServicesKeyConst.veterinary)) {
@@ -189,27 +196,49 @@ String getBookingStatus({required String status}) {
 String getBookingNotification({required String notification}) {
   if (notification.toLowerCase().contains(NotificationConst.newBooking)) {
     return locale.value.newBooking;
-  } else if (notification.toLowerCase().contains(NotificationConst.completeBooking)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.completeBooking)) {
     return locale.value.completeBooking;
-  } else if (notification.toLowerCase().contains(NotificationConst.rejectBooking)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.rejectBooking)) {
     return locale.value.rejectBooking;
-  } else if (notification.toLowerCase().contains(NotificationConst.cancelBooking)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.cancelBooking)) {
     return locale.value.cancelBooking;
-  } else if (notification.toLowerCase().contains(NotificationConst.acceptBooking)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.acceptBooking)) {
     return locale.value.acceptBooking;
-  } else if (notification.toLowerCase().contains(NotificationConst.changePassword)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.changePassword)) {
     return locale.value.changePassword;
-  } else if (notification.toLowerCase().contains(NotificationConst.forgetEmailPassword)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.forgetEmailPassword)) {
     return locale.value.forgetEmailPassword;
-  } else if (notification.toLowerCase().contains(NotificationConst.orderPlaced)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.orderPlaced)) {
     return locale.value.orderPlaced;
-  } else if (notification.toLowerCase().contains(NotificationConst.orderPending)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.orderPending)) {
     return locale.value.orderPending;
-  } else if (notification.toLowerCase().contains(NotificationConst.orderProcessing)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.orderProcessing)) {
     return locale.value.orderProcessing;
-  } else if (notification.toLowerCase().contains(NotificationConst.orderDelivered)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.orderDelivered)) {
     return locale.value.orderDelivered;
-  } else if (notification.toLowerCase().contains(NotificationConst.orderCancelled)) {
+  } else if (notification
+      .toLowerCase()
+      .contains(NotificationConst.orderCancelled)) {
     return locale.value.orderCancelled;
   } else {
     return "";
@@ -261,7 +290,8 @@ Color getPriceStatusColor({required String paymentStatus}) {
 void onPaymentSuccess({required String bookingType}) async {
   reLoadBookingsOnDashboard();
   await Future.delayed(const Duration(milliseconds: 300));
-  Get.offUntil(GetPageRoute(page: () => BookingSuccess()), (route) => route.isFirst || route.settings.name == '/$DashboardScreen');
+  Get.offUntil(GetPageRoute(page: () => BookingSuccess()),
+      (route) => route.isFirst || route.settings.name == '/$DashboardScreen');
 }
 
 void reLoadBookingsOnDashboard() {

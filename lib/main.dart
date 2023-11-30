@@ -58,8 +58,12 @@ void main() async {
   defaultAppButtonRadius = defaultRadius;
   defaultAppButtonElevation = 0;
   defaultAppButtonTextColorGlobal = Colors.white;
-  print(Platform.localeName.split("_").first.toLowerCase());
-  print('Platform.localeName.split("_").first.toLowerCase()');
+  if (kDebugMode) {
+    print(Platform.localeName.split("_").first.toLowerCase());
+  }
+  if (kDebugMode) {
+    print('Platform.localeName.split("_").first.toLowerCase()');
+  }
   await initialize(aLocaleLanguageList: languageList());
 
   selectedLanguageCode(

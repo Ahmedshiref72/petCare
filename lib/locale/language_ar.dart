@@ -263,6 +263,7 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get houseNum => 'رقم المنزل';
+
   @override
   String get start => 'ابدأ';
 
@@ -537,7 +538,7 @@ class LanguageAr extends BaseLanguage {
   String get boarding => 'الصعود';
 
   @override
-  String get book => 'كتاب';
+  String get book => 'حجز';
 
   @override
   String get dropOffAddress => 'عنوان الانخفاض';
@@ -674,6 +675,7 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get veterinaryType => 'النوع البيطري';
+
   @override
   String get noAddress => 'لا يوجد عناوين اضغط هنا لإضافة عنوان جديد';
 
@@ -1189,6 +1191,7 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get orSignInWith => 'أو تسجيل الدخول مع';
+
   @override
   String get imagePath => 'assets/images/option_image.png';
 

@@ -3,15 +3,17 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+
+import '../../../utils/common_base.dart';
 import '../../../utils/constants.dart';
 import '../services/auth_service_apis.dart';
 import 'sign_in_controller.dart';
-import '../../../utils/common_base.dart';
 
 class SignUpController extends GetxController {
   RxBool isLoading = false.obs;
   RxBool agree = false.obs;
   TextEditingController emailCont = TextEditingController();
+  TextEditingController phoneCont = TextEditingController();
   TextEditingController fisrtNameCont = TextEditingController();
   TextEditingController lastNameCont = TextEditingController();
   TextEditingController passwordCont = TextEditingController();
@@ -20,6 +22,7 @@ class SignUpController extends GetxController {
   FocusNode fisrtNameFocus = FocusNode();
   FocusNode lastNameFocus = FocusNode();
   FocusNode passwordFocus = FocusNode();
+  FocusNode phoneFocus = FocusNode();
   saveForm() async {
     isLoading(true);
     hideKeyBoardWithoutContext();
@@ -29,6 +32,7 @@ class SignUpController extends GetxController {
       "first_name": fisrtNameCont.text.trim(),
       "last_name": lastNameCont.text.trim(),
       "password": passwordCont.text.trim(),
+      "phone": phoneCont.text.trim(),
       UserKeys.userType: LoginTypeConst.LOGIN_TYPE_USER,
     };
 

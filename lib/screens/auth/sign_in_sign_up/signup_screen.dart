@@ -1,6 +1,5 @@
-import 'package:get/get.dart';
-
 import 'package:flutter/material.dart';
+import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/main.dart';
 import 'package:url_launcher/url_launcher.dart';
@@ -10,11 +9,10 @@ import '../../../components/app_scaffold.dart';
 import '../../../components/loader_widget.dart';
 import '../../../configs.dart';
 import '../../../generated/assets.dart';
-import 'sign_up_controller.dart';
-
 import '../../../utils/colors.dart';
 import '../../../utils/common_base.dart';
 import '../../../utils/constants.dart';
+import 'sign_up_controller.dart';
 
 class SignUpScreen extends StatelessWidget {
   SignUpScreen({Key? key}) : super(key: key);
@@ -33,7 +31,8 @@ class SignUpScreen extends StatelessWidget {
           children: [
             SingleChildScrollView(
               scrollDirection: Axis.vertical,
-              padding: const EdgeInsets.only(left: 16, right: 16, top: 10, bottom: 50),
+              padding: const EdgeInsets.only(
+                  left: 16, right: 16, top: 10, bottom: 50),
               child: Column(
                 mainAxisAlignment: MainAxisAlignment.start,
                 crossAxisAlignment: CrossAxisAlignment.center,
@@ -44,7 +43,8 @@ class SignUpScreen extends StatelessWidget {
                     height: Constants.appLogoSize,
                     width: Constants.appLogoSize,
                     fit: BoxFit.contain,
-                    errorBuilder: (context, error, stackTrace) => const AppLogoWidget(),
+                    errorBuilder: (context, error, stackTrace) =>
+                        const AppLogoWidget(),
                   ),
                   16.height,
                   Text(
@@ -76,9 +76,12 @@ class SignUpScreen extends StatelessWidget {
                             context,
                             fillColor: context.cardColor,
                             filled: true,
-                            hintText: "${locale.value.eG} ${locale.value.merry}",
+                            hintText:
+                                "${locale.value.eG} ${locale.value.merry}",
                           ),
-                          suffix: Assets.profileIconsIcUserOutlined.iconImage(fit: BoxFit.contain).paddingAll(14),
+                          suffix: Assets.profileIconsIcUserOutlined
+                              .iconImage(fit: BoxFit.contain)
+                              .paddingAll(14),
                         ),
                         16.height,
                         AppTextField(
@@ -94,7 +97,9 @@ class SignUpScreen extends StatelessWidget {
                             filled: true,
                             hintText: "${locale.value.eG}  ${locale.value.doe}",
                           ),
-                          suffix: Assets.profileIconsIcUserOutlined.iconImage(fit: BoxFit.contain).paddingAll(14),
+                          suffix: Assets.profileIconsIcUserOutlined
+                              .iconImage(fit: BoxFit.contain)
+                              .paddingAll(14),
                         ),
                         16.height,
                         AppTextField(
@@ -102,7 +107,7 @@ class SignUpScreen extends StatelessWidget {
                           textStyle: primaryTextStyle(size: 12),
                           controller: signUpController.emailCont,
                           focus: signUpController.emailFocus,
-                          nextFocus: signUpController.passwordFocus,
+                          nextFocus: signUpController.phoneFocus,
                           textFieldType: TextFieldType.EMAIL_ENHANCED,
                           decoration: inputDecoration(
                             context,
@@ -110,7 +115,25 @@ class SignUpScreen extends StatelessWidget {
                             filled: true,
                             hintText: "${locale.value.eG} merry_456@gmail.com",
                           ),
-                          suffix: Assets.iconsIcMail.iconImage(fit: BoxFit.contain).paddingAll(14),
+                          suffix: Assets.iconsIcMail
+                              .iconImage(fit: BoxFit.contain)
+                              .paddingAll(14),
+                        ),
+                        16.height,
+                        AppTextField(
+                          title: locale.value.phone,
+                          textStyle: primaryTextStyle(size: 12),
+                          controller: signUpController.phoneCont,
+                          focus: signUpController.phoneFocus,
+                          nextFocus: signUpController.passwordFocus,
+                          textFieldType: TextFieldType.PHONE,
+                          decoration: inputDecoration(
+                            context,
+                            fillColor: context.cardColor,
+                            filled: true,
+                            hintText: "+965",
+                          ),
+                          suffix: Icon(Icons.phone),
                         ),
                         16.height,
                         AppTextField(
@@ -125,8 +148,16 @@ class SignUpScreen extends StatelessWidget {
                             filled: true,
                             hintText: "${locale.value.eG} #123@156",
                           ),
-                          suffixPasswordVisibleWidget: commonLeadingWid(imgPath: Assets.iconsIcEye, icon: Icons.password_outlined, size: 14).paddingAll(12),
-                          suffixPasswordInvisibleWidget: commonLeadingWid(imgPath: Assets.iconsIcEyeSlash, icon: Icons.password_outlined, size: 14).paddingAll(12),
+                          suffixPasswordVisibleWidget: commonLeadingWid(
+                                  imgPath: Assets.iconsIcEye,
+                                  icon: Icons.password_outlined,
+                                  size: 14)
+                              .paddingAll(12),
+                          suffixPasswordInvisibleWidget: commonLeadingWid(
+                                  imgPath: Assets.iconsIcEyeSlash,
+                                  icon: Icons.password_outlined,
+                                  size: 14)
+                              .paddingAll(12),
                         ),
                         16.height,
                         Column(
@@ -134,14 +165,24 @@ class SignUpScreen extends StatelessWidget {
                             Row(
                               mainAxisSize: MainAxisSize.min,
                               children: [
-                                Text(locale.value.byCreatingAAccountYou, style: secondaryTextStyle(size: 10)),
+                                Text(locale.value.byCreatingAAccountYou,
+                                    style: secondaryTextStyle(size: 10)),
                                 4.width,
                                 TextButton(
-                                  style: TextButton.styleFrom(padding: EdgeInsets.zero, alignment: Alignment.centerLeft),
+                                  style: TextButton.styleFrom(
+                                      padding: EdgeInsets.zero,
+                                      alignment: Alignment.centerLeft),
                                   onPressed: () {
-                                    commonLaunchUrl(TERMS_CONDITION_URL, launchMode: LaunchMode.externalApplication);
+                                    commonLaunchUrl(TERMS_CONDITION_URL,
+                                        launchMode:
+                                            LaunchMode.externalApplication);
                                   },
-                                  child: Text(locale.value.termsOfService, style: primaryTextStyle(color: primaryColor, size: 12, decoration: TextDecoration.underline, decorationColor: primaryColor)),
+                                  child: Text(locale.value.termsOfService,
+                                      style: primaryTextStyle(
+                                          color: primaryColor,
+                                          size: 12,
+                                          decoration: TextDecoration.underline,
+                                          decorationColor: primaryColor)),
                                 ),
                               ],
                             ),
@@ -151,7 +192,8 @@ class SignUpScreen extends StatelessWidget {
                         AppButton(
                           width: Get.width,
                           text: locale.value.signUp,
-                          textStyle: const TextStyle(fontSize: 14, color: containerColor),
+                          textStyle: const TextStyle(
+                              fontSize: 14, color: containerColor),
                           onTap: () {
                             if (_signUpformKey.currentState!.validate()) {
                               _signUpformKey.currentState!.save();
@@ -166,10 +208,13 @@ class SignUpScreen extends StatelessWidget {
                   Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      Text(locale.value.alreadyHaveAnAccount, style: secondaryTextStyle()),
+                      Text(locale.value.alreadyHaveAnAccount,
+                          style: secondaryTextStyle()),
                       4.width,
                       TextButton(
-                        style: TextButton.styleFrom(padding: EdgeInsets.zero, alignment: Alignment.centerLeft),
+                        style: TextButton.styleFrom(
+                            padding: EdgeInsets.zero,
+                            alignment: Alignment.centerLeft),
                         onPressed: () {
                           Get.back();
                           // Get.offUntil(GetPageRoute(page: () => SignInScreen()), (route) => route.isFirst || route.settings.name == '/OptionScreen');
@@ -189,7 +234,9 @@ class SignUpScreen extends StatelessWidget {
                 ],
               ),
             ),
-            Obx(() => const LoaderWidget().center().visible(signUpController.isLoading.value)),
+            Obx(() => const LoaderWidget()
+                .center()
+                .visible(signUpController.isLoading.value)),
           ],
         ),
       ),
