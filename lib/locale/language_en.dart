@@ -667,7 +667,13 @@ class LanguageEn extends BaseLanguage {
   @override
   String get trainer => 'Training Center';
   @override
-  String get noAddress => 'No addresses available, tap here to add one ';
+  String get noAddress => 'No addresses available';
+  @override
+  String get noAddressNoLogin => 'You are not logged in';
+  @override
+  String get noAddressTap => 'Tap here to add one';
+  @override
+  String get noAddressNoLoginTap => 'Tap here to login now';
 
   @override
   String get chooseTrainer => 'Choose Center';

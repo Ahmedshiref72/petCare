@@ -856,6 +856,11 @@ class LanguageDe extends BaseLanguage {
   String get imagePath => 'Damhirschkuh';
   @override
   String get noAddress => 'Damhirschkuh';
+    @override
+  String get noAddressNoLogin => 'Damhirschkuh';
+    String get noAddressTap => 'Tap here to add one';
+  @override
+  String get noAddressNoLoginTap => 'Tap here to login now';
   @override
   String get start => 'Damhirschkuh';
 

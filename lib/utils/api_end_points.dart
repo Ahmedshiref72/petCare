@@ -68,7 +68,7 @@ class APIEndPoints {
   static const String removeWishList = 'remove-wishlist';
 
   //Addresses
-  static const String getAddressList = 'address-list';
+  static const String getAddressList = 'address-list'; 
   static const String editAddress = 'edit-address';
   static const String addAddress = 'add-address';
   static const String removeAddress = 'remove-address';

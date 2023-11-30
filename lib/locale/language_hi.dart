@@ -231,6 +231,11 @@ class LanguageHi extends BaseLanguage {
   @override
   String get noAddress => 'आपकी समीक्षा';
 
+    @override
+  String get noAddressNoLogin => 'आपकी समीक्षा';
+  String get noAddressTap => 'Tap here to add one';
+  @override
+  String get noAddressNoLoginTap => 'Tap here to login now';
   @override
   String get yourFeedbackWillImprove =>
       'आपकी प्रतिक्रिया हमारी सेवा में सुधार करेगी।';

@@ -3,6 +3,7 @@ import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
 import 'package:pawlly/screens/auth/profile/add_address_screen.dart';
 import 'package:pawlly/screens/auth/profile/select_address_controller.dart';
+import 'package:pawlly/screens/auth/sign_in_sign_up/signin_screen.dart';
 import '../../../components/app_scaffold.dart';
 import '../../../components/bottom_selection_widget.dart';
 import '../../../components/cached_image_widget.dart';
@@ -159,9 +160,32 @@ class WalkingServiceScreen extends StatelessWidget {
                                   return Center(
                                     child: InkWell(
                                       onTap: () {
-                                        Get.to(() => AddAddressScreen());
+                                        if (isLoggedIn.value) {
+                                          Get.to(() => AddAddressScreen());
+                                        } else {
+                                          Get.to(() => SignInScreen());
+                                        }
                                       },
-                                      child: Text(locale.value.noAddress),
+                                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                        children: [
+                                          isLoggedIn.value
+                                              ? Text(locale.value.noAddress)
+                                              : Text(locale
+                                                  .value.noAddressNoLogin),
+                                          Container(
+                                            padding: EdgeInsets.symmetric(horizontal:5,vertical: 8),
+                                            decoration: BoxDecoration(
+                                                color: primaryColor,
+                                                borderRadius:
+                                                    BorderRadius.circular(5)),
+                                            child: isLoggedIn.value
+                                                ? Text(
+                                                    locale.value.noAddressTap)
+                                                : Text(locale
+                                                    .value.noAddressNoLoginTap),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }

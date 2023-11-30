@@ -987,7 +987,9 @@ abstract class BaseLanguage {
 
   String get saveChanges;
   String get noAddress;
-
+  String get noAddressNoLogin;
+  String get noAddressTap;
+  String get noAddressNoLoginTap;
   String get setAsPrimary;
 
   String get seeYourOrders;

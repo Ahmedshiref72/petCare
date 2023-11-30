@@ -677,7 +677,16 @@ class LanguageAr extends BaseLanguage {
   String get veterinaryType => 'النوع البيطري';
 
   @override
-  String get noAddress => 'لا يوجد عناوين اضغط هنا لإضافة عنوان جديد';
+  String get noAddress => 'لا يوجد عناوين';
+
+  @override
+  String get noAddressNoLogin => 'يرجى تسجيل الدخول ';
+
+  @override
+  String get noAddressTap => 'إضغط هنا لإضافة عنوان';
+
+  @override
+  String get noAddressNoLoginTap => 'إضغط هنا لتسجيل الدخول';
 
   @override
   String get chooseVeterinaryType => 'اختر النوع البيطري';
