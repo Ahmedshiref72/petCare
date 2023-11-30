@@ -1,3 +1,5 @@
+// ignore_for_file: prefer_const_constructors
+
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
@@ -166,23 +168,42 @@ class WalkingServiceScreen extends StatelessWidget {
                                           Get.to(() => SignInScreen());
                                         }
                                       },
-                                      child: Row(mainAxisAlignment: MainAxisAlignment.center,
+                                      child: Row(
+                                        mainAxisAlignment:
+                                            MainAxisAlignment.center,
                                         children: [
                                           isLoggedIn.value
-                                              ? Text(locale.value.noAddress)
-                                              : Text(locale
-                                                  .value.noAddressNoLogin),
+                                              ? Text(
+                                                  locale.value.noAddress,
+                                                  style: TextStyle(
+                                                      color: primaryTextColor),
+                                                )
+                                              : Text(
+                                                  locale.value.noAddressNoLogin,
+                                                  style: TextStyle(
+                                                      color: primaryTextColor),
+                                                ),
                                           Container(
-                                            padding: EdgeInsets.symmetric(horizontal:5,vertical: 8),
+                                            padding: EdgeInsets.symmetric(
+                                                horizontal: 5, vertical: 8),
                                             decoration: BoxDecoration(
                                                 color: primaryColor,
                                                 borderRadius:
                                                     BorderRadius.circular(5)),
                                             child: isLoggedIn.value
                                                 ? Text(
-                                                    locale.value.noAddressTap)
-                                                : Text(locale
-                                                    .value.noAddressNoLoginTap),
+                                                    locale.value.noAddressTap,
+                                                    style: TextStyle(
+                                                        color:
+                                                            primaryTextColor),
+                                                  )
+                                                : Text(
+                                                    locale.value
+                                                        .noAddressNoLoginTap,
+                                                    style: TextStyle(
+                                                        color:
+                                                            primaryTextColor),
+                                                  ),
                                           ),
                                         ],
                                       ),

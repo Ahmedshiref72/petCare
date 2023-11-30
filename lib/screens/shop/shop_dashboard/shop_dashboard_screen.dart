@@ -28,8 +28,8 @@ class ShopDashboardScreen extends StatelessWidget {
 
   final ShopDashboardController shopDashboardController =
       Get.put(ShopDashboardController());
-  final DayCareServiceController dayCareServiceController =
-      Get.put(DayCareServiceController());
+  // final DayCareServiceController dayCareServiceController =
+  //     Get.put(DayCareServiceController());
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -107,14 +107,14 @@ class ShopDashboardScreen extends StatelessWidget {
                   //TODO
                   //just a view until the api being ready
                   16.height,
-                  ChooseYourPet(
-                    onChanged: (selectedPet) {
-                      dayCareServiceController.bookDayCareReq.petId =
-                          selectedPet.id;
-                    },
-                  ),
+                  // ChooseYourPet(
+                  //   onChanged: (selectedPet) {
+                  //     dayCareServiceController.bookDayCareReq.petId =
+                  //         selectedPet.id;
+                  //   },
+                  // ),
 
-                  8.height,
+                  // 8.height,
                   DashboardCategoryComponents(
                       productCategoryList:
                           shopDashboardRes.shopDashData.category),

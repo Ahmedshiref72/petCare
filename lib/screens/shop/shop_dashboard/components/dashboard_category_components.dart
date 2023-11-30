@@ -54,9 +54,12 @@ class DashboardCategoryComponents extends StatelessWidget {
             CategoryData data = productCategoryList[index];
             return GestureDetector(
               onTap: () {
-                Get.to(() => ProductListScreen(title: data.name), arguments: ProductStatusModel(productCategoryID: data.id.toString()));
+                Get.to(() => ProductListScreen(title: data.name),
+                    arguments: ProductStatusModel(
+                        productCategoryID: data.id.toString()));
               },
-              child: CategoryItemComponents(categoryData: data, width: Get.width / 3 - 22),
+              child: CategoryItemComponents(
+                  categoryData: data, width: Get.width / 3 - 22),
             );
           },
         ).paddingOnly(top: 10, left: 16, right: 16, bottom: 16)

@@ -56,7 +56,7 @@ class LanguageAr extends BaseLanguage {
   String get update => 'تحديث';
 
   @override
-  String get confirm => 'يتأكد';
+  String get confirm => 'تأكيد';
 
   @override
   String get reload => 'إعادة تحميل';

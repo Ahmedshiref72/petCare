@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
 import 'package:nb_utils/nb_utils.dart';
+import 'package:pawlly/screens/booking_module/add_booking_forms/daycare_service_controller.dart';
+import 'package:pawlly/screens/booking_module/model/choose_pet_widget.dart';
 import 'package:pawlly/screens/shop/shop_dashboard/product_list_controller.dart';
 import 'package:pawlly/screens/shop/shop_dashboard/shop_search_screen.dart';
 
@@ -21,7 +23,8 @@ class ProductListScreen extends StatelessWidget {
 
   final ProductListController productListController =
       Get.put(ProductListController());
-
+ final DayCareServiceController dayCareServiceController =
+      Get.put(DayCareServiceController());
   @override
   Widget build(BuildContext context) {
     return AppScaffold(
@@ -95,6 +98,15 @@ class ProductListScreen extends StatelessWidget {
                     Get.to(() => ShopSearchScreen());
                   },
                 ),*/
+                  //TODO
+                  //just a view until the api being ready
+                   ChooseYourPet(
+                    onChanged: (selectedPet) {
+                      dayCareServiceController.bookDayCareReq.petId =
+                          selectedPet.id;
+                    },
+                  ),
+
                 16.height,
                 AnimatedWrap(
                   itemCount: productList.length,
