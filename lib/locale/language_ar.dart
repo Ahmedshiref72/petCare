@@ -321,6 +321,10 @@ class LanguageAr extends BaseLanguage {
 
   @override
   String get mainStreet => 'شارع رئيسي';
+  @override
+  String get numberMustBe => 'يجب أن يتبع الرقم 8 أرقام';
+  @override
+  String get please => 'الرجاء إدخال رقم';
 
   @override
   String get forgetPassword => 'ننسى كلمة المرور';

@@ -225,13 +225,17 @@ class LanguageHi extends BaseLanguage {
   String get rate => 'दर';
   @override
   String get imagePath => 'दर';
+  @override
+  String get numberMustBe => 'يجب أن يتبع الرقم 8 أرقام';
+  @override
+  String get please => 'الرجاء إدخال رقم';
 
   @override
   String get yourReview => 'आपकी समीक्षा';
   @override
   String get noAddress => 'आपकी समीक्षा';
 
-    @override
+  @override
   String get noAddressNoLogin => 'आपकी समीक्षा';
   String get noAddressTap => 'Tap here to add one';
   @override

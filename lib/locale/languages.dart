@@ -342,6 +342,10 @@ abstract class BaseLanguage {
 
   String get book;
 
+  String get please;
+
+  String get numberMustBe;
+
   String get dropOffAddress;
 
   String get boarder;
@@ -971,6 +975,7 @@ abstract class BaseLanguage {
   String get selectCountry;
 
   String get state;
+
   String get start;
 
   String get selectState;
@@ -986,10 +991,15 @@ abstract class BaseLanguage {
   String get apt;
 
   String get saveChanges;
+
   String get noAddress;
+
   String get noAddressNoLogin;
+
   String get noAddressTap;
+
   String get noAddressNoLoginTap;
+
   String get setAsPrimary;
 
   String get seeYourOrders;

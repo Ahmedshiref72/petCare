@@ -288,10 +288,14 @@ class LanguageFr extends BaseLanguage {
   @override
   String get imagePath => 'start';
   @override
+  String get numberMustBe => 'يجب أن يتبع الرقم 8 أرقام';
+  @override
+  String get please => 'الرجاء إدخال رقم';
+  @override
   String get noAddress => 'No addresses available';
   @override
   String get noAddressNoLogin => 'No addresses available';
-    String get noAddressTap => 'Tap here to add one';
+  String get noAddressTap => 'Tap here to add one';
   @override
   String get noAddressNoLoginTap => 'Tap here to login now';
   @override

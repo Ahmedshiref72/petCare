@@ -853,12 +853,16 @@ class LanguageDe extends BaseLanguage {
   @override
   String get doe => 'Damhirschkuh';
   @override
+  @override
+  String get numberMustBe => 'يجب أن يتبع الرقم 8 أرقام';
+  @override
+  String get please => 'الرجاء إدخال رقم';
   String get imagePath => 'Damhirschkuh';
   @override
   String get noAddress => 'Damhirschkuh';
-    @override
+  @override
   String get noAddressNoLogin => 'Damhirschkuh';
-    String get noAddressTap => 'Tap here to add one';
+  String get noAddressTap => 'Tap here to add one';
   @override
   String get noAddressNoLoginTap => 'Tap here to login now';
   @override

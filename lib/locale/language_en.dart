@@ -1763,7 +1763,13 @@ class LanguageEn extends BaseLanguage {
   String get searchForStatus => 'Search for status';
 
   @override
-  String get readTime => 'Read Time';
+  String get readTime => 'Please enter a number';
+
+  @override
+  String get numberMustBe => 'Number must be followed by 8 digits';
+
+  @override
+  String get please => 'الرجاء إدخال رقم';
 
   @override
   String get min => 'min';

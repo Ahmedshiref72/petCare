@@ -233,11 +233,11 @@ class _AddAddressScreenState extends State<AddAddressScreen> {
                       },
                       validator: (v) {
                         if (v == null || v.isEmpty) {
-                          return 'Please enter a number';
+                          return locale.value.please;
                         }
                         // Regex to ensure the string starts with '965' and is followed by exactly 8 digits
                         if (!RegExp(r'^965\d{8}$').hasMatch(v)) {
-                          return 'Number must be followed by 8 digits';
+                          return locale.value.numberMustBe;
                         }
                         return null;
                       },
